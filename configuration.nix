@@ -5,37 +5,27 @@
 { config, pkgs, inputs, ... }:
 
 {
-	imports = [ # Include the results of the hardware scan.
+	imports = [
 		./hardware-configuration.nix
+		./modules/zapret.nix
 	];
 
 	# Bootloader.
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
-
-	networking.hostName = "nixos"; # Define your hostname.
-	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
 	# Configure network proxy if necessary
 	# networking.proxy.default = "http://user:password@proxy:port/";
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-	# Enable networking
+	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+	networking.hostName = "nixos"; # Define your hostname.
 	networking.networkmanager.enable = true;
 
 	time.timeZone = "Europe/Moscow";
 
-	nix.settings = {
-		experimental-features = ["nix-command" "flakes" ];
-		substituters = [
-			"https://cache.nixos.org"
-		];
-	};
+	nix.settings.experimental-features = ["nix-command" "flakes" ];
 
-	hardware.bluetooth = {
-		enable = true;
-		powerOnBoot = true; # Принудительно включает Bluetooth при старте ПК
-	};
+	hardware.bluetooth.enable = true;
+	hardware.bluetooth.powerOnBoot = true; # Принудительно включает Bluetooth при старте ПК
 
 	fileSystems."/media/eugeny/data" = {
 		options = [ "nofail" "x-systemd.device-timeout=5" ];
@@ -58,7 +48,6 @@
 		shell = pkgs.fish;
 	};
 
-	# Select internationalisation properties.
 	i18n.defaultLocale = "ru_RU.UTF-8";
 	i18n.supportedLocales = [
 		"en_US.UTF-8/UTF-8"
@@ -82,7 +71,6 @@
 			config.common.default = [ "gtk" ];
 	};
 
-
 	# Allow unfree packages
 	nixpkgs.config.allowUnfree = true;
 	virtualisation.docker.enable = true;
@@ -105,6 +93,8 @@
 		yazi
 		home-manager
 		xwayland-satellite
+		amneziawg-tools
+		amnezia-vpn
 	];
 
 	# Some programs need SUID wrappers, can be configured further or are
@@ -116,6 +106,7 @@
 	# };
 	programs.niri.enable = true;
 	programs.fish.enable = true;
+	programs.hyprlock.enable = true;
 
 	#console.luseXkbConfig = true;
 	/*services.displayManager.sddm.enable = true;
@@ -142,6 +133,17 @@
 		};
 	};
 
+	systemd.services.amnezia-vpn = {
+		description = "Amnezia VPN Backend Service";
+		after = [ "network.target" ];
+		wantedBy = [ "multi-user.target" ];
+		serviceConfig = {
+			Type = "simple";
+			ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
+			Restart = "always";
+		};
+	};
+
 	# List services that you want to enable:
 
 	# Configure keymap in X11
@@ -154,38 +156,15 @@
 	services.blueman.enable = true;
 	services.flatpak.enable = true;
 
-	services.zapret = {
-		enable = true;
-		# Включаем поддержку UDP (критично для обхода блокировок QUIC/YouTube)
-		udpSupport = true;
-		udpPorts = [ "443" ]; # Обрабатывать QUIC трафик на 443 порту
-		params = [
-			"--dpi-desync=fake,split2"
-			"--dpi-desync-ttl=4"
-			"--dpi-desync-fooling=md5sig"
-			"--dpi-desync-any-protocol"
-		];
-		# params = [
-		# 	"--dpi-desync=fake"
-		# 	"--dpi-desync-ttl=1"
-		# 	"--dpi-desync-autottl=-2"
-		# 	"--dpi-desync-any-protocol" # Рекомендуется оставить для работы других протоколов (не только HTTPS)
-		# ];
+	# networking.wg-quick.interfaces = {
+	# 	awg2 = {
+	# 		# package = pkgs.amneziawg-tools; 
+	# 		configFile = "/home/eugeny/wgconfigs/amneziawg2.conf"; 
+	# 		autostart = true;
+	# 	};
+	# };
 
-		# # Параметры для TCP (обычные сайты и базовая десинхронизация)
-		# params = [
-		# 	"--dpi-desync=fake"
-		# 	"--dpi-desync-ttl=3"
-		# 	"--dpi-desync-fooling=md5sig"
-		# 	"--dpi-desync-any-protocol"
-		# ];
-		# # # Специальные параметры для UDP, чтобы оживить YouTube без отключения QUIC в браузере
-		# udpParams = [
-		# 	"--dpi-desync=fake"
-		# 	"--dpi-desync-repeats=2"
-		# 	"--dpi-desync-any-protocol"
-		# ];
-	};
+	
 
 	# Enable the OpenSSH daemon.
 	# services.openssh.enable = true;

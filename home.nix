@@ -82,7 +82,6 @@
 		kdePackages.dolphin
 		kdePackages.konsole
 		flatpak
-		git
 		fuzzel
 		fzf
 		ripgrep
@@ -115,7 +114,6 @@
 		foot
 		telegram-desktop
 		papirus-icon-theme
-		gtklock
 		appimage-run
 	];
 }
