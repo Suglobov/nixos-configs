@@ -7,10 +7,12 @@
 {
 	imports = [
 		./hardware-configuration.nix
+		./modules/locale.nix
 		./modules/zapret.nix
 	];
 
-	# Bootloader.
+	nix.settings.experimental-features = ["nix-command" "flakes" ];
+
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
 	# Configure network proxy if necessary
@@ -19,10 +21,6 @@
 	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 	networking.hostName = "nixos"; # Define your hostname.
 	networking.networkmanager.enable = true;
-
-	time.timeZone = "Europe/Moscow";
-
-	nix.settings.experimental-features = ["nix-command" "flakes" ];
 
 	hardware.bluetooth.enable = true;
 	hardware.bluetooth.powerOnBoot = true; # Принудительно включает Bluetooth при старте ПК
@@ -48,23 +46,6 @@
 		shell = pkgs.fish;
 	};
 
-	i18n.defaultLocale = "ru_RU.UTF-8";
-	i18n.supportedLocales = [
-		"en_US.UTF-8/UTF-8"
-		"ru_RU.UTF-8/UTF-8"
-	];
-	i18n.extraLocaleSettings = {
-		LC_ADDRESS = "ru_RU.UTF-8";
-		LC_IDENTIFICATION = "ru_RU.UTF-8";
-		LC_MEASUREMENT = "ru_RU.UTF-8";
-		LC_MONETARY = "ru_RU.UTF-8";
-		LC_NAME = "ru_RU.UTF-8";
-		LC_NUMERIC = "ru_RU.UTF-8";
-		LC_PAPER = "ru_RU.UTF-8";
-		LC_TELEPHONE = "ru_RU.UTF-8";
-		LC_TIME = "ru_RU.UTF-8";
-	};
-
 	xdg.portal = {
 			enable = true;
 			extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -76,16 +57,12 @@
 	virtualisation.docker.enable = true;
 
 	fonts.packages = with pkgs; [
-		# Рекомендуется установить конкретный шрифт, например, JetBrains Mono
 		nerd-fonts.jetbrains-mono
-		# Или поставьте только символы/иконки (минималистичный вариант)
-		# nerd-fonts.symbols-only
 	];
 
-	# List packages installed in system profile. To search, run:
-	# $ nix search wget
+	# List packages installed in system profile. To search, run: $ nix search wget
 	environment.systemPackages = with pkgs; [
-		vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+		vim
 		wget
 		git
 		curl
@@ -109,8 +86,6 @@
 	programs.hyprlock.enable = true;
 
 	#console.luseXkbConfig = true;
-	/*services.displayManager.sddm.enable = true;
-	services.displayManager.sddm.wayland.enable = true;*/
 	services.greetd = {
 		enable = true;
 		settings = {
@@ -155,16 +130,6 @@
 	services.gnome.gnome-keyring.enable = true;
 	services.blueman.enable = true;
 	services.flatpak.enable = true;
-
-	# networking.wg-quick.interfaces = {
-	# 	awg2 = {
-	# 		# package = pkgs.amneziawg-tools; 
-	# 		configFile = "/home/eugeny/wgconfigs/amneziawg2.conf"; 
-	# 		autostart = true;
-	# 	};
-	# };
-
-	
 
 	# Enable the OpenSSH daemon.
 	# services.openssh.enable = true;

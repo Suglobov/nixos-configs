@@ -48,7 +48,7 @@
 		uninstallUnmanaged = false; # Удалять ли приложения, не объявленные в этом списке (по желанию):
 		remotes = [{
 			name = "flathub";
-			location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+			location = "https://flathub.org/repo/flathub.flatpakrepo";
 		}];
 		packages = [
 			# "org.telegram.desktop"
@@ -115,5 +115,7 @@
 		telegram-desktop
 		papirus-icon-theme
 		appimage-run
+		nekoray
+		p7zip
 	];
 }
