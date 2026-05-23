@@ -1,16 +1,24 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
+	programs.home-manager.enable = true;
+
 	home.username = "eugeny";
 	home.homeDirectory = "/home/eugeny";
 	home.stateVersion = "24.11";
 
-	programs.home-manager.enable = true;
+	 home.activation.portprotonPrefixesSymlink =
+			lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+				prefixLink="/home/eugeny/.var/app/ru.linux_gaming.PortProton/data/prefixes"
+				prefixTarget="/home/eugeny/data/PortProton/prefixes"
 
-	# Этот трюк намертво прячет автозапуск blueman-applet в вашей Wayland-сессии
-	# xdg.configFile."autostart/blueman.desktop".text = ''
-	#   [Desktop Entry]
-	#   Hidden=true
-	# '';
+				mkdir -p "$prefixTarget"
+
+				if [ -e "$prefixLink" ] && [ ! -L "$prefixLink" ]; then
+					rm -rf "$prefixLink"
+				fi
+
+				ln -sfn "$prefixTarget" "$prefixLink"
+			'';
 
 	home.sessionVariables = {
 		MOZ_ENABLE_WAYLAND = "1";
@@ -21,10 +29,6 @@
 		QT_QPA_PLATFORMTHEME = "gtk3";
 		XDG_CURRENT_DESKTOP = "Noctalia";
 	};
-
-	/*home.sessionPath = [
-		"$HOME/.nix-profile/bin"
-	];*/
 
 	programs.chromium = {
 		enable = true;
@@ -56,6 +60,11 @@
 			"ru.linux_gaming.PortProton"
 			"io.github.flattool.Warehouse"
 		];
+	};
+
+	services.kdeconnect = {
+		enable = true;
+		# indicator = true; 
 	};
 
 	programs.zsh = {
@@ -117,5 +126,6 @@
 		appimage-run
 		nekoray
 		p7zip
+		warp-terminal
 	];
 }
