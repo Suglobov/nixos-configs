@@ -127,5 +127,6 @@
 		nekoray
 		p7zip
 		warp-terminal
+		flclash
 	];
 }
