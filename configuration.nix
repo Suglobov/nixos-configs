@@ -9,7 +9,7 @@
 		./hardware-configuration.nix
 		./modules/locale.nix
 		./modules/networking.nix
-		./modules/zapret.nix
+		# ./modules/zapret.nix
 	];
 
 	nix.settings.experimental-features = ["nix-command" "flakes" ];
@@ -125,6 +125,17 @@
 	services.gnome.gnome-keyring.enable = true;
 	services.blueman.enable = true;
 	services.flatpak.enable = true;
+	# services.mihomo = {
+	# 	enable = true;
+	# 	tunMode = false; # Явно отключаем TUN на случай старых зависимостей
+	# 	# Генерируем минимальный рабочий конфиг Clash на лету прямо при сборке
+	# 	configFile = pkgs.writeText "mihomo-config.yaml" (builtins.concatStringsSep "\n" [
+	# 		"mixed-port: 7890"
+	# 		"allow-lan: false"
+	# 		"mode: rule"
+	# 		"log-level: info"
+	# 	]);
+	# };
 
 	# Enable the OpenSSH daemon.
 	# services.openssh.enable = true;

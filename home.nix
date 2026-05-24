@@ -5,21 +5,6 @@
 	home.username = "eugeny";
 	home.homeDirectory = "/home/eugeny";
 	home.stateVersion = "24.11";
-
-	 home.activation.portprotonPrefixesSymlink =
-			lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-				prefixLink="/home/eugeny/.var/app/ru.linux_gaming.PortProton/data/prefixes"
-				prefixTarget="/home/eugeny/data/PortProton/prefixes"
-
-				mkdir -p "$prefixTarget"
-
-				if [ -e "$prefixLink" ] && [ ! -L "$prefixLink" ]; then
-					rm -rf "$prefixLink"
-				fi
-
-				ln -sfn "$prefixTarget" "$prefixLink"
-			'';
-
 	home.sessionVariables = {
 		MOZ_ENABLE_WAYLAND = "1";
 		GDK_BACKEND = "wayland,x11";
@@ -29,6 +14,26 @@
 		QT_QPA_PLATFORMTHEME = "gtk3";
 		XDG_CURRENT_DESKTOP = "Noctalia";
 	};
+
+	home.activation.portprotonPrefixesSymlink =
+		lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+			prefixLink="/home/eugeny/.var/app/ru.linux_gaming.PortProton/data/prefixes"
+			prefixTarget="/home/eugeny/data/PortProton/prefixes"
+
+			mkdir -p "$prefixTarget"
+
+			if [ -e "$prefixLink" ] && [ ! -L "$prefixLink" ]; then
+				rm -rf "$prefixLink"
+			fi
+
+			ln -sfn "$prefixTarget" "$prefixLink"
+		'';
+	xdg.enable = true;
+	xdg.configFile."niri".source = 
+		 config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/.config/niri";
+	xdg.configFile."fuzzel".source = 
+		 config.lib.file.mkOutOfStoreSymlink "${./.config/fuzzel}";
+	
 
 	programs.chromium = {
 		enable = true;
@@ -76,6 +81,7 @@
 	};
 	programs.starship = {
 		enable = true;
+		enableFishIntegration = true;
 		settings = {
 			add_newline = false;
 			character = {
@@ -86,6 +92,12 @@
 	};
 
 	 home.packages = with pkgs; [
+		(appimage-run.override {
+			extraPkgs = pkgs: [ 
+				pkgs.libepoxy 
+			];
+		})
+		# appimage-run
 		inputs.noctalia.packages.${pkgs.system}.default
 		inputs.fresh.packages.${pkgs.system}.default
 		kdePackages.dolphin
@@ -123,10 +135,14 @@
 		foot
 		telegram-desktop
 		papirus-icon-theme
-		appimage-run
-		nekoray
 		p7zip
 		warp-terminal
-		flclash
+		# flclash
+		duf
+		dysk
+		warp
+		nsxiv
+		# nekoray
+		# clash-verge-rev
 	];
 }

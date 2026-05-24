@@ -1,0 +1,471 @@
+// This config is in the KDL format: https://kdl.dev
+// https://niri-wm.github.io/niri/Configuration:-Introduction
+spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
+spawn-sh-at-startup "noctalia-shell"
+
+
+// screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+environment {
+   // GTK_THEME "Adwaita"
+}
+
+// https://niri-wm.github.io/niri/Configuration:-Input
+input {
+    // warp-mouse-to-focus
+    // Focus windows and outputs automatically when moving the mouse into them.
+    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
+    // focus-follows-mouse max-scroll-amount="10%"
+    // focus-follows-mouse
+
+    keyboard {
+        xkb {
+            layout "us,ru"
+            options "grp:caps_toggle"
+        }
+
+        // Enable numlock on startup, omitting this setting disables it.
+        numlock
+    }
+    touchpad {
+        // off
+        tap
+        dwt
+        dwtp
+        // drag true
+        // drag-lock
+        natural-scroll
+        accel-speed 0.5
+        scroll-factor 0.5
+        // accel-profile "flat"
+        // scroll-method "two-finger"
+        disabled-on-external-mouse
+    }
+    mouse {
+        // off
+        accel-speed -0.6
+        accel-profile "flat"
+        scroll-method "on-button-down"
+        scroll-button 2
+        scroll-factor 0.5
+    }
+    trackpoint {
+        // off
+    }
+}
+
+cursor {
+    xcursor-theme "Banana"
+    xcursor-size 60
+    hide-when-typing
+}
+
+// https://niri-wm.github.io/niri/Configuration:-Outputs
+output "eDP-1" {
+    // off
+    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
+    mode "1920x1080@60.020"
+    scale 1
+    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "normal"
+    position x=0 y=0
+}
+
+
+// https://niri-wm.github.io/niri/Configuration:-Layout
+layout {
+    gaps 2
+    center-focused-column "never"
+    preset-column-widths {
+        proportion 0.25
+        proportion 0.5
+        proportion 0.75
+        proportion 1.0
+    }
+    preset-window-heights {
+        proportion 0.25
+        proportion 0.5
+        proportion 0.75
+        proportion 1.0
+    }
+    default-column-width {}
+    
+    focus-ring {
+        // off
+        width 2
+        //active-color "#7fc8ff"
+        // active-gradient from="#ffffff" to="#000000" angle=90 relative-to="workspace-view"
+        // active-gradient from="#fcf1e5" to="#f99006" angle=90 relative-to="workspace-view"
+        // inactive-gradient from="#d5d5d5" to="#151515" angle=90 relative-to="workspace-view"
+    }
+    border {
+        off
+        width 4
+        active-color "#ffc87f"
+        inactive-color "#505050"
+        urgent-color "#9b0000"
+    }
+    shadow {
+        // on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+    tab-indicator {
+        // off
+        on
+        hide-when-single-tab
+        place-within-column
+        gap 4
+        width 10
+        length total-proportion=1.0
+        position "top"
+        gaps-between-tabs 2
+        corner-radius 4
+        //active-color "blue"
+        //inactive-color "gray"
+        //urgent-color "red"
+        // active-gradient from="#80c8ff" to="#bbddff" angle=45
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        // urgent-gradient from="#800" to="#a33" angle=45
+    }
+    struts {
+        left 10
+        right 10
+        // top 20
+        // bottom 20
+    }
+}
+
+// Add lines like this to spawn processes at startup.
+// Note that running niri as a session supports xdg-desktop-autostart,
+// which may be more convenient to use.
+// See the binds section below for more spawn examples.
+
+// To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
+// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+
+hotkey-overlay {
+    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
+    skip-at-startup
+}
+
+// Uncomment this line to ask the clients to omit their client-side decorations if possible.
+// If the client will specifically ask for CSD, the request will be honored.
+// Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
+// This option will also fix border/focus ring drawing behind some semitransparent windows.
+// After enabling or disabling this, you need to restart the apps for this to take effect.
+// prefer-no-csd
+
+// You can change the path where screenshots are saved.
+// A ~ at the front will be expanded to the home directory.
+// The path is formatted with strftime(3) to give you the screenshot date and time.
+
+
+// You can also set this to null to disable saving screenshots to disk.
+// screenshot-path null
+
+// Animation settings.
+// The wiki explains how to configure individual animations:
+// https://niri-wm.github.io/niri/Configuration:-Animations
+animations {
+    // off
+    // slowdown 1.0
+}
+gestures {
+    hot-corners {
+        // top-left
+        // top-right
+        bottom-left
+        bottom-right
+    }
+}
+
+// Window rules let you adjust behavior for individual windows.
+// Find more information on the wiki:
+// https://niri-wm.github.io/niri/Configuration:-Window-Rules
+// niri msg pick-window
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+    draw-border-with-background false
+    open-maximized false
+}
+window-rule {
+    match is-floating=true
+//     baba-is-float true
+    // background-effect {
+    //     blur true
+    //     xray true
+    //     saturation 2
+    // }
+    // popups {
+    //     geometry-corner-radius 15
+    //     opacity 0.5
+    //     background-effect {
+    //         // blur true
+    //         xray true
+    //         // saturation 2
+    //     }
+    // }
+}
+window-rule {
+    match title="Heroes of the storm"
+    match title="PortProton"
+    match title="Battle.net"
+    match app-id="PortProton"
+    match app-id="steam_proton"
+    open-floating true
+}
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+overview {
+    zoom 0.5
+    backdrop-color "#000000"
+
+    workspace-shadow {
+        off
+        softness 40
+        spread 10
+        offset x=0 y=10
+        color "#00000050"
+    }
+}
+
+recent-windows {
+    // off
+    debounce-ms 750
+    open-delay-ms 150
+
+    highlight {
+        active-color "#999999ff"
+        urgent-color "#ff9999ff"
+        // padding 30
+        padding 5
+        corner-radius 0
+    }
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+    binds {
+        Alt+Tab         { next-window; }
+        Alt+Shift+Tab   { previous-window; }
+        Alt+grave       { next-window     filter="app-id"; }
+        Alt+Shift+grave { previous-window filter="app-id"; }
+
+        Mod+Tab         { next-window; }
+        Mod+Shift+Tab   { previous-window; }
+        Mod+grave       { next-window     filter="app-id"; }
+        Mod+Shift+grave { previous-window filter="app-id"; }
+    }
+}
+
+binds {
+    Mod+X { spawn-sh "noctalia-shell ipc call plugin:clipper toggle"; }
+    Mod+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
+    Mod+L { spawn "hyprlock"; }
+
+    Print { spawn-sh "grim -g \"$(slurp)\" - | satty --filename -"; } // Скриншот выделенной области
+    Shift+Print { spawn-sh "wf-recorder -g \"$(slurp)\" -f ~/Videos/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"; }
+    Ctrl+Print { spawn-sh "killall -2 wf-recorder"; }
+
+    Mod+Z repeat=false { toggle-overview; }
+
+    // Keys consist of modifiers separated by + signs, followed by an XKB key name
+    // in the end. To find an XKB name for a particular key, you may use a program
+    // like wev.
+    // "Mod" is a special modifier equal to Super when running on a TTY, and to Alt
+    // when running as a winit window.
+    // Most actions that you can bind here can also be invoked programmatically with
+    // `niri msg action do-something`.
+
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // Suggested binds for running programs: terminal, app launcher, screen locker.
+    //Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    //Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+
+    // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
+    // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
+    // For example, this is a standard bind to toggle the screen reader (orca).
+    // hotkey-overlay-title=null
+    Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
+
+    // Example volume keys mappings for PipeWire & WirePlumber.
+    // The allow-when-locked=true property makes them work even when the session is locked.
+    // Using spawn-sh allows to pass multiple arguments together with the command.
+    // "-l 1.0" limits the volume to 100%.
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+    // Example media keys mapping using playerctl.
+    // This will work with any MPRIS-enabled media player.
+    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+
+    // Example brightness key mappings for brightnessctl.
+    // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
+    // but you need to manually put each argument in separate "" quotes.
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    Mod+O repeat=false { toggle-overview; }
+    // Mod+Q repeat=false { close-window; }
+    Mod+Alt+Q repeat=false { close-window; }
+
+    // ++++++++++ ++++++++++ ++++++++++
+
+    Mod+A { focus-column-left; }
+    Mod+S { focus-workspace-down; }
+    Mod+W { focus-workspace-up; }
+    Mod+D { focus-column-right; }
+
+    Mod+Q { focus-monitor-previous; }
+    Mod+E { focus-monitor-next; }
+
+    Mod+Shift+A { move-column-left; }
+    Mod+Shift+S { move-column-to-workspace-down; }
+    Mod+Shift+W { move-column-to-workspace-up; }
+    Mod+Shift+D { move-column-right; }
+
+    Mod+Shift+Q { move-column-to-monitor-previous; }
+    Mod+Shift+E { move-column-to-monitor-next; }
+
+    // ---------- ---------- ----------
+
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+Page_Up   { focus-workspace-up; }
+
+    Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
+    Mod+Ctrl+Page_Up   { move-window-to-workspace-up; }
+
+    Mod+Shift+Page_Down { move-workspace-down; }
+    Mod+Shift+Page_Up   { move-workspace-up; }
+
+    Mod+Shift+Home { move-workspace-to-monitor-previous; }
+    Mod+Shift+End { move-workspace-to-monitor-next; }
+
+    // ---------- ---------- ----------
+
+    Mod+Left  { focus-column-left; }
+    Mod+Down  { focus-window-down; }
+    Mod+Up    { focus-window-up; }
+    Mod+Right { focus-column-right; }
+
+    Mod+Ctrl+Left  { move-column-left; }
+    Mod+Ctrl+Down  { move-window-down; }
+    Mod+Ctrl+Up    { move-window-up; }
+    Mod+Ctrl+Right { move-column-right; }
+
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End  { move-column-to-last; }
+
+    Mod+Shift+Left  { focus-monitor-left; }
+    Mod+Shift+Down  { focus-monitor-down; }
+    Mod+Shift+Up    { focus-monitor-up; }
+    Mod+Shift+Right { focus-monitor-right; }
+
+    Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
+    Mod+Shift+Ctrl+Down  { move-window-to-monitor-down; }
+    Mod+Shift+Ctrl+Up    { move-window-to-monitor-up; }
+    Mod+Shift+Ctrl+Right { move-window-to-monitor-right; }
+
+
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Mod+WheelScrollRight      { focus-column-right; }
+    Mod+WheelScrollLeft       { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    // Similarly, you can bind touchpad scroll "ticks".
+    // Touchpad scrolling is continuous, so for these binds it is split into
+    // discrete intervals.
+    // These binds are also affected by touchpad's natural-scroll, so these
+    // example binds are "inverted", since we have natural-scroll enabled for
+    // touchpads by default.
+    // Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
+    // Mod+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Comma  { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-column-width-back; }
+    Mod+Ctrl+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+
+    // While maximize-column leaves gaps and borders around the window,
+    // maximize-window-to-edges doesn't: the window expands to the edges of the screen.
+    // This bind corresponds to normal window maximizing,
+    // e.g. by double-clicking on the titlebar.
+    Mod+M hotkey-overlay-title="maximize-window-to-edges" { maximize-window-to-edges; }
+    Mod+Shift+M hotkey-overlay-title="toggle-windowed-fullscreen" { toggle-windowed-fullscreen; }
+    Mod+Ctrl+M hotkey-overlay-title="fullscreen-window" { fullscreen-window; }
+
+    Mod+F { maximize-column; }
+    Mod+Shift+F { expand-column-to-available-width; }
+
+    Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+V       { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    Mod+Alt+W { toggle-column-tabbed-display; }
+
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    Ctrl+Alt+Delete { quit; }
+
+    // Powers off the monitors. To turn them back on, do any input like
+    // moving the mouse or pressing any other key.
+    Mod+Shift+P { power-off-monitors; }
+}
