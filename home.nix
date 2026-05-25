@@ -28,12 +28,26 @@
 
 			ln -sfn "$prefixTarget" "$prefixLink"
 		'';
-	xdg.enable = true;
-	xdg.configFile."niri".source = 
-		 config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/.config/niri";
-	xdg.configFile."fuzzel".source = 
-		 config.lib.file.mkOutOfStoreSymlink "${./.config/fuzzel}";
-	
+
+	home.activation.multiSymlinks = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+		let
+			names = [ "niri" "noctalia" "fuzzel" "fish" "yazi" "hypr" ];
+			homeDir = config.home.homeDirectory;
+			symlinks = map (name: {
+				link = "${homeDir}/.config/${name}";
+				target = "${homeDir}/nixos/.config/${name}";
+			}) names;
+		in
+		lib.concatMapStringsSep "\n" (item: ''
+			linkPath="${item.link}"
+			targetPath="${item.target}"
+			mkdir -p "$targetPath"
+			if [ -e "$linkPath" ] && [ ! -L "$linkPath" ]; then
+				rm -rf "$linkPath"
+			fi
+			ln -sfn "$targetPath" "$linkPath"
+		'') symlinks
+	);
 
 	programs.chromium = {
 		enable = true;
@@ -136,7 +150,7 @@
 		telegram-desktop
 		papirus-icon-theme
 		p7zip
-		warp-terminal
+		# warp-terminal
 		# flclash
 		duf
 		dysk
