@@ -3,7 +3,6 @@
 	home.activation.makeSymlinks = lib.hm.dag.entryAfter [ "writeBoundary" ] (
 		let
 			homeDir = config.home.homeDirectory;
-
 			symlinks = [{
 					link = "${homeDir}/.var/app/ru.linux_gaming.PortProton/data/prefixes";
 					target = "${homeDir}/data/PortProton/prefixes";

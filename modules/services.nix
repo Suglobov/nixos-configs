@@ -1,0 +1,50 @@
+{ pkgs, ... }:
+
+{
+	hardware.bluetooth.enable = true;
+	hardware.bluetooth.powerOnBoot = true;
+
+	virtualisation.docker.enable = true;
+
+	services.flatpak.enable = true;
+	services.blueman.enable = true;
+	services.gnome.gnome-keyring.enable = true;
+
+	# Порталы
+	xdg.portal = {
+		enable = true;
+		extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+		config.common.default = [ "gtk" ];
+	};
+
+	# Раскладка клавиатуры
+	console.useXkbConfig = true;
+	services.xserver.xkb = {
+		layout = "us,ru";
+		variant = "";
+		options = "grp:caps_toggle";
+	};
+
+	# Сервис VPN
+	systemd.services.amnezia-vpn = {
+		description = "Amnezia VPN Backend Service";
+		after = [ "network.target" ];
+		wantedBy = [ "multi-user.target" ];
+		serviceConfig = {
+			Type = "simple";
+			ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
+			Restart = "always";
+		};
+	};
+
+	# Включение NumLock для TTY
+	systemd.services.numLockOnTty = {
+		wantedBy = [ "multi-user.target" ];
+		serviceConfig = { Type = "oneshot"; };
+		script = ''
+			for tty in /dev/tty{1..6}; do
+				${pkgs.kbd}/bin/setleds -D +num < "$tty"
+			done
+		'';
+	};
+}
