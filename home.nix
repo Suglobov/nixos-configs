@@ -49,23 +49,6 @@
 		'') symlinks
 	);
 
-	programs.chromium = {
-		enable = true;
-		package = (config.lib.nixGL.wrap pkgs.google-chrome);
-		commandLineArgs = [
-			"--ozone-platform-hint=wayland"
-			"--enable-features=WaylandWindowDecorations"
-		];
-	};
-
-	programs.vscode = {
-		enable = true;
-		package = (pkgs.vscode.override {
-			# Передаем параметры Wayland и заставляем Electron принудительно искать курсоры в системе
-			commandLineArgs = "--ozone-platform-hint=wayland --enable-features=WaylandWindowDecorations";
-		});
-	};
-
 	services.flatpak = {
 		enable = true;
 		uninstallUnmanaged = false; # Удалять ли приложения, не объявленные в этом списке (по желанию):
@@ -84,6 +67,23 @@
 	services.kdeconnect = {
 		enable = true;
 		# indicator = true; 
+	};
+
+	programs.chromium = {
+		enable = true;
+		package = (config.lib.nixGL.wrap pkgs.google-chrome);
+		commandLineArgs = [
+			"--ozone-platform-hint=wayland"
+			"--enable-features=WaylandWindowDecorations"
+		];
+	};
+
+	programs.vscode = {
+		enable = true;
+		package = (pkgs.vscode.override {
+			# Передаем параметры Wayland и заставляем Electron принудительно искать курсоры в системе
+			commandLineArgs = "--ozone-platform-hint=wayland --enable-features=WaylandWindowDecorations";
+		});
 	};
 
 	programs.zsh = {
@@ -156,6 +156,7 @@
 		dysk
 		warp
 		nsxiv
+		gost
 		# nekoray
 		# clash-verge-rev
 	];

@@ -9,6 +9,7 @@
 		./hardware-configuration.nix
 		./modules/locale.nix
 		./modules/networking.nix
+		./displayManager.nix
 		# ./modules/zapret.nix
 	];
 
@@ -80,29 +81,6 @@
 	programs.fish.enable = true;
 	programs.hyprlock.enable = true;
 
-	#console.luseXkbConfig = true;
-	services.greetd = {
-		enable = true;
-		settings = {
-			default_session = {
-				command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd niri-session";
-				user = "greeter";
-			};
-		 };
-	};
-	systemd.services.greetd = {
-		serviceConfig = {
-			Type = "idle";
-			StandardInput = "tty";
-			StandardOutput = "tty";
-			StandardError = "journal";
-			TTYReset = true;
-			TTYVHangup = true;
-			TTYVTDisallocate = true;
-			# ExecStartPost = "${pkgs.kbd}/bin/setleds -D +num";
-		};
-	};
-
 	systemd.services.amnezia-vpn = {
 		description = "Amnezia VPN Backend Service";
 		after = [ "network.target" ];
@@ -113,10 +91,22 @@
 			Restart = "always";
 		};
 	};
+		# Включение NumLock для TTY
+	systemd.services.numLockOnTty = {
+		wantedBy = [ "multi-user.target" ];
+		serviceConfig = {
+			Type = "oneshot";
+		};
+		script = ''
+			for tty in /dev/tty{1..6}; do
+				${pkgs.kbd}/bin/setleds -D +num < "$tty"
+			done
+		'';
+	};
 
 	# List services that you want to enable:
-
 	# Configure keymap in X11
+	console.luseXkbConfig = true;
 	services.xserver.xkb = {
 		layout = "en, ru";
 		variant = "";
