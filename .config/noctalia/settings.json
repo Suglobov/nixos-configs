@@ -322,6 +322,8 @@
                     "id": "plugin:screen-shot-and-record"
                 },
                 {
+                    "defaultSettings": {
+                    },
                     "id": "plugin:kde-connect"
                 }
             ]

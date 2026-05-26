@@ -157,6 +157,7 @@
 		warp
 		nsxiv
 		gost
+		wtype
 		# nekoray
 		# clash-verge-rev
 	];

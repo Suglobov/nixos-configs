@@ -9,7 +9,7 @@
 		./hardware-configuration.nix
 		./modules/locale.nix
 		./modules/networking.nix
-		./displayManager.nix
+		./modules/displayManager.nix
 		# ./modules/zapret.nix
 	];
 
@@ -106,9 +106,9 @@
 
 	# List services that you want to enable:
 	# Configure keymap in X11
-	console.luseXkbConfig = true;
+	console.useXkbConfig = true;
 	services.xserver.xkb = {
-		layout = "en, ru";
+		layout = "us,ru";
 		variant = "";
 		options = "grp:caps_toggle";
 	};
