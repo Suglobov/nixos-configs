@@ -1,5 +1,9 @@
 { config, pkgs, lib, inputs, ... }:
 {
+	imports = [
+		./home/symlinks.nix
+	];
+
 	programs.home-manager.enable = true;
 
 	home.username = "eugeny";
@@ -14,40 +18,6 @@
 		QT_QPA_PLATFORMTHEME = "gtk3";
 		XDG_CURRENT_DESKTOP = "Noctalia";
 	};
-
-	home.activation.portprotonPrefixesSymlink =
-		lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-			prefixLink="/home/eugeny/.var/app/ru.linux_gaming.PortProton/data/prefixes"
-			prefixTarget="/home/eugeny/data/PortProton/prefixes"
-
-			mkdir -p "$prefixTarget"
-
-			if [ -e "$prefixLink" ] && [ ! -L "$prefixLink" ]; then
-				rm -rf "$prefixLink"
-			fi
-
-			ln -sfn "$prefixTarget" "$prefixLink"
-		'';
-
-	home.activation.multiSymlinks = lib.hm.dag.entryAfter [ "writeBoundary" ] (
-		let
-			names = [ "niri" "noctalia" "fuzzel" "fish" "yazi" "hypr" ];
-			homeDir = config.home.homeDirectory;
-			symlinks = map (name: {
-				link = "${homeDir}/.config/${name}";
-				target = "${homeDir}/nixos/.config/${name}";
-			}) names;
-		in
-		lib.concatMapStringsSep "\n" (item: ''
-			linkPath="${item.link}"
-			targetPath="${item.target}"
-			mkdir -p "$targetPath"
-			if [ -e "$linkPath" ] && [ ! -L "$linkPath" ]; then
-				rm -rf "$linkPath"
-			fi
-			ln -sfn "$targetPath" "$linkPath"
-		'') symlinks
-	);
 
 	services.flatpak = {
 		enable = true;
@@ -93,17 +63,17 @@
 		syntaxHighlighting.enable = true;
 		dotDir = config.home.homeDirectory;
 	};
-	programs.starship = {
-		enable = true;
-		enableFishIntegration = true;
-		settings = {
-			add_newline = false;
-			character = {
-				success_symbol = "[➜](bold green)";
-				error_symbol = "[➜](bold red)";
-			};
-		};
-	};
+	# programs.starship = {
+	# 	enable = true;
+	# 	enableFishIntegration = true;
+	# 	settings = {
+	# 		add_newline = false;
+	# 		character = {
+	# 			success_symbol = "[➜](bold green)";
+	# 			error_symbol = "[➜](bold red)";
+	# 		};
+	# 	};
+	# };
 
 	 home.packages = with pkgs; [
 		(appimage-run.override {
