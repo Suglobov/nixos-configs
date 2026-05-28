@@ -27,6 +27,14 @@
             "enabled": false,
             "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
         },
+        "mini-docker": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "netbird": {
+            "enabled": false,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
         "network-indicator": {
             "enabled": false,
             "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"

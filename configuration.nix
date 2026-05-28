@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, username, ... }:
 
 {
 	imports = [
@@ -11,7 +11,7 @@
 		./modules/networking.nix
 		./modules/displayManager.nix
 		./modules/programs.nix
-    ./modules/services.nix
+		./modules/services.nix
 		# ./modules/zapret.nix
 	];
 
@@ -20,9 +20,14 @@
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
 
-	fileSystems."/media/eugeny/data" = {
+	fileSystems."/mnt/data" = {
+		device = "/dev/disk/by-uuid/35fc781b-8e0d-4164-97cf-e94a17439ef2";
+		fsType = "ext4";
 		options = [ "nofail" "x-systemd.device-timeout=5" ];
 	};
+	systemd.tmpfiles.rules = [
+		"d /mnt/data 0755 ${username} users - -"
+	];
 
 	nix.gc = {
 		automatic = true;
@@ -32,15 +37,21 @@
 	nix.settings.auto-optimise-store = true;
 
 	# Define a user account. Don't forget to set a password with ‘passwd’.
-	users.users.eugeny = {
+	users.users.${username} = {
 		isNormalUser = true;
-		description = "eugeny";
+		description = username;
+		home = "/home/${username}";
 		extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker" ];
 		packages = with pkgs; [];
 		shell = pkgs.fish;
 	};
 
 	nixpkgs.config.allowUnfree = true;
+
+		# Шрифты
+	fonts.packages = with pkgs; [
+		nerd-fonts.jetbrains-mono
+	];
 
 	# This value determines the NixOS release from which the default
 	# settings for stateful data, like file locations and database versions

@@ -1,0 +1,8 @@
+[services.dev-tgstat]
+type     = "sftp"
+host     = "dev.tgstat.ru"
+user     = "e.suglobov"
+port     = 22
+key_file = "~/.ssh/id_rsa"
+# If your private key is protected by a passphrase:
+# key_passphrase = "my_passphrase"

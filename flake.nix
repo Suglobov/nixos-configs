@@ -15,11 +15,17 @@
 		fresh.url = "github:sinelaw/fresh";
 	};
 
-	outputs = { self, nixpkgs, noctalia, home-manager, nix-flatpak, fresh, ... }@inputs: {
+	outputs = { self, nixpkgs, noctalia, home-manager, nix-flatpak, fresh, ... }@inputs: 
+	let
+		# ГЛАВНАЯ ПЕРЕМЕННАЯ: Меняете имя здесь — оно меняется вообще везде
+		username = "eugeny"; 
+	in {
 		nixosConfigurations = {
 			nixos = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
-				specialArgs = { inherit inputs; };
+				
+				# Прокидываем переменную username внутрь configuration.nix
+				specialArgs = { inherit inputs username; }; 
 
 				modules = [
 					./hardware-configuration.nix
@@ -28,8 +34,10 @@
 					{
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
-						home-manager.extraSpecialArgs = {inherit inputs; };
-						home-manager.users.eugeny = {
+						home-manager.extraSpecialArgs = { inherit inputs username; };
+						
+						# Динамически подставляем имя пользователя в Home Manager
+						home-manager.users.${username} = {
 							imports = [ 
 								./home.nix 
 								nix-flatpak.homeManagerModules.nix-flatpak 

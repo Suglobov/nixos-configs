@@ -89,7 +89,7 @@
             "center": [
                 {
                     "colorizeIcons": false,
-                    "hideMode": "visible",
+                    "hideMode": "transparent",
                     "iconScale": 1,
                     "id": "Taskbar",
                     "maxTaskbarWidth": 40,
@@ -325,6 +325,9 @@
                     "defaultSettings": {
                     },
                     "id": "plugin:kde-connect"
+                },
+                {
+                    "id": "plugin:mini-docker"
                 }
             ]
         }
@@ -474,7 +477,7 @@
         "animationDisabled": false,
         "animationSpeed": 1,
         "autoStartAuth": false,
-        "avatarImage": "/media/eugeny/data/Рисунки/zver.gif",
+        "avatarImage": "/mnt/data/Рисунки/zver.gif",
         "boxRadiusRatio": 1,
         "clockFormat": "HH:mm:ss ",
         "clockStyle": "custom",

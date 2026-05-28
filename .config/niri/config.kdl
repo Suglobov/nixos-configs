@@ -1,5 +1,6 @@
 // This config is in the KDL format: https://kdl.dev
 // https://niri-wm.github.io/niri/Configuration:-Introduction
+// nix run github:srinivasr/nirimod
 spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
 spawn-sh-at-startup "noctalia-shell"
 
@@ -7,7 +8,11 @@ spawn-sh-at-startup "noctalia-shell"
 // screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 environment {
-   // GTK_THEME "Adwaita"
+
+}
+
+clipboard {
+    disable-primary
 }
 
 // https://niri-wm.github.io/niri/Configuration:-Input
@@ -75,7 +80,9 @@ output "eDP-1" {
 // https://niri-wm.github.io/niri/Configuration:-Layout
 layout {
     gaps 2
+    background-color "#000000"
     center-focused-column "never"
+    empty-workspace-above-first
     preset-column-widths {
         proportion 0.25
         proportion 0.5
@@ -88,7 +95,7 @@ layout {
         proportion 0.75
         proportion 1.0
     }
-    default-column-width {}
+    default-column-width { proportion 0.5; }
     
     focus-ring {
         // off
@@ -147,7 +154,6 @@ layout {
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
 hotkey-overlay {
-    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
     skip-at-startup
 }
 
@@ -283,7 +289,9 @@ binds {
     Mod+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
     Mod+L { spawn "hyprlock"; }
 
-    Print { spawn-sh "grim -g \"$(slurp)\" - | satty --filename -"; } // Скриншот выделенной области
+    // Скриншот выделенной области
+    Print { spawn-sh "grim -g \"$(slurp)\" - | satty --filename -"; }
+    // Видео выделенной области запуск и следующая команда остановка
     Shift+Print { spawn-sh "wf-recorder -g \"$(slurp)\" -f ~/Videos/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"; }
     Ctrl+Print { spawn-sh "killall -2 wf-recorder"; }
 
@@ -315,15 +323,15 @@ binds {
     // "-l 1.0" limits the volume to 100%.
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
     // Example media keys mapping using playerctl.
     // This will work with any MPRIS-enabled media player.
-    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
-    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
-    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPlay allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext allow-when-locked=true { spawn-sh "playerctl next"; }
 
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
@@ -395,10 +403,10 @@ binds {
     Mod+Shift+Ctrl+Right { move-window-to-monitor-right; }
 
 
-    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }

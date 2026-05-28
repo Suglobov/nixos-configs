@@ -54,7 +54,6 @@
 		dbeaver-bin
 		foot
 		telegram-desktop
-		papirus-icon-theme
 		p7zip
 		duf
 		dysk

@@ -3,27 +3,28 @@
 	home.activation.makeSymlinks = lib.hm.dag.entryAfter [ "writeBoundary" ] (
 		let
 			homeDir = config.home.homeDirectory;
+			targetDir = "/mnt/data";
 			symlinks = [{
 					link = "${homeDir}/.var/app/ru.linux_gaming.PortProton/data/prefixes";
-					target = "${homeDir}/data/PortProton/prefixes";
+					target = "${targetDir}/PortProton/prefixes";
 				} {
 					link = "${homeDir}/.config/niri";
-					target = "${homeDir}/nixos/.config/niri";
+					target = "${targetDir}/nixos/.config/niri";
 				} {
 					link = "${homeDir}/.config/noctalia";
-					target = "${homeDir}/nixos/.config/noctalia";
+					target = "${targetDir}/nixos/.config/noctalia";
 				} {
 					link = "${homeDir}/.config/fish";
-					target = "${homeDir}/nixos/.config/fish";
+					target = "${targetDir}/nixos/.config/fish";
 				} {
 					link = "${homeDir}/.config/yazi";
-					target = "${homeDir}/nixos/.config/yazi";
+					target = "${targetDir}/nixos/.config/yazi";
 				} {
 					link = "${homeDir}/.config/fuzzel";
-					target = "${homeDir}/nixos/.config/fuzzel";
+					target = "${targetDir}/nixos/.config/fuzzel";
 				} {
 					link = "${homeDir}/.config/hypr";
-					target = "${homeDir}/nixos/.config/hypr";
+					target = "${targetDir}/nixos/.config/hypr";
 				}
 			];
 		in
