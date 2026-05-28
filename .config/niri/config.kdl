@@ -177,7 +177,46 @@ hotkey-overlay {
 // https://niri-wm.github.io/niri/Configuration:-Animations
 animations {
     // off
-    // slowdown 1.0
+    // slowdown 3.0
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+        // duration-ms 500
+        // curve "linear"
+        // curve "cubic-bezier" 0.05 0.7 0.1 1
+    }
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    config-notification-open-close {
+        spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+    }
+    exit-confirmation-open-close {
+        spring damping-ratio=0.6 stiffness=500 epsilon=0.01
+    }
+    screenshot-ui-open {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+    overview-open-close {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    recent-windows-close {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.001
+    }
 }
 gestures {
     hot-corners {
@@ -198,24 +237,24 @@ window-rule {
     draw-border-with-background false
     open-maximized false
 }
-window-rule {
-    match is-floating=true
-//     baba-is-float true
-    // background-effect {
-    //     blur true
-    //     xray true
-    //     saturation 2
-    // }
-    // popups {
-    //     geometry-corner-radius 15
-    //     opacity 0.5
-    //     background-effect {
-    //         // blur true
-    //         xray true
-    //         // saturation 2
-    //     }
-    // }
-}
+// window-rule {
+//     match is-floating=true
+// //     baba-is-float true
+//     // background-effect {
+//     //     blur true
+//     //     xray true
+//     //     saturation 2
+//     // }
+//     // popups {
+//     //     geometry-corner-radius 15
+//     //     opacity 0.5
+//     //     background-effect {
+//     //         // blur true
+//     //         xray true
+//     //         // saturation 2
+//     //     }
+//     // }
+// }
 window-rule {
     match title="Heroes of the storm"
     match title="PortProton"
@@ -226,21 +265,21 @@ window-rule {
 }
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
+// window-rule {
+//     // This regular expression is intentionally made as specific as possible,
+//     // since this is the default config, and we want no false positives.
+//     // You can get away with just app-id="wezterm" if you want.
+//     match app-id=r#"^org\.wezfurlong\.wezterm$"#
+//     default-column-width {}
+// }
 // Open the Firefox picture-in-picture player as floating by default.
-window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
+// window-rule {
+//     // This app-id regular expression will work for both:
+//     // - host Firefox (app-id is "firefox")
+//     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+//     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+//     open-floating true
+// }
 
 overview {
     zoom 0.5
@@ -290,10 +329,10 @@ binds {
     Mod+L { spawn "hyprlock"; }
 
     // Скриншот выделенной области
-    Print { spawn-sh "grim -g \"$(slurp)\" - | satty --filename -"; }
+    Print { spawn-sh "grim -g \"$(slurp -w 2 -c '#00FF00FF')\" - | satty --filename -"; }
     // Видео выделенной области запуск и следующая команда остановка
-    Shift+Print { spawn-sh "wf-recorder -g \"$(slurp)\" -f ~/Videos/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"; }
-    Ctrl+Print { spawn-sh "killall -2 wf-recorder"; }
+    Shift+Print { spawn-sh "wf-recorder -g \"$(slurp -w 2 -c '#00FF00FF')\" -f ~/Videos/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"; }
+    Ctrl+Print { spawn-sh "pkill -2 wf-recorder"; }
 
     Mod+Z repeat=false { toggle-overview; }
 
@@ -306,10 +345,6 @@ binds {
     // `niri msg action do-something`.
 
     Mod+Shift+Slash { show-hotkey-overlay; }
-
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
-    //Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    //Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -340,7 +375,6 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
     Mod+O repeat=false { toggle-overview; }
-    // Mod+Q repeat=false { close-window; }
     Mod+Alt+Q repeat=false { close-window; }
 
     // ++++++++++ ++++++++++ ++++++++++

@@ -1,6 +1,21 @@
 { config, pkgs, inputs, ... }:
 
 {
+	services.flatpak = {
+		enable = true;
+		uninstallUnmanaged = false;
+		remotes = [{
+			name = "flathub";
+			location = "https://flathub.org/repo/flathub.flatpakrepo";
+		}];
+		packages = [
+			"com.github.tchx84.Flatseal"
+			"ru.linux_gaming.PortProton"
+			"io.github.flattool.Warehouse"
+			"com.obsproject.Studio"
+		];
+	};
+
 	programs.chromium = {
 		enable = true;
 		package = (config.lib.nixGL.wrap pkgs.google-chrome);
@@ -61,5 +76,15 @@
 		nsxiv
 		gost
 		wtype
+		ffmpeg
+		hyprpicker
+		tesseract
+		imagemagick
+		zbar
+		translate-shell
+		gifski
+		python3
+		python3Packages.pygobject3
+		xdg-desktop-portal
 	];
 }

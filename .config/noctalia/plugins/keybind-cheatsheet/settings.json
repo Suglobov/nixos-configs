@@ -4,11 +4,11 @@
       "title": "Noctalia",
       "binds": [
         {
-          "keys": "Super + X",
+          "keys": "Super + V",
           "desc": "Run: noctalia-shell ipc call plugin:clipper toggle",
           "_verb": "spawn-sh",
           "_mods": "Super",
-          "_mainKey": "X"
+          "_mainKey": "V"
         }
       ]
     },
@@ -724,18 +724,18 @@
           "_mainKey": "Equal"
         },
         {
-          "keys": "Super + V",
+          "keys": "Super + X",
           "desc": "Toggle Window Floating",
           "_verb": "toggle-window-floating",
           "_mods": "Super",
-          "_mainKey": "V"
+          "_mainKey": "X"
         },
         {
-          "keys": "Super + Shift + V",
+          "keys": "Super + Shift + X",
           "desc": "Switch Focus Between Floating And Tiling",
           "_verb": "switch-focus-between-floating-and-tiling",
           "_mods": "Super+Shift",
-          "_mainKey": "V"
+          "_mainKey": "X"
         },
         {
           "keys": "Super + Alt + W",
@@ -782,7 +782,7 @@
   "mergeSequentialBinds": true,
   "showUndescribedBinds": true,
   "splitLargeWorkspaceCategory": true,
-  "workspaceSplitThreshold": 12,
+  "workspaceSplitThreshold": 4,
   "keyColorAlt": "#FF6B6B",
   "keyColorXF86": "#4ECDC4",
   "keyColorPrint": "#95E1D3",
