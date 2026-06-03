@@ -6,7 +6,7 @@
         "clipboardWrapText": true,
         "customLaunchPrefix": "",
         "customLaunchPrefixEnabled": false,
-        "density": "default",
+        "density": "compact",
         "enableClipPreview": true,
         "enableClipboardChips": true,
         "enableClipboardHistory": true,
@@ -16,16 +16,16 @@
         "enableWindowsSearch": true,
         "iconMode": "tabler",
         "ignoreMouseInput": false,
-        "overviewLayer": false,
+        "overviewLayer": true,
         "pinnedApps": [
         ],
-        "position": "top_left",
+        "position": "top_center",
         "screenshotAnnotationTool": "",
         "showCategories": true,
         "showIconBackground": false,
         "sortByMostUsed": true,
-        "terminalCommand": "alacritty -e",
-        "viewMode": "list"
+        "terminalCommand": "foot -e",
+        "viewMode": "grid"
     },
     "audio": {
         "mprisBlacklist": [
@@ -749,7 +749,7 @@
     },
     "wallpaper": {
         "automationEnabled": false,
-        "directory": "/home/eugeny/Pictures/Wallpapers",
+        "directory": "/mnt/data/Рисунки",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "favorites": [
@@ -788,7 +788,7 @@
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
-        "wallhavenQuery": "noctalia",
+        "wallhavenQuery": "",
         "wallhavenRatios": "",
         "wallhavenResolutionHeight": "",
         "wallhavenResolutionMode": "atleast",

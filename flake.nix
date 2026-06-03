@@ -17,26 +17,24 @@
 
 	outputs = { self, nixpkgs, noctalia, home-manager, nix-flatpak, fresh, ... }@inputs: 
 	let
-		# ГЛАВНАЯ ПЕРЕМЕННАЯ: Меняете имя здесь — оно меняется вообще везде
 		username = "eugeny"; 
 	in {
 		nixosConfigurations = {
 			nixos = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";
-				
-				# Прокидываем переменную username внутрь configuration.nix
 				specialArgs = { inherit inputs username; }; 
 
 				modules = [
 					./hardware-configuration.nix
 					./configuration.nix
+                    {
+						nixpkgs.hostPlatform = "x86_64-linux";
+					}
 					home-manager.nixosModules.home-manager
 					{
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
 						home-manager.extraSpecialArgs = { inherit inputs username; };
 						
-						# Динамически подставляем имя пользователя в Home Manager
 						home-manager.users.${username} = {
 							imports = [ 
 								./home.nix 

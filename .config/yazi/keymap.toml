@@ -373,3 +373,28 @@ keymap = [
 	# Filtering
 	{ on = "f", run = "filter", desc = "Filter help items" },
 ]
+
+
+# Dropping to the shell
+[[mgr.prepend_keymap]]
+on   = "!"
+for  = "unix"
+run  = 'shell "$SHELL" --block'
+desc = "Open $SHELL here"
+
+
+# Copy yanked files to the system clipboard
+[[mgr.prepend_keymap]]
+on  = "y"
+run = [ "yank", 'plugin clipboard -- --action=copy --notify-unknown-display-server' ]
+
+# Paste files from the system clipboard into the current directory
+[[mgr.prepend_keymap]]
+on  = "<C-p>"
+run = [ 'plugin clipboard -- --action=paste --notify-unknown-display-server' ]
+
+# autosession
+#[[mgr.prepend_keymap]]
+#on = [ "q" ]
+#run = "plugin autosession -- save-and-quit"
+#desc = "Save session and quit"

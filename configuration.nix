@@ -29,6 +29,11 @@
 		"d /mnt/data 0755 ${username} users - -"
 	];
 
+	zramSwap = {
+		enable = true;
+		memoryPercent = 50;
+	};
+
 	nix.gc = {
 		automatic = true;
 		dates = "weekly";
@@ -41,14 +46,13 @@
 		isNormalUser = true;
 		description = username;
 		home = "/home/${username}";
-		extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker" ];
+		extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker" "input" "uinput" ];
 		packages = with pkgs; [];
 		shell = pkgs.fish;
 	};
 
 	nixpkgs.config.allowUnfree = true;
 
-		# Шрифты
 	fonts.packages = with pkgs; [
 		nerd-fonts.jetbrains-mono
 	];

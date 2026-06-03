@@ -40,7 +40,8 @@
 			animate = true;
 			animation = "matrix";
 			bigclock = "en";
-			save = true; # Сохранять ли имя последнего вошедшего пользователя
+			save = true;
+			asterisk = "";
 		};
 	};
 

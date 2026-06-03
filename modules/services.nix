@@ -3,12 +3,19 @@
 {
 	hardware.bluetooth.enable = true;
 	hardware.bluetooth.powerOnBoot = true;
+	hardware.steam-hardware.enable = true;
+	hardware.graphics.enable = true;
+	hardware.uinput.enable = true;
 
 	virtualisation.docker.enable = true;
 
 	services.flatpak.enable = true;
 	services.blueman.enable = true;
 	services.gnome.gnome-keyring.enable = true;
+	services.udev.packages = with pkgs; [
+    game-devices-udev-rules # Огромная база правил для DualShock, Xbox, Nintendo и китайских реплик
+  ];
+
 
 	# Порталы
 	xdg.portal = {
@@ -17,8 +24,9 @@
 			xdg-desktop-portal-gnome
 			xdg-desktop-portal-gtk
 		];
-		config.common.default = [ "gnome" "gtk" ];
+		config.common.default = [ "gtk" ];
 		config.common."org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+		config.common."org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
 	};
 
 	# Раскладка клавиатуры

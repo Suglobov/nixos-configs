@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-	# Базовый системный софт
 	environment.systemPackages = with pkgs; [
 		vim
 		wget
@@ -13,10 +12,13 @@
 		xwayland-satellite
 		amneziawg-tools
 		amnezia-vpn
+		fuse
+		fuse3
 	];
 
-	# Системные оболочки и композиторы (требуют интеграции с PAM/SUID)
 	programs.niri.enable = true;
 	programs.fish.enable = true;
 	programs.hyprlock.enable = true;
+	programs.nix-ld.enable = true;
+	programs.fuse.userAllowOther = true;
 }
