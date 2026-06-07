@@ -70,7 +70,11 @@
 			# require("autosession"):setup()
 		};
 		initLua = ''
-  	'';
+		'';
+	};
+
+	programs.kakoune = {
+		enable = true;
 	};
 
 	home.packages = with pkgs; [
@@ -101,6 +105,7 @@
 		thunar
 		dbeaver-bin
 		foot
+		alacritty
 		telegram-desktop
 		p7zip
 		duf
@@ -113,6 +118,7 @@
 		hyprpicker
 		tesseract
 		imagemagick
+		mpvpaper
 		zbar
 		translate-shell
 		gifski
@@ -126,11 +132,23 @@
 		imv
 		swayimg
 		tldr
-    fastfetch
+		fastfetch
 		mycli
 		beekeeper-studio
 		evtest # Консольная утилита для проверки системных событий ввода (evdev)
-    jstest-gtk # Графический интерфейс для калибровки и проверки кнопок геймпада
-    input-remapper # Мощный инструмент для переназначения клавиш джойстика под Wayland/Niri
+		jstest-gtk # Графический интерфейс для калибровки и проверки кнопок геймпада
+		input-remapper # Мощный инструмент для переназначения клавиш джойстика под Wayland/Niri
+		lxqt.lxqt-policykit
+		broot
+		clash-verge-rev
+		gimp
+		linuxConsoleTools
+		mission-center
+		nautilus
+		gnome-text-editor
+		nemo
+		qt6.qt5compat
+		qt6.qtdeclarative
+		qt5.qtgraphicaleffects
 	];
 }

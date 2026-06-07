@@ -8,6 +8,7 @@ spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
 spawn-sh-at-startup "noctalia-shell"
 
 // screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "/tmp/niri-screenshot.png"
 
 environment {
 
@@ -39,7 +40,9 @@ input {
 		xkb {
 			layout "us,ru"
 			options "grp:caps_toggle"
+			// options "grp:caps_select"
 		}
+		track-layout "window"
 		numlock
 	}
 	touchpad {
@@ -102,8 +105,10 @@ layout {
 		proportion 0.75
 		proportion 1.0
 	}
-	default-column-width { proportion 0.5; }
-	
+
+// 	default-column-width { proportion 1.0; }
+	default-column-width {}
+
 	focus-ring {
 		// off
 		width 2
@@ -252,7 +257,7 @@ window-rule {
 	geometry-corner-radius 0
 	clip-to-geometry true
 	draw-border-with-background false
-	open-maximized false
+	// open-maximized false
 	// popups {
 	// 	opacity 0.9
 	// 	background-effect {
@@ -273,6 +278,7 @@ window-rule {
 	match app-id="PortProton"
 	match app-id="steam_proton"
 	open-floating true
+	default-window-height { proportion 0.60; }
 }
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
@@ -343,13 +349,18 @@ recent-windows {
 
 binds {
 	// niri msg action
+	Mod+1 { switch-layout "0"; }
+	Mod+2 { switch-layout "1"; }
+
 	Mod+V { spawn-sh "noctalia-shell ipc call plugin:clipper toggle"; }
 	Mod+Alt+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
 	Mod+Space hotkey-overlay-title="Run noctalia launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
 	Mod+L { spawn "hyprlock"; }
 
 	// Скриншот выделенной области
-	Print { spawn-sh "grim -g \"$(slurp -w 2 -c '#00FF00FF')\" - | satty --filename -"; }
+	// Print { spawn-sh "grim -g \"$(slurp -w 2 -c '#00FF00FF')\" - | satty --filename -"; }
+	Print { spawn-sh "rm -f /tmp/niri-screenshot.png && niri msg action screenshot && while [ ! -f /tmp/niri-screenshot.png ]; do sleep 0.05; done && satty -f /tmp/niri-screenshot.png"; }
+	
 	// Видео выделенной области запуск и следующая команда остановка
 	Shift+Print { spawn-sh "wf-recorder -g \"$(slurp -w 2 -c '#00FF00FF')\" -f ~/Videos/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"; }
 	Ctrl+Print { spawn-sh "pkill -2 wf-recorder"; }

@@ -46,11 +46,11 @@
         "barType": "simple",
         "capsuleColorKey": "none",
         "capsuleOpacity": 1,
-        "contentPadding": 2,
+        "contentPadding": 20,
         "density": "compact",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": false,
-        "fontScale": 1.1099999999999999,
+        "fontScale": 1.13,
         "frameRadius": 12,
         "frameThickness": 8,
         "hideOnOverview": false,
@@ -80,7 +80,7 @@
                 "position": "left"
             }
         ],
-        "showCapsule": true,
+        "showCapsule": false,
         "showOnWorkspaceSwitch": true,
         "showOutline": false,
         "useSeparateOpacity": false,
@@ -99,36 +99,6 @@
                     "showTitle": false,
                     "smartWidth": true,
                     "titleWidth": 120
-                },
-                {
-                    "clockColor": "none",
-                    "customFont": "Sans Serif",
-                    "formatHorizontal": "HH:mm:ss  yyyy-MM-dd, MMMM, ddd",
-                    "formatVertical": "HH:mm:ss  yyyy-MM-dd, MMMM, ddd",
-                    "id": "Clock",
-                    "tooltipFormat": "",
-                    "useCustomFont": false
-                },
-                {
-                    "defaultSettings": {
-                        "colorHistory": [
-                        ],
-                        "detectedRecorder": "",
-                        "filenameFormat": "",
-                        "gifMaxSeconds": 30,
-                        "installedLangs": [
-                            "eng"
-                        ],
-                        "paletteColors": [
-                        ],
-                        "recordCopyToClipboard": false,
-                        "recordSkipConfirmation": false,
-                        "screenshotPath": "",
-                        "selectedOcrLang": "eng",
-                        "transAvailable": false,
-                        "videoPath": ""
-                    },
-                    "id": "plugin:screen-toolkit"
                 }
             ],
             "left": [
@@ -188,6 +158,80 @@
             ],
             "right": [
                 {
+                    "defaultSettings": {
+                        "colorHistory": [
+                        ],
+                        "detectedRecorder": "",
+                        "filenameFormat": "",
+                        "gifMaxSeconds": 30,
+                        "installedLangs": [
+                            "eng"
+                        ],
+                        "paletteColors": [
+                        ],
+                        "recordCopyToClipboard": false,
+                        "recordSkipConfirmation": false,
+                        "screenshotPath": "",
+                        "selectedOcrLang": "eng",
+                        "transAvailable": false,
+                        "videoPath": ""
+                    },
+                    "id": "plugin:screen-toolkit"
+                },
+                {
+                    "defaultSettings": {
+                        "autoPaste": false,
+                        "autoPasteDelay": 300,
+                        "autoPasteOnRightClick": false,
+                        "cardColors": {
+                        },
+                        "customColors": {
+                        },
+                        "enableTodoIntegration": false,
+                        "fullscreenMode": false,
+                        "hidePanelBackground": false,
+                        "notecardsEnabled": true,
+                        "panelHeight": 0,
+                        "panelWidth": 1450,
+                        "pincardsEnabled": true,
+                        "showCloseButton": true
+                    },
+                    "id": "plugin:clipper"
+                },
+                {
+                    "defaultSettings": {
+                        "autoHeight": true,
+                        "cheatsheetData": [
+                        ],
+                        "columnCount": 3,
+                        "detectedCompositor": "",
+                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
+                        "modKeyVariable": "$mod",
+                        "niriConfigPath": "~/.config/niri/config.kdl",
+                        "windowHeight": 0,
+                        "windowWidth": 1400
+                    },
+                    "id": "plugin:keybind-cheatsheet"
+                },
+                {
+                    "defaultSettings": {
+                    },
+                    "id": "plugin:kde-connect"
+                },
+                {
+                    "id": "Spacer",
+                    "width": 50
+                },
+                {
+                    "clockColor": "none",
+                    "customFont": "Sans Serif",
+                    "formatHorizontal": "HH:mm:ss",
+                    "formatVertical": "HH:mm:ss  yyyy-MM-dd, MMMM, ddd",
+                    "id": "Clock",
+                    "tooltipFormat": "yyyy-MM-dd, MMMM, ddd",
+                    "useCustomFont": false
+                },
+                {
                     "displayMode": "alwaysShow",
                     "iconColor": "none",
                     "id": "Volume",
@@ -243,12 +287,6 @@
                     "showPowerProfiles": true
                 },
                 {
-                    "displayMode": "alwaysShow",
-                    "iconColor": "none",
-                    "id": "VPN",
-                    "textColor": "none"
-                },
-                {
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Network",
@@ -276,43 +314,46 @@
                 },
                 {
                     "defaultSettings": {
-                        "autoHeight": true,
-                        "cheatsheetData": [
+                        "iconColor": "none"
+                    },
+                    "id": "plugin:color-scheme-creator"
+                },
+                {
+                    "defaultSettings": {
+                        "precision": 8,
+                        "showBarValue": true
+                    },
+                    "id": "plugin:noctalia-calculator"
+                },
+                {
+                    "defaultSettings": {
+                        "animate_window": true,
+                        "animation_cards_duration": 750,
+                        "animation_window_duration": 500,
+                        "background_color": null,
+                        "background_opacity": null,
+                        "card_height": 350,
+                        "card_spacing": 6,
+                        "card_strip_width": 90,
+                        "cards_shown": 11,
+                        "center_width_ratio": 0.33,
+                        "hide_help": false,
+                        "hide_top_bar": false,
+                        "image_filter": [
+                            "png",
+                            "jpg",
+                            "jpeg"
                         ],
-                        "columnCount": 3,
-                        "detectedCompositor": "",
-                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
-                        "modKeyVariable": "$mod",
-                        "niriConfigPath": "~/.config/niri/config.kdl",
-                        "windowHeight": 0,
-                        "windowWidth": 1400
+                        "live_preview": false,
+                        "selected_filter": "images",
+                        "shear_factor": -0.25,
+                        "top_bar_height": 35,
+                        "video_filter": [
+                            "mp4",
+                            "avi"
+                        ]
                     },
-                    "id": "plugin:keybind-cheatsheet"
-                },
-                {
-                    "defaultSettings": {
-                        "autoPaste": false,
-                        "autoPasteDelay": 300,
-                        "autoPasteOnRightClick": false,
-                        "cardColors": {
-                        },
-                        "customColors": {
-                        },
-                        "enableTodoIntegration": false,
-                        "fullscreenMode": false,
-                        "hidePanelBackground": false,
-                        "notecardsEnabled": true,
-                        "panelHeight": 0,
-                        "panelWidth": 1450,
-                        "pincardsEnabled": true,
-                        "showCloseButton": true
-                    },
-                    "id": "plugin:clipper"
-                },
-                {
-                    "defaultSettings": {
-                    },
-                    "id": "plugin:kde-connect"
+                    "id": "plugin:wallcards"
                 }
             ]
         }
@@ -346,7 +387,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Noctalia (default)",
+        "predefinedScheme": "English",
         "schedulingMode": "off",
         "syncGsettings": false,
         "useWallpaperColors": false
@@ -459,7 +500,7 @@
     "general": {
         "allowPanelsOnScreenWithoutBar": true,
         "allowPasswordWithFprintd": false,
-        "animationDisabled": false,
+        "animationDisabled": true,
         "animationSpeed": 1,
         "autoStartAuth": false,
         "avatarImage": "/mnt/data/Рисунки/zver.gif",
@@ -468,7 +509,7 @@
         "clockStyle": "custom",
         "compactLockScreen": false,
         "dimmerOpacity": 0.2,
-        "enableBlurBehind": true,
+        "enableBlurBehind": false,
         "enableLockScreenCountdown": false,
         "enableLockScreenMediaControls": false,
         "enableShadows": false,
@@ -509,11 +550,11 @@
         "passwordChars": false,
         "radiusRatio": 0.1,
         "reverseScroll": false,
-        "scaleRatio": 0.9500000000000001,
+        "scaleRatio": 0.9,
         "screenRadiusRatio": 1,
-        "shadowDirection": "bottom_right",
-        "shadowOffsetX": 2,
-        "shadowOffsetY": 3,
+        "shadowDirection": "bottom_left",
+        "shadowOffsetX": -2,
+        "shadowOffsetY": 2,
         "showChangelogOnStartup": true,
         "showHibernateOnLockScreen": false,
         "showScreenCorners": false,
@@ -548,7 +589,7 @@
         "suspendTimeout": 1800
     },
     "location": {
-        "analogClockInCalendar": false,
+        "analogClockInCalendar": true,
         "autoLocate": false,
         "firstDayOfWeek": -1,
         "hideWeatherCityName": false,
@@ -556,7 +597,7 @@
         "name": "Великий Новгород, RU",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
-        "showWeekNumberInCalendar": false,
+        "showWeekNumberInCalendar": true,
         "use12hourFormat": false,
         "useFahrenheit": false,
         "weatherEnabled": true,
@@ -571,7 +612,7 @@
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
         "networkPanelView": "wifi",
-        "wifiDetailsViewMode": "list"
+        "wifiDetailsViewMode": "grid"
     },
     "nightLight": {
         "autoSchedule": true,
@@ -640,7 +681,7 @@
     "sessionMenu": {
         "countdownDuration": 10000,
         "enableCountdown": true,
-        "largeButtonsLayout": "single-row",
+        "largeButtonsLayout": "grid",
         "largeButtonsStyle": true,
         "position": "top_center",
         "powerOptions": [
@@ -710,7 +751,7 @@
         "batteryWarningThreshold": 20,
         "cpuCriticalThreshold": 90,
         "cpuWarningThreshold": 80,
-        "criticalColor": "",
+        "criticalColor": "#bf616a",
         "diskAvailCriticalThreshold": 10,
         "diskAvailWarningThreshold": 20,
         "diskCriticalThreshold": 90,
@@ -726,7 +767,7 @@
         "tempCriticalThreshold": 90,
         "tempWarningThreshold": 80,
         "useCustomColors": false,
-        "warningColor": ""
+        "warningColor": "#5e81ac"
     },
     "templates": {
         "activeTemplates": [
@@ -742,14 +783,14 @@
         "panelBackgroundOpacity": 0.93,
         "panelsAttachedToBar": true,
         "scrollbarAlwaysVisible": true,
-        "settingsPanelMode": "attached",
-        "settingsPanelSideBarCardStyle": false,
+        "settingsPanelMode": "window",
+        "settingsPanelSideBarCardStyle": true,
         "tooltipsEnabled": true,
         "translucentWidgets": false
     },
     "wallpaper": {
         "automationEnabled": false,
-        "directory": "/mnt/data/Рисунки",
+        "directory": "/mnt/data/Wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "favorites": [

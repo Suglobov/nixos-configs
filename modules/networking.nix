@@ -7,6 +7,10 @@
 		enable = true;
 		allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
 		allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+		trustedInterfaces = [ "Mihomo" "Meta" ];
+		extraReversePathFilterRules = ''
+			iifname { "Mihomo", "Meta" } accept comment "clash-verge tun traffic"
+		'';
 	};
 	# networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 	# networking.proxy.default = "http://user:password@proxy:port/";

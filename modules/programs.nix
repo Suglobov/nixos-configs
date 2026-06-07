@@ -21,4 +21,9 @@
 	programs.hyprlock.enable = true;
 	programs.nix-ld.enable = true;
 	programs.fuse.userAllowOther = true;
+	programs.clash-verge = {
+		enable = true;
+		serviceMode = true; # Настраивает системную службу
+		tunMode = true; # Выдает setcap-права для создания TUN-интерфейса
+	};
 }

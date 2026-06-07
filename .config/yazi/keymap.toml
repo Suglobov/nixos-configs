@@ -374,6 +374,11 @@ keymap = [
 	{ on = "f", run = "filter", desc = "Filter help items" },
 ]
 
+[[manager.prepend_keymap]]
+on = [ "Z" ]
+run = 'shell "zoxide query -i" --block --confirm'
+desc = "Zoxide interactive jump"
+
 
 # Dropping to the shell
 [[mgr.prepend_keymap]]
