@@ -14,6 +14,8 @@
 	services.gnome.gnome-keyring.enable = true;
 	services.gvfs.enable = true;
 	services.resolved.enable = true;
+	services.upower.enable = true;
+	services.power-profiles-daemon.enable = true;
 	services.udev.packages = with pkgs; [
 		game-devices-udev-rules # Огромная база правил для DualShock, Xbox, Nintendo и китайских реплик
 	];

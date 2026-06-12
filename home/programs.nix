@@ -150,5 +150,9 @@
 		qt6.qt5compat
 		qt6.qtdeclarative
 		qt5.qtgraphicaleffects
+		quickshell
+		tree
+		rofi
+		wofi
 	];
 }

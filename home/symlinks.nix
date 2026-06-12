@@ -25,6 +25,9 @@
 				} {
 					link = "${homeDir}/.config/hypr";
 					target = "${targetDir}/nixos/.config/hypr";
+				} {
+					link = "${homeDir}/.config/quickshell";
+					target = "${targetDir}/nixos/.config/quickshell";
 				}
 			];
 		in

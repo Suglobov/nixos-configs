@@ -6,9 +6,12 @@
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
 spawn-sh-at-startup "noctalia-shell"
+spawn-sh-at-startup "quickshell -n -d -c lang-panel"
 
-// screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-screenshot-path "/tmp/niri-screenshot.png"
+// You can also set this to null to disable saving screenshots to disk.
+// screenshot-path null
+screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png"
+// screenshot-path "/tmp/niri-screenshot.png"
 
 environment {
 
@@ -181,10 +184,6 @@ layout {
 // A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
 
-
-// You can also set this to null to disable saving screenshots to disk.
-// screenshot-path null
-
 // Animation settings.
 // The wiki explains how to configure individual animations:
 // https://niri-wm.github.io/niri/Configuration:-Animations
@@ -353,13 +352,15 @@ binds {
 	Mod+2 { switch-layout "1"; }
 
 	Mod+V { spawn-sh "noctalia-shell ipc call plugin:clipper toggle"; }
-	Mod+Alt+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
-	Mod+Space hotkey-overlay-title="Run noctalia launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+	Mod+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
+	Mod+Alt+Space hotkey-overlay-title="Run noctalia launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
 	Mod+L { spawn "hyprlock"; }
 
 	// Скриншот выделенной области
 	// Print { spawn-sh "grim -g \"$(slurp -w 2 -c '#00FF00FF')\" - | satty --filename -"; }
-	Print { spawn-sh "rm -f /tmp/niri-screenshot.png && niri msg action screenshot && while [ ! -f /tmp/niri-screenshot.png ]; do sleep 0.05; done && satty -f /tmp/niri-screenshot.png"; }
+	// Print { spawn-sh "rm -f /tmp/niri-screenshot.png && niri msg action screenshot && while [ ! -f /tmp/niri-screenshot.png ]; do sleep 0.05; done && satty -f /tmp/niri-screenshot.png"; }
+	Print { screenshot; } // скриншот от niri
+	Alt+Print { spawn-sh "wl-paste | satty -f -"; } // открывает satty из буфера обмена
 	
 	// Видео выделенной области запуск и следующая команда остановка
 	Shift+Print { spawn-sh "wf-recorder -g \"$(slurp -w 2 -c '#00FF00FF')\" -f ~/Videos/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"; }
