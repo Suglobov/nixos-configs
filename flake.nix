@@ -4,6 +4,8 @@
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 		nix-flatpak.url = "github:gmodena/nix-flatpak";
+		noctalia-v5.url = "github:noctalia-dev/noctalia/main";
+		noctalia-v4.url = "github:noctalia-dev/noctalia/legacy-v4";
 		noctalia = {
 			url = "github:noctalia-dev/noctalia-shell/main";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -15,7 +17,7 @@
 		fresh.url = "github:sinelaw/fresh";
 	};
 
-	outputs = { self, nixpkgs, noctalia, home-manager, nix-flatpak, fresh, ... }@inputs: 
+	outputs = { self, nixpkgs, noctalia, noctalia-v4, noctalia-v5, home-manager, nix-flatpak, fresh, ... }@inputs:
 	let
 		username = "eugeny"; 
 	in {

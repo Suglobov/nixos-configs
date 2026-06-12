@@ -5,7 +5,8 @@
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
-spawn-sh-at-startup "noctalia-shell"
+// spawn-sh-at-startup "NOCTALIA_CONFIG_DIR=~/.config/noctalia-v4/ noctalia-shell -d"
+spawn-sh-at-startup "noctalia"
 spawn-sh-at-startup "quickshell -n -d -c lang-panel"
 
 // You can also set this to null to disable saving screenshots to disk.

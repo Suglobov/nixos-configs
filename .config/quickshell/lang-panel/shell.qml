@@ -10,7 +10,10 @@ ShellRoot {
 		delegate: PanelWindow {
 			id: panel
 			required property var modelData
-			readonly property int panelHeight: 30
+			readonly property var screenData: modelData
+			readonly property int panelHeight: 40
+
+			screen: screenData
 
 			WlrLayershell.layer: WlrLayer.Bottom
 			WlrLayershell.margins.top: -panelHeight
@@ -20,12 +23,20 @@ ShellRoot {
 			anchors.right: true
 
 			implicitHeight: panelHeight
-			color: Niri.keyboardLayoutIdx === 0 ? '#00f'
-				: Niri.keyboardLayoutIdx === 1 ? '#0f0'
-				: "#ccc"
+			color: "transparent"
 
 			Behavior on color {
 				ColorAnimation { duration: 150 }
+			}
+
+			Rectangle {
+				anchors.fill: parent
+				radius: 0
+				border.width: 0
+				// hex-формат (первые две цифры — прозрачность)
+				color: Niri.keyboardLayoutIdx === 0 ? '#ff0000ff'
+				: Niri.keyboardLayoutIdx === 1 ? '#ffff0000'
+				: "#ccc"
 			}
 		}
 	}

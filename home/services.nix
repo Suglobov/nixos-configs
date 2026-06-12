@@ -19,4 +19,9 @@
 			WantedBy = [ "graphical-session.target" ];
 		};
 	};
+
+	services.cliphist = {
+		enable = true;
+		allowImages = true; # Разрешаем cliphist кэшировать картинки
+	};
 }

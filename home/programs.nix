@@ -79,7 +79,9 @@
 
 	home.packages = with pkgs; [
 		(appimage-run.override { extraPkgs = pkgs: [ pkgs.libepoxy ]; })
-		inputs.noctalia.packages.${pkgs.system}.default
+		# inputs.noctalia.packages.${pkgs.system}.default
+		inputs.noctalia-v4.packages.${pkgs.system}.default
+		inputs.noctalia-v5.packages.${pkgs.system}.default
 		inputs.fresh.packages.${pkgs.system}.default
 		kdePackages.dolphin
 		kdePackages.konsole
@@ -154,5 +156,7 @@
 		tree
 		rofi
 		wofi
+		pavucontrol
+		cliphist
 	];
 }

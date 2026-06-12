@@ -11,6 +11,9 @@
 					link = "${homeDir}/.config/niri";
 					target = "${targetDir}/nixos/.config/niri";
 				} {
+					link = "${homeDir}/.config/noctalia-v4";
+					target = "${targetDir}/nixos/.config/noctalia-v4";
+				} {
 					link = "${homeDir}/.config/noctalia";
 					target = "${targetDir}/nixos/.config/noctalia";
 				} {

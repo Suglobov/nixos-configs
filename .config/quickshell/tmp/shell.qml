@@ -14,10 +14,10 @@ ShellRoot {
 
 			readonly property int panelHeight: 30
 
-			WlrLayershell.layer: WlrLayer.Bottom
-			WlrLayershell.margins {
-				top: -panelHeight
-			}
+			// WlrLayershell.layer: WlrLayer.Bottom
+			// WlrLayershell.margins {
+			// 	top: -panelHeight
+			// }
 
 			screen: screenData
 
@@ -26,9 +26,9 @@ ShellRoot {
 			anchors.right: true
 
 			implicitHeight: panelHeight
-			color: Niri.keyboardLayoutIdx === 0 ? '#00cc00'
-			     : Niri.keyboardLayoutIdx === 1 ? '#cccc00'
-			     : "#ccc"
+			// color: Niri.keyboardLayoutIdx === 0 ? '#00cc00'
+			//      : Niri.keyboardLayoutIdx === 1 ? '#cccc00'
+			//      : "#ccc"
 
 			// Плавное изменение цвета при переключении
 			Behavior on color { 

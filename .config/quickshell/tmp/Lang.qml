@@ -17,7 +17,7 @@ Text {
 		let idx = Niri.keyboardLayoutIdx;
 		
 		if (layouts && idx >= 0 && idx < layouts.length) {
-			return layouts[idx].toUpperCase();
+			return layouts[idx];
 		}
 		return "..";
 	}

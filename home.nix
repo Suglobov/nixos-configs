@@ -43,7 +43,7 @@
 		QS_ICON_THEME = "Papirus";
 		XDG_CURRENT_DESKTOP = "Noctalia";
 		QT_MINIMAL_SETTINGS_PROVIDER = "none";
-		XDG_RUNTIME_DIR = "/run/user/1000";
+		# XDG_RUNTIME_DIR = "/run/user/1000";
 	};
 
 	xdg.terminal-exec = {
