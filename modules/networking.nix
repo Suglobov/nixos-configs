@@ -7,10 +7,17 @@
 		enable = true;
 		allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
 		allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
-		trustedInterfaces = [ "Mihomo" "Meta" ];
+		checkReversePath = false;
+		trustedInterfaces = [ "Mihomo" "Meta" "wt0" ];
 		extraReversePathFilterRules = ''
-			iifname { "Mihomo", "Meta" } accept comment "clash-verge tun traffic"
+			iifname { "Mihomo", "Meta", "wt0" } accept comment "clash-verge tun traffic"
 		'';
+	};
+	networking.nat = {
+		enable = true;
+		# Укажите имя вашего сетевого интерфейса (Ethernet/Wi-Fi). Его можно узнать на ПК командой: ip route show | grep default
+		externalInterface = "wlp0s20f3"; 
+		internalInterfaces = [ "wt0" ];
 	};
 	# networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 	# networking.proxy.default = "http://user:password@proxy:port/";

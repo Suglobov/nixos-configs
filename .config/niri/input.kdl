@@ -1,0 +1,47 @@
+// https://niri-wm.github.io/niri/Configuration:-Input
+input {
+	// warp-mouse-to-focus
+	// Focus windows and outputs automatically when moving the mouse into them.
+	// Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
+	// focus-follows-mouse max-scroll-amount="0%"
+	// focus-follows-mouse
+
+	keyboard {
+		xkb {
+			layout "us,ru"
+			options "grp:caps_toggle"
+			// options "grp:caps_select"
+		}
+		track-layout "window"
+		numlock
+	}
+	touchpad {
+		// off
+		tap
+		dwt
+		dwtp
+		drag true
+		drag-lock
+		natural-scroll
+		accel-speed 0
+		scroll-factor 0.5
+		// scroll-factor vertical=0.5 horizontal=0.5
+		// accel-profile "adaptive"
+		// accel-profile "flat"
+		// scroll-method "two-finger"
+		// disabled-on-external-mouse
+	}
+	mouse {
+		// off
+		accel-speed -0.6
+		accel-profile "flat"
+		scroll-method "on-button-down"
+		scroll-button 2
+		scroll-factor 1
+		// scroll-button-lock
+		// natural-scroll
+	}
+	trackpoint {
+		// off
+	}
+}

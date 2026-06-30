@@ -1,0 +1,48 @@
+// Window rules let you adjust behavior for individual windows.
+// Find more information on the wiki:
+// https://niri-wm.github.io/niri/Configuration:-Window-Rules
+// niri msg pick-window
+window-rule {
+	geometry-corner-radius 0
+	clip-to-geometry true
+	draw-border-with-background false
+	// open-maximized false
+	// popups {
+	// 	opacity 0.9
+	// 	background-effect {
+	// 		blur true
+	// 		xray true
+	// 		noise 0.5
+	// 		saturation 5
+	// 	}
+	// }
+}
+// window-rule {
+//     match is-floating=true
+// }
+window-rule {
+	match title="Heroes of the storm"
+	match title="PortProton"
+	match title="Battle.net"
+	match app-id="PortProton"
+	match app-id="steam_proton"
+	open-floating true
+	default-window-height { proportion 0.5; }
+}
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
+// window-rule {
+//     // This regular expression is intentionally made as specific as possible,
+//     // since this is the default config, and we want no false positives.
+//     // You can get away with just app-id="wezterm" if you want.
+//     match app-id=r#"^org\.wezfurlong\.wezterm$"#
+//     default-column-width {}
+// }
+// Open the Firefox picture-in-picture player as floating by default.
+// window-rule {
+//     // This app-id regular expression will work for both:
+//     // - host Firefox (app-id is "firefox")
+//     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+//     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+//     open-floating true
+// }

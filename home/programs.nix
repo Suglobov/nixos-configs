@@ -79,84 +79,103 @@
 
 	home.packages = with pkgs; [
 		(appimage-run.override { extraPkgs = pkgs: [ pkgs.libepoxy ]; })
+		# carbonyl # браузер в терминале
+		# gnome-logs # Простой и понятный интерфейс от GNOME
+		# input-remapper # Мощный инструмент для переназначения клавиш джойстика под Wayland/Niri
 		# inputs.noctalia.packages.${pkgs.system}.default
-		inputs.noctalia-v4.packages.${pkgs.system}.default
-		inputs.noctalia-v5.packages.${pkgs.system}.default
-		inputs.fresh.packages.${pkgs.system}.default
-		kdePackages.dolphin
-		kdePackages.konsole
+		# jstest-gtk # Графический интерфейс для калибровки и проверки кнопок геймпада
+		alacritty # эмулятор терминала
+		bat
+		beekeeper-studio
+		broot
+		browsh # браузер в терминале
+		btop # диспечер процессов
+		clash-verge-rev # vpn
+		cliphist # история буфера обмена
+		clipse
+		dbeaver-bin # подключаться к базам данных
+		direnv
+		duf	# свободное место на диске
+		dust # свободное место на диске
+		dysk
+		evtest # Консольная утилита для проверки системных событий ввода (evdev)
+		eza
+		fastfetch
+		fd
+		ffmpeg
+		firefox
+		fish # командная оболочка (аля bash)
 		flatpak
+		foot # эмулятор терминала
 		fuzzel
 		fzf
-		ripgrep
-		fd
-		zoxide
-		bat
-		eza
-		direnv
-		jq
-		vlc
-		lazygit
-		fish
-		grim
-		slurp
-		satty
-		wl-clipboard
-		wf-recorder
-		btop
-		thunar
-		dbeaver-bin
-		foot
-		alacritty
-		telegram-desktop
-		p7zip
-		duf
-		dysk
-		warp
-		nsxiv
-		gost
-		wtype
-		ffmpeg
-		hyprpicker
-		tesseract
-		imagemagick
-		mpvpaper
-		zbar
-		translate-shell
+		ghostty # эмулятор терминала
 		gifski
+		gimp
+		gnome-text-editor
+		gost
+		grim
+		hyprpicker # заблокированный экран
+		imagemagick
+		imv
+		inputs.fresh.packages.${pkgs.system}.default
+		inputs.noctalia-v4.packages.${pkgs.system}.default
+		inputs.noctalia-v5.packages.${pkgs.system}.default
+		jq
+		kdePackages.dolphin # файловый менеджер
+		kdePackages.konsole # эмулятор терминала
+		lazygit
+		linuxConsoleTools
+		lnav
+		loupe
+		lxqt.lxqt-policykit
+		micro
+		mission-center
+		mpvpaper
+		mycli
+		nautilus
+		ncdu # свободное место на диске
+		nemo
+		nload
+		nsxiv
+		nushell
+		nwg-clipman
+		opensnitch-ui
+		p7zip
+		papirus-icon-theme
+		pavucontrol
+		playerctl
 		python3
 		python3Packages.pygobject3
-		xdg-desktop-portal
-		nushell
-		sshfs
-		rclone
-		loupe
-		imv
-		swayimg
-		tldr
-		fastfetch
-		mycli
-		beekeeper-studio
-		evtest # Консольная утилита для проверки системных событий ввода (evdev)
-		jstest-gtk # Графический интерфейс для калибровки и проверки кнопок геймпада
-		input-remapper # Мощный инструмент для переназначения клавиш джойстика под Wayland/Niri
-		lxqt.lxqt-policykit
-		broot
-		clash-verge-rev
-		gimp
-		linuxConsoleTools
-		mission-center
-		nautilus
-		gnome-text-editor
-		nemo
+		qt5.qtgraphicaleffects
 		qt6.qt5compat
 		qt6.qtdeclarative
-		qt5.qtgraphicaleffects
+		qt6.qtwayland
 		quickshell
-		tree
+		rclone
+		ripgrep
 		rofi
+		satty
+		slurp
+		sshfs
+		swayimg
+		telegram-desktop
+		termshark
+		tesseract
+		thunar # 
+		tldr
+		tmux
+		translate-shell
+		tree
+		vlc
+		warp
+		wf-recorder
+		wl-clipboard
 		wofi
-		pavucontrol
-		cliphist
+		wtype
+		xdg-desktop-portal
+		zbar
+		zellij
+		zoxide
 	];
 }

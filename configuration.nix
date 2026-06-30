@@ -19,6 +19,10 @@
 
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
+	boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
+  };
 
 	fileSystems."/mnt/data" = {
 		device = "/dev/disk/by-uuid/35fc781b-8e0d-4164-97cf-e94a17439ef2";
@@ -46,7 +50,7 @@
 		isNormalUser = true;
 		description = username;
 		home = "/home/${username}";
-		extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker" "input" "uinput" ];
+		extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker" "input" "uinput" "systemd-journal" ];
 		packages = with pkgs; [];
 		shell = pkgs.fish;
 	};

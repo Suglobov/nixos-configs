@@ -12,47 +12,54 @@
 	home.homeDirectory = "/home/${username}";
 	home.stateVersion = "24.11";
 
-	home.packages = with pkgs; [
-		papirus-icon-theme
-		gnome-themes-extra
-	];
-
 	gtk = {
 		enable = true;
-		gtk4.theme = null;
-		theme = {
-			name = "Adwaita"; # Стандартная тема, которая сама переключается светлая/темная
-			package = pkgs.gnome-themes-extra;
-		};
 		iconTheme = {
 			name = "Papirus"; 
 			package = pkgs.papirus-icon-theme;
 		};
+	# 	gtk4.theme = null;
+		# theme = {
+		# 	name = "Adwaita"; # Стандартная тема, которая сама переключается светлая/темная
+		# 	# package = pkgs.gnome.gnome-themes-extra;
+		# };
+	# 	gtk3.extraConfig.gtk-icon-theme-name = "Papirus";
 	};
 
-	qt = {
-		enable = true;
-		platformTheme.name = "gtk"; 
-		style.name = "adwaita";
-	};
+	# qt = {
+	# 	enable = true;
+	# 	platformTheme.name = "gtk";
+	# 	style.name = "adwaita";
+	# };
 
 	home.sessionVariables = {
 		MOZ_ENABLE_WAYLAND = "1";
-		GDK_BACKEND = "wayland,x11";
-		XDG_DATA_DIRS = "$HOME/.nix-profile/share:$HOME/.local/share:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS";
-		QS_ICON_THEME = "Papirus";
-		XDG_CURRENT_DESKTOP = "Noctalia";
-		QT_MINIMAL_SETTINGS_PROVIDER = "none";
+		# QS_ICON_THEME = "Papirus";
+		# GDK_BACKEND = "wayland,x11";
+		# XDG_DATA_DIRS = "$HOME/.nix-profile/share:$HOME/.local/share:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS";
+		# XDG_DATA_DIRS = "$HOME/.nix-profile/share:$HOME/.local/share:/run/current-system/sw/share:$XDG_DATA_DIRS";
+		# XDG_CURRENT_DESKTOP = "Noctalia";
+		# QT_MINIMAL_SETTINGS_PROVIDER = "none";
+		# QT_USE_PORTAL = "1";
 		# XDG_RUNTIME_DIR = "/run/user/1000";
+		# XCURSOR_THEME = "Banana";
+  	# XCURSOR_SIZE = "60";
 	};
 
-	xdg.terminal-exec = {
-		enable = true;
-		settings = {
-			default = [ "foot.desktop" ];
-			Noctalia = [ "foot.desktop" ];
-		};
-	};
+	# dconf.settings = {
+	# 	"org/gnome/desktop/interface" = {
+	# 		cursor-theme = "Banana";
+	# 		cursor-size = 60;
+	# 	};
+	# };
+
+	# xdg.terminal-exec = {
+	# 	enable = true;
+	# 	settings = {
+	# 		default = [ "foot.desktop" ];
+	# 		Noctalia = [ "foot.desktop" ];
+	# 	};
+	# };
 	# xdg.desktopEntries.yazi = {
 	# 	name = "Yazi";
 	# 	exec = "yazi %u";

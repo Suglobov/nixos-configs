@@ -11,8 +11,18 @@ if status is-interactive
 
 	zoxide init fish | source
 
-  set -gx EDITOR fresh
-  set -gx VISUAL "fresh --wait"
+	set -gx EDITOR fresh
+	set -gx VISUAL fresh
 
 	set -x MANPATH $HOME/.nix-profile/share/man $MANPATH
+
+	# if status is-interactive
+	# 	if not set -q ZELLIJ
+	# 			exec zellij
+	# 	end
+	# end
+	# if status is-interactive # предупреждение перед выходом
+  #   zellij setup --generate-auto-start fish | source
+	# end
+
 end

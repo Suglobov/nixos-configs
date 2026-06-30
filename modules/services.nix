@@ -26,22 +26,27 @@
 	# 	# Второй геймпад на порту 1-1
 	# 	SUBSYSTEM=="input", KERNELS=="1-1:1.0", ATTR{name}="usb gamepad 2"
 	# '';
+	services.netbird.enable = true;
+	services.dbus.enable = true;
 
-	services.input-remapper = {
-		enable = true;
-		enableUdevRules = true; # Автоматически дает права на чтение геймпадов
-	};
+	# services.input-remapper = {
+	# 	enable = true;
+	# 	enableUdevRules = true; # Автоматически дает права на чтение геймпадов
+	# };
 
-	# Порталы
 	xdg.portal = {
 		enable = true;
 		extraPortals = with pkgs; [
+			xdg-desktop-portal
 			xdg-desktop-portal-gnome
 			xdg-desktop-portal-gtk
 		];
-		config.common.default = [ "gtk" ];
-		config.common."org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-		config.common."org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+		config.common = {
+			default = [ "gtk" ];
+			"org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+			"org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+			"org.freedesktop.impl.portal.Activation" = [ "gtk" ];
+		};
 	};
 
 	# Раскладка клавиатуры

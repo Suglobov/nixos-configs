@@ -47,7 +47,7 @@
         "capsuleColorKey": "none",
         "capsuleOpacity": 1,
         "contentPadding": 20,
-        "density": "compact",
+        "density": "default",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": false,
         "fontScale": 1.13,
@@ -87,52 +87,8 @@
         "widgetSpacing": 2,
         "widgets": {
             "center": [
-                {
-                    "colorizeIcons": false,
-                    "hideMode": "transparent",
-                    "iconScale": 1,
-                    "id": "Taskbar",
-                    "maxTaskbarWidth": 40,
-                    "onlyActiveWorkspaces": false,
-                    "onlySameOutput": true,
-                    "showPinnedApps": false,
-                    "showTitle": false,
-                    "smartWidth": true,
-                    "titleWidth": 120
-                }
             ],
             "left": [
-                {
-                    "colorizeSystemIcon": "none",
-                    "colorizeSystemText": "none",
-                    "customIconPath": "",
-                    "enableColorization": false,
-                    "icon": "rocket",
-                    "iconColor": "none",
-                    "id": "Launcher",
-                    "useDistroLogo": false
-                },
-                {
-                    "characterCount": 2,
-                    "colorizeIcons": false,
-                    "emptyColor": "secondary",
-                    "enableScrollWheel": true,
-                    "focusedColor": "primary",
-                    "followFocusedScreen": false,
-                    "fontWeight": "bold",
-                    "groupedBorderOpacity": 1,
-                    "hideUnoccupied": false,
-                    "iconScale": 0.8,
-                    "id": "Workspace",
-                    "labelMode": "index",
-                    "occupiedColor": "secondary",
-                    "pillSize": 0.6,
-                    "showApplications": false,
-                    "showApplicationsHover": false,
-                    "showBadge": true,
-                    "showLabelsOnlyWhenOccupied": true,
-                    "unfocusedIconsOpacity": 1
-                },
                 {
                     "compactMode": false,
                     "diskPath": "/",
@@ -154,29 +110,73 @@
                     "textColor": "none",
                     "useMonospaceFont": true,
                     "usePadding": true
-                }
-            ],
-            "right": [
+                },
+                {
+                    "id": "Spacer",
+                    "width": 20
+                },
                 {
                     "defaultSettings": {
-                        "colorHistory": [
-                        ],
-                        "detectedRecorder": "",
-                        "filenameFormat": "",
-                        "gifMaxSeconds": 30,
-                        "installedLangs": [
-                            "eng"
-                        ],
-                        "paletteColors": [
-                        ],
-                        "recordCopyToClipboard": false,
-                        "recordSkipConfirmation": false,
-                        "screenshotPath": "",
-                        "selectedOcrLang": "eng",
-                        "transAvailable": false,
-                        "videoPath": ""
                     },
-                    "id": "plugin:screen-toolkit"
+                    "id": "plugin:kde-connect"
+                },
+                {
+                    "defaultSettings": {
+                        "iconColor": "none"
+                    },
+                    "id": "plugin:color-scheme-creator"
+                },
+                {
+                    "defaultSettings": {
+                        "autoHeight": true,
+                        "cheatsheetData": [
+                        ],
+                        "columnCount": 3,
+                        "detectedCompositor": "",
+                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
+                        "modKeyVariable": "$mod",
+                        "niriConfigPath": "~/.config/niri/config.kdl",
+                        "windowHeight": 0,
+                        "windowWidth": 1400
+                    },
+                    "id": "plugin:keybind-cheatsheet"
+                },
+                {
+                    "defaultSettings": {
+                        "animate_window": true,
+                        "animation_cards_duration": 750,
+                        "animation_window_duration": 500,
+                        "background_color": null,
+                        "background_opacity": null,
+                        "card_height": 350,
+                        "card_spacing": 6,
+                        "card_strip_width": 90,
+                        "cards_shown": 11,
+                        "center_width_ratio": 0.33,
+                        "hide_help": false,
+                        "hide_top_bar": false,
+                        "image_filter": [
+                            "png",
+                            "jpg",
+                            "jpeg"
+                        ],
+                        "live_preview": false,
+                        "selected_filter": "images",
+                        "shear_factor": -0.25,
+                        "top_bar_height": 35,
+                        "video_filter": [
+                            "mp4",
+                            "avi"
+                        ]
+                    },
+                    "id": "plugin:wallcards"
+                },
+                {
+                    "defaultSettings": {
+                        "precision": 8,
+                        "showBarValue": true
+                    },
+                    "id": "plugin:noctalia-calculator"
                 },
                 {
                     "defaultSettings": {
@@ -200,28 +200,40 @@
                 },
                 {
                     "defaultSettings": {
-                        "autoHeight": true,
-                        "cheatsheetData": [
+                        "colorHistory": [
                         ],
-                        "columnCount": 3,
-                        "detectedCompositor": "",
-                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
-                        "modKeyVariable": "$mod",
-                        "niriConfigPath": "~/.config/niri/config.kdl",
-                        "windowHeight": 0,
-                        "windowWidth": 1400
+                        "detectedRecorder": "",
+                        "filenameFormat": "",
+                        "gifMaxSeconds": 30,
+                        "installedLangs": [
+                            "eng"
+                        ],
+                        "paletteColors": [
+                        ],
+                        "recordCopyToClipboard": false,
+                        "recordSkipConfirmation": false,
+                        "screenshotPath": "",
+                        "selectedOcrLang": "eng",
+                        "transAvailable": false,
+                        "videoPath": ""
                     },
-                    "id": "plugin:keybind-cheatsheet"
+                    "id": "plugin:screen-toolkit"
                 },
                 {
                     "defaultSettings": {
+                        "activeColor": "primary",
+                        "camFilterRegex": "",
+                        "enableToast": true,
+                        "hideInactive": false,
+                        "iconSpacing": 4,
+                        "inactiveColor": "none",
+                        "micFilterRegex": "",
+                        "removeMargins": false
                     },
-                    "id": "plugin:kde-connect"
-                },
-                {
-                    "id": "Spacer",
-                    "width": 50
-                },
+                    "id": "plugin:privacy-indicator"
+                }
+            ],
+            "right": [
                 {
                     "clockColor": "none",
                     "customFont": "Sans Serif",
@@ -230,6 +242,30 @@
                     "id": "Clock",
                     "tooltipFormat": "yyyy-MM-dd, MMMM, ddd",
                     "useCustomFont": false
+                },
+                {
+                    "colorizeSystemIcon": "none",
+                    "colorizeSystemText": "none",
+                    "customIconPath": "",
+                    "enableColorization": false,
+                    "icon": "rocket",
+                    "iconColor": "none",
+                    "id": "Launcher",
+                    "useDistroLogo": false
+                },
+                {
+                    "colorizeDistroLogo": false,
+                    "colorizeSystemIcon": "none",
+                    "colorizeSystemText": "none",
+                    "customIconPath": "",
+                    "enableColorization": false,
+                    "icon": "noctalia",
+                    "id": "ControlCenter",
+                    "useDistroLogo": false
+                },
+                {
+                    "id": "Spacer",
+                    "width": 20
                 },
                 {
                     "displayMode": "alwaysShow",
@@ -293,16 +329,6 @@
                     "textColor": "none"
                 },
                 {
-                    "colorizeDistroLogo": false,
-                    "colorizeSystemIcon": "none",
-                    "colorizeSystemText": "none",
-                    "customIconPath": "",
-                    "enableColorization": false,
-                    "icon": "noctalia",
-                    "id": "ControlCenter",
-                    "useDistroLogo": false
-                },
-                {
                     "capsLockIcon": "letter-c",
                     "hideWhenOff": true,
                     "id": "LockKeys",
@@ -313,47 +339,7 @@
                     "showScrollLock": true
                 },
                 {
-                    "defaultSettings": {
-                        "iconColor": "none"
-                    },
-                    "id": "plugin:color-scheme-creator"
-                },
-                {
-                    "defaultSettings": {
-                        "precision": 8,
-                        "showBarValue": true
-                    },
-                    "id": "plugin:noctalia-calculator"
-                },
-                {
-                    "defaultSettings": {
-                        "animate_window": true,
-                        "animation_cards_duration": 750,
-                        "animation_window_duration": 500,
-                        "background_color": null,
-                        "background_opacity": null,
-                        "card_height": 350,
-                        "card_spacing": 6,
-                        "card_strip_width": 90,
-                        "cards_shown": 11,
-                        "center_width_ratio": 0.33,
-                        "hide_help": false,
-                        "hide_top_bar": false,
-                        "image_filter": [
-                            "png",
-                            "jpg",
-                            "jpeg"
-                        ],
-                        "live_preview": false,
-                        "selected_filter": "images",
-                        "shear_factor": -0.25,
-                        "top_bar_height": 35,
-                        "video_filter": [
-                            "mp4",
-                            "avi"
-                        ]
-                    },
-                    "id": "plugin:wallcards"
+                    "id": "plugin:clipboard"
                 }
             ]
         }
@@ -387,7 +373,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "ADW",
+        "predefinedScheme": "Noctalia (default)",
         "schedulingMode": "off",
         "syncGsettings": false,
         "useWallpaperColors": false
@@ -803,7 +789,7 @@
         "fontDefaultScale": 1,
         "fontFixed": "monospace",
         "fontFixedScale": 1,
-        "panelBackgroundOpacity": 0.7000000000000001,
+        "panelBackgroundOpacity": 0.4,
         "panelsAttachedToBar": true,
         "scrollbarAlwaysVisible": true,
         "settingsPanelMode": "window",

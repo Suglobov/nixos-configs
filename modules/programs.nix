@@ -14,6 +14,7 @@
 		amnezia-vpn
 		fuse
 		fuse3
+		at-spi2-core
 	];
 
 	programs.niri.enable = true;

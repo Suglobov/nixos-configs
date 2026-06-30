@@ -28,7 +28,7 @@
 				modules = [
 					./hardware-configuration.nix
 					./configuration.nix
-                    {
+					{
 						nixpkgs.hostPlatform = "x86_64-linux";
 					}
 					home-manager.nixosModules.home-manager
@@ -36,11 +36,11 @@
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
 						home-manager.extraSpecialArgs = { inherit inputs username; };
-						
+
 						home-manager.users.${username} = {
-							imports = [ 
-								./home.nix 
-								nix-flatpak.homeManagerModules.nix-flatpak 
+							imports = [
+								./home.nix
+								nix-flatpak.homeManagerModules.nix-flatpak
 							];
 						};
 					}
