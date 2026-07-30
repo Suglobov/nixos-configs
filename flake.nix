@@ -15,9 +15,23 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		fresh.url = "github:sinelaw/fresh";
+
+		elephant.url = "github:abenz1267/elephant/master";
+		walker.url = "github:abenz1267/walker/master";
+		walker.inputs.elephant.follows = "elephant";
 	};
 
-	outputs = { self, nixpkgs, noctalia, noctalia-v4, noctalia-v5, home-manager, nix-flatpak, fresh, ... }@inputs:
+	outputs = {
+		self,
+		nixpkgs,
+		noctalia,
+		noctalia-v4,
+		noctalia-v5,
+		home-manager,
+		nix-flatpak,
+		fresh,
+		...
+	}@inputs:
 	let
 		username = "eugeny"; 
 	in {
@@ -41,6 +55,7 @@
 							imports = [
 								./home.nix
 								nix-flatpak.homeManagerModules.nix-flatpak
+								inputs.walker.homeManagerModules.default
 							];
 						};
 					}

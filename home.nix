@@ -26,11 +26,11 @@
 	# 	gtk3.extraConfig.gtk-icon-theme-name = "Papirus";
 	};
 
-	# qt = {
-	# 	enable = true;
-	# 	platformTheme.name = "gtk";
-	# 	style.name = "adwaita";
-	# };
+	qt = {
+		enable = true;
+		platformTheme.name = "gtk";
+		style.name = "adwaita";
+	};
 
 	home.sessionVariables = {
 		MOZ_ENABLE_WAYLAND = "1";

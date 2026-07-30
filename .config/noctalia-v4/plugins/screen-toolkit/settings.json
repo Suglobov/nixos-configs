@@ -2,16 +2,7 @@
   "colorHistory": [
     "#242424"
   ],
-  "paletteColors": [
-    "#2A2929",
-    "#B6836E",
-    "#9FA59D",
-    "#B7CA8C",
-    "#C4D08B",
-    "#D3D3D3",
-    "#DCE1E5",
-    "#FAFAF8"
-  ],
+  "paletteColors": "",
   "installedLangs": [
     "afr",
     "amh",
@@ -150,12 +141,12 @@
   "recordSkipConfirmation": false,
   "recordCopyToClipboard": false,
   "gifMaxSeconds": 30,
-  "resultHex": "#242424",
-  "resultRgb": "rgb(36, 36, 36)",
-  "resultHsv": "hsv(0, 0%, 14%)",
-  "resultHsl": "hsl(0, 0%, 14%)",
-  "colorCapturePath": "/tmp/screen-toolkit-colorpicker.png",
-  "colorCacheBust": 1779450851171,
+  "resultHex": "",
+  "resultRgb": "",
+  "resultHsv": "",
+  "resultHsl": "",
+  "colorCapturePath": "",
+  "colorCacheBust": 0,
   "ocrResult": "",
   "ocrCapturePath": "",
   "qrResult": "",

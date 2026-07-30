@@ -19,18 +19,21 @@ layout {
 	}
 
 	// default-column-width { proportion 1.0; }
-	default-column-width { proportion 0.5; }
-	// default-column-width {}
+	// default-column-width { proportion 0.5; }
+	default-column-width {}
 
 	focus-ring {
 		// off
 		width 2
 		//active-color "#7fc8ff"
-		// active-gradient from="#ffffff" to="#000000" angle=90 relative-to="workspace-view"
+		// active-color "#ffff00"
+		urgent-color "#ff0000"
+		active-gradient from="#ffff00" to="#00ff00" angle=90 relative-to="workspace-view"
 		// active-gradient from="#fcf1e5" to="#f99006" angle=90 relative-to="workspace-view"
 		// inactive-gradient from="#d5d5d5" to="#151515" angle=90 relative-to="workspace-view"
 	}
 	border {
+		// on
 		off
 		width 4
 		active-color "#ffc87f"

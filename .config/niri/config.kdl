@@ -26,6 +26,10 @@ hotkey-overlay {
 }
 cursor {
 	xcursor-theme "Banana"
+	// xcursor-theme "Elastic"
+	// xcursor-theme "ColorRing Cursors Light Regular"
+	// xcursor-theme "ColorRing Cursors Dark Regular"
+	// xcursor-theme "AnellsCoure"
 	xcursor-size 60
 	hide-when-typing
 	// hide-after-inactive-ms 1000

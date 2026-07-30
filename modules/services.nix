@@ -1,11 +1,23 @@
 { pkgs, ... }:
 
 {
-	hardware.bluetooth.enable = true;
-	hardware.bluetooth.powerOnBoot = true;
 	hardware.steam-hardware.enable = true;
 	hardware.graphics.enable = true;
 	hardware.uinput.enable = true;
+	# hardware.bluetooth.enable = true;
+	# hardware.bluetooth.powerOnBoot = true;
+	hardware.bluetooth = {
+		enable = true;
+		powerOnBoot = true;
+		settings = {
+			General = {
+				Experimental = true;    # Открывает видимость BLE клавиатур
+				UserspaceHID = true;    # Стабильное автоподключение устройств ввода
+			};
+		};
+	};
+	hardware.enableAllFirmware = true;  # Загружает закрытые драйверы для Bluetooth-чипов
+
 
 	virtualisation.docker.enable = true;
 
@@ -28,6 +40,7 @@
 	# '';
 	services.netbird.enable = true;
 	services.dbus.enable = true;
+	services.udisks2.enable = true;
 
 	# services.input-remapper = {
 	# 	enable = true;

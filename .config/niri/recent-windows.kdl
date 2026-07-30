@@ -4,15 +4,18 @@ recent-windows {
 	open-delay-ms 0
 
 	highlight {
-		active-color "#009999ff"
+		// active-color "#999999ff"
+		// urgent-color "#ff9999ff"
+		// padding 30
+		// corner-radius 0
+		active-color "#00ffffff"
 		urgent-color "#ff9999ff"
-		padding 30
-		// padding 5
+		padding 2
 		corner-radius 0
 	}
 	previews {
-		max-height 480
-		max-scale 0.5
+		// max-height 480
+		// max-scale 0.5
 	}
 	binds {
 		Alt+Tab         { next-window; }

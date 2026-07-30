@@ -1,13 +1,17 @@
 // niri msg action
 binds {
-	Mod+1 { spawn-sh "cliphist list | sed -n '2p' | cliphist decode | wtype -"; }
-	Mod+2 { spawn-sh "cliphist list | sed -n '3p' | cliphist decode | wtype -"; }
-	Mod+3 { spawn-sh "cliphist list | sed -n '4p' | cliphist decode | wtype -"; }
-	Mod+4 { spawn-sh "cliphist list | sed -n '5p' | cliphist decode | wtype -"; }
+	Mod+2 { spawn-sh "cliphist list | sed -n '2p' | cliphist decode | wl-copy && sleep 0.1 && wtype -M ctrl v -m ctrl"; }
+	Mod+3 { spawn-sh "cliphist list | sed -n '3p' | cliphist decode | wl-copy && sleep 0.1 && wtype -M ctrl v -m ctrl"; }
+	Mod+4 { spawn-sh "cliphist list | sed -n '4p' | cliphist decode | wl-copy && sleep 0.1 && wtype -M ctrl v -m ctrl"; }
+	Mod+5 { spawn-sh "cliphist list | sed -n '5p' | cliphist decode | wl-copy && sleep 0.1 && wtype -M ctrl v -m ctrl"; }
 
 	Mod+V { spawn-sh "noctalia-shell ipc call plugin:clipper toggle"; }
+	Mod+Alt+V { spawn-sh "copyq toggle"; }
+
 	Mod+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
+	Mod+Ctrl+Space hotkey-overlay-title="Run Vicinae" { spawn-sh "vicinae toggle"; }
 	Mod+Alt+Space hotkey-overlay-title="Run noctalia launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+
 	Mod+L { spawn "hyprlock"; }
 
 	// Скриншот выделенной области
@@ -31,7 +35,7 @@ binds {
 	// Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
 	// For example, this is a standard bind to toggle the screen reader (orca).
 	// hotkey-overlay-title=null
-	Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
+	// Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
 
 	XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
 	XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
@@ -52,20 +56,24 @@ binds {
 	Mod+S { focus-workspace-down; }
 	Mod+W { focus-workspace-up; }
 	Mod+D { focus-column-right; }
+	Mod+Shift+A { move-column-left; }
+	Mod+Shift+S { move-column-to-workspace-down; }
+	Mod+Shift+W { move-column-to-workspace-up; }
+	Mod+Shift+D { move-column-right; }
 
 	Mod+Ctrl+S { focus-window-down; }
 	Mod+Ctrl+W { focus-window-up; }
 	Mod+Ctrl+Shift+S { move-window-down; }
 	Mod+Ctrl+Shift+W { move-window-up; }
 
+	Mod+Ctrl+A { consume-or-expel-window-left; }
+	Mod+Ctrl+D { consume-or-expel-window-right; }
+
+	Mod+Ctrl+Q { consume-window-into-column; }
+	Mod+Ctrl+E { expel-window-from-column; }
+
 	Mod+Q { focus-monitor-previous; }
 	Mod+E { focus-monitor-next; }
-
-	Mod+Shift+A { move-column-left; }
-	Mod+Shift+S { move-column-to-workspace-down; }
-	Mod+Shift+W { move-column-to-workspace-up; }
-	Mod+Shift+D { move-column-right; }
-
 	Mod+Shift+Q { move-column-to-monitor-previous; }
 	Mod+Shift+E { move-column-to-monitor-next; }
 
@@ -82,6 +90,11 @@ binds {
 
 	Mod+Shift+Home { move-workspace-to-monitor-previous; }
 	Mod+Shift+End { move-workspace-to-monitor-next; }
+
+	Mod+BracketLeft  { consume-or-expel-window-left; }
+	Mod+BracketRight { consume-or-expel-window-right; }
+	Mod+Comma  { consume-window-into-column; }
+	Mod+Period { expel-window-from-column; }
 
 	// ---------- ---------- ----------
 
@@ -133,11 +146,6 @@ binds {
 	// touchpads by default.
 	// Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
 	// Mod+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
-
-	Mod+BracketLeft  { consume-or-expel-window-left; }
-	Mod+BracketRight { consume-or-expel-window-right; }
-	Mod+Comma  { consume-window-into-column; }
-	Mod+Period { expel-window-from-column; }
 
 	Mod+R { switch-preset-column-width; }
 	Mod+Shift+R { switch-preset-column-width-back; }

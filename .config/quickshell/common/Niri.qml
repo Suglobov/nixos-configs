@@ -59,7 +59,7 @@ Singleton {
 			})
 
 		}
-		console.log('- root.winPosByWs', JSON.stringify(root.winPosByWs, null, 0));
+		// console.log('- root.winPosByWs', JSON.stringify(root.winPosByWs, null, 0));
 		// console.log('- root.winTileByWs', JSON.stringify(root.winTileByWs, null, 0));
 		root.winTileByWsChanged();
 		root.winPosByWsChanged();
@@ -76,7 +76,7 @@ Singleton {
 				root.createPos(win)
 			}
 		}
-		console.log('-- root.winPosByWs', JSON.stringify(root.winPosByWs, null, 0));
+		// console.log('-- root.winPosByWs', JSON.stringify(root.winPosByWs, null, 0));
 		root.winTileByWsChanged();
 		root.winPosByWsChanged();
 	}
@@ -93,7 +93,7 @@ Singleton {
 				try {
 
 					let event = JSON.parse(data);
-					console.log(Date.now(), JSON.stringify(Object.keys(event)[0], null, 0));
+					// console.log(Date.now(), JSON.stringify(Object.keys(event)[0], null, 0));
 
 					if (event.WorkspaceActiveWindowChanged) {
 						// console.log(JSON.stringify(event.WorkspaceActiveWindowChanged, null, 0));
@@ -114,16 +114,16 @@ Singleton {
 						var urgentWinIds = [];
 						var winById = Object.create(null);
 						event.WindowsChanged.windows.forEach((win) => {
-							console.log(
-								'WindowsChanged',
-								JSON.stringify(win.workspace_id, null, 0),
-								'\t',
-								JSON.stringify(win.id, null, 0),
-								'\t',
-								JSON.stringify(win.layout.pos_in_scrolling_layout, null, 0),
-								'\t',
-								JSON.stringify(win.layout.tile_pos_in_workspace_view, null, 0),
-							);
+							// console.log(
+							// 	'WindowsChanged',
+							// 	JSON.stringify(win.workspace_id, null, 0),
+							// 	'\t',
+							// 	JSON.stringify(win.id, null, 0),
+							// 	'\t',
+							// 	JSON.stringify(win.layout.pos_in_scrolling_layout, null, 0),
+							// 	'\t',
+							// 	JSON.stringify(win.layout.tile_pos_in_workspace_view, null, 0),
+							// );
 							var wsId = win.workspace_id
 							var id = win.id 
 							winById[win.id] = win;

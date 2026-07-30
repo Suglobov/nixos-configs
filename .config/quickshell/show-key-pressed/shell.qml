@@ -50,7 +50,6 @@ ShellRoot {
 			readonly property var screenData: modelData
 			screen: screenData
 
-
 			exclusiveZone: 0
 			// anchors.top: true
 			// anchors.left: true

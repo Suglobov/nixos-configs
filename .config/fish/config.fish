@@ -24,5 +24,5 @@ if status is-interactive
 	# if status is-interactive # предупреждение перед выходом
   #   zellij setup --generate-auto-start fish | source
 	# end
-
+	fish_vi_key_bindings
 end

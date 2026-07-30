@@ -50,7 +50,7 @@
 		isNormalUser = true;
 		description = username;
 		home = "/home/${username}";
-		extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker" "input" "uinput" "systemd-journal" ];
+		extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker" "input" "uinput" "systemd-journal" "ydotool" ];
 		packages = with pkgs; [];
 		shell = pkgs.fish;
 	};

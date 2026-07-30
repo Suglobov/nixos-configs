@@ -66,9 +66,9 @@
         "outerCorners": false,
         "position": "top",
         "reverseScroll": false,
-        "rightClickAction": "controlCenter",
-        "rightClickCommand": "",
-        "rightClickFollowMouse": false,
+        "rightClickAction": "command",
+        "rightClickCommand": "noctalia-shell ipc call launcher toggle",
+        "rightClickFollowMouse": true,
         "screenOverrides": [
             {
                 "enabled": false,
@@ -339,6 +339,11 @@
                     "showScrollLock": true
                 },
                 {
+                    "defaultSettings": {
+                        "density": "comfortable",
+                        "maxHistorySize": 100,
+                        "showImagePreviews": true
+                    },
                     "id": "plugin:clipboard"
                 }
             ]
@@ -517,7 +522,7 @@
         "clockFormat": "HH:mm:ss ",
         "clockStyle": "custom",
         "compactLockScreen": false,
-        "dimmerOpacity": 0.1,
+        "dimmerOpacity": 0.2,
         "enableBlurBehind": false,
         "enableLockScreenCountdown": false,
         "enableLockScreenMediaControls": false,
@@ -614,7 +619,7 @@
         "weatherTaliaMascotAlways": false
     },
     "network": {
-        "bluetoothAutoConnect": true,
+        "bluetoothAutoConnect": false,
         "bluetoothDetailsViewMode": "grid",
         "bluetoothHideUnnamedDevices": false,
         "bluetoothRssiPollIntervalMs": 60000,
@@ -766,7 +771,7 @@
         "diskCriticalThreshold": 90,
         "diskWarningThreshold": 80,
         "enableDgpuMonitoring": false,
-        "externalMonitor": "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor",
+        "externalMonitor": "foot -e btop",
         "gpuCriticalThreshold": 90,
         "gpuWarningThreshold": 80,
         "memCriticalThreshold": 90,
@@ -789,11 +794,11 @@
         "fontDefaultScale": 1,
         "fontFixed": "monospace",
         "fontFixedScale": 1,
-        "panelBackgroundOpacity": 0.4,
+        "panelBackgroundOpacity": 0.2,
         "panelsAttachedToBar": true,
         "scrollbarAlwaysVisible": true,
         "settingsPanelMode": "window",
-        "settingsPanelSideBarCardStyle": true,
+        "settingsPanelSideBarCardStyle": false,
         "tooltipsEnabled": true,
         "translucentWidgets": false
     },

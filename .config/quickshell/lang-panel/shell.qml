@@ -38,7 +38,7 @@ ShellRoot {
 				// hex-формат (первые две цифры — прозрачность)
 				color: Niri.keyboardLayoutIdx === 0 ? '#ff000055'
 				: Niri.keyboardLayoutIdx === 1 ? '#ff00ff00'
-				: '#ccc'
+				: '#ffcccccc'
 				Behavior on color { ColorAnimation { duration: 300 } }
 			}
 		}

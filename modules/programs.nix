@@ -16,6 +16,10 @@
 		fuse3
 		at-spi2-core
 	];
+	environment.sessionVariables = {
+		QS_ICON_THEME = "Papirus";
+	};
+
 
 	programs.niri.enable = true;
 	programs.fish.enable = true;
@@ -27,4 +31,5 @@
 		serviceMode = true; # Настраивает системную службу
 		tunMode = true; # Выдает setcap-права для создания TUN-интерфейса
 	};
+	programs.ydotool.enable = true;
 }
