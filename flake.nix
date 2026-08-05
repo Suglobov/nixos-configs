@@ -34,24 +34,16 @@
 	}@inputs:
 	let
 		username = "eugeny"; 
-
-		# Override niri with local build
-		niri-overlay = final: prev: {
-			niri = final.callPackage ./local-niri.nix {
-				niriSrc = builtins.fetchGit "/mnt/data/programs/niri";
-			};
-		};
 	in {
 		nixosConfigurations = {
 			nixos = nixpkgs.lib.nixosSystem {
-				specialArgs = { inherit inputs username; };
+				specialArgs = { inherit inputs username; }; 
 
 				modules = [
 					./hardware-configuration.nix
 					./configuration.nix
 					{
 						nixpkgs.hostPlatform = "x86_64-linux";
-						nixpkgs.overlays = [ niri-overlay ];
 					}
 					home-manager.nixosModules.home-manager
 					{
