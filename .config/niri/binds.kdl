@@ -6,10 +6,11 @@ binds {
 	Mod+5 { spawn-sh "cliphist list | sed -n '5p' | cliphist decode | wl-copy && sleep 0.1 && wtype -M ctrl v -m ctrl"; }
 
 	Mod+V { spawn-sh "noctalia-shell ipc call plugin:clipper toggle"; }
-	Mod+Alt+V { spawn-sh "copyq toggle"; }
+	Mod+Alt+V hotkey-overlay-title="Run walker clipboard" { spawn-sh "walker -m clipboard"; }
 
-	Mod+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
-	Mod+Ctrl+Space hotkey-overlay-title="Run Vicinae" { spawn-sh "vicinae toggle"; }
+	Mod+Ctrl+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
+	// Mod+Ctrl+Space hotkey-overlay-title="Run Vicinae" { spawn-sh "vicinae toggle"; }
+	Mod+Space hotkey-overlay-title="Run walker" { spawn-sh "walker"; }
 	Mod+Alt+Space hotkey-overlay-title="Run noctalia launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
 
 	Mod+L { spawn "hyprlock"; }
@@ -130,6 +131,12 @@ binds {
 	Mod+Shift+WheelScrollUp cooldown-ms=150 { focus-column-left; }
 	Mod+WheelScrollRight cooldown-ms=150 { focus-column-right; }
 	Mod+WheelScrollLeft cooldown-ms=150 { focus-column-left; }
+
+	Mod+Alt+WheelScrollDown cooldown-ms=150 allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
+	Mod+Alt+WheelScrollUp cooldown-ms=150 allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
+
+	Mod+Ctrl+WheelScrollDown cooldown-ms=150 allow-when-locked=true { spawn-sh "brightnessctl --class=backlight set 10%-"; }
+	Mod+Ctrl+WheelScrollUp cooldown-ms=150 allow-when-locked=true { spawn-sh "brightnessctl --class=backlight set +10%"; }
 
 	// Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
 	// Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }

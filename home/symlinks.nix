@@ -31,6 +31,9 @@
 				} {
 					link = "${homeDir}/.config/quickshell";
 					target = "${targetDir}/nixos/.config/quickshell";
+				} {
+					link = "${homeDir}/.config/walker";
+					target = "${targetDir}/nixos/.config/walker";
 				}
 			];
 		in

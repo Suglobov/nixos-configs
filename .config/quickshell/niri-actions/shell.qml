@@ -23,33 +23,13 @@ ShellRoot {
 				width: 30
     		height: 30
 			}
-		}
 
-		MouseArea {
-			anchors.fill: parent
-			hoverEnabled: true
-			onClicked: panel.popupVisible = !panel.popupVisible
-		}
-
-		PopupWindow {
-			visible: panel.popupVisible
-			anchor.window: panel
-			anchor.rect.x: panel.width
-			anchor.rect.y: panel.height
-			implicitWidth: popupContent.implicitWidth + 10
-			implicitHeight: popupContent.implicitHeight + 20
-			color: '#ffcccccc'
-
-			Item {
+			MouseArea {
 				anchors.fill: parent
-
-				Row {
-					id: popupContent
-					anchors.centerIn: parent
-
-					Menu {
-						id: menu
-					}
+				hoverEnabled: true
+				onClicked: () => {
+					// console.log('onClicked:1');
+					panel.popupVisible = !panel.popupVisible
 				}
 			}
 		}
@@ -57,20 +37,78 @@ ShellRoot {
 		PanelWindow {
 			id: areaToHidePopup
 			visible: panel.popupVisible // Показываем только когда открыто меню
+			color: 'transparent'
 			anchors {
 					top: true
 					bottom: true
 					left: true
 					right: true
 			}
-			
-			color: 'transparent'
+
 			MouseArea {
 					anchors.fill: parent
 					hoverEnabled: true
-					onClicked: panel.popupVisible = false
+					onClicked: () => {
+						// console.log('onClicked:2');
+						panel.popupVisible = false
+					}
 					// onEntered: panel.popupVisible = false // Закрытие при наведении
 			}
+
+			Rectangle {
+				id: rec1
+				property bool rec3Visible: false
+				implicitWidth: 100
+				implicitHeight: 100
+				x: panel.screen ? panel.screen.width * 0.30 : 0
+				// y: panel.implicitHeight 
+				y: 0
+				color: '#ffcccccc'
+				// z: 1
+
+				MouseArea {
+					anchors.fill: parent
+					propagateComposedEvents: false 
+					onClicked: (mouse) => {
+						console.log('mouse:', mouse);
+						// mouse.accepted = true
+					}
+				}
+
+				Rectangle {
+					x: 10
+					y: 10
+					implicitWidth: 30
+					implicitHeight: 30
+					color: '#ffffffff'
+
+					MouseArea {
+						anchors.fill: parent
+						propagateComposedEvents: false 
+						onClicked: (mouse) => {
+							rec1.rec3Visible = !rec1.rec3Visible
+							// console.log('mouse:', mouse);
+							// mouse.accepted = true
+						}
+					}
+
+					Rectangle {
+						visible: rec1.rec3Visible
+						x: 0
+						y: parent.height
+						implicitWidth: 100
+						implicitHeight: 100
+						color: '#ff00ffff'
+
+					}
+				}
+
+				
+
+				
+
+			}
+			
 		}
 	}
 }

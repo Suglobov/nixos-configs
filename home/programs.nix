@@ -102,6 +102,7 @@
 		bat
 		broot	#	просмотр файлов и папок в виде дерева
 		browsh	#	браузер в терминале
+		brightnessctl	#	управление яркостью
 		btop	#	диспечер процессов
 		clash-verge-rev	#	vpn
 		cliphist	#	история буфера обмена

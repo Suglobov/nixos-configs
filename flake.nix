@@ -16,8 +16,8 @@
 		};
 		fresh.url = "github:sinelaw/fresh";
 
-		elephant.url = "github:abenz1267/elephant/master";
-		walker.url = "github:abenz1267/walker/master";
+		elephant.url = "github:abenz1267/elephant/23f37238367355cf46843015ad5e94706200176a";
+		walker.url = "github:abenz1267/walker/42b3ed88abf50bc52638fb2835b7f17e3ea3ac4c";
 		walker.inputs.elephant.follows = "elephant";
 	};
 
