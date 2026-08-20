@@ -57,26 +57,28 @@ binds {
 	Mod+S { focus-workspace-down; }
 	Mod+W { focus-workspace-up; }
 	Mod+D { focus-column-right; }
+	Mod+Q { focus-monitor-previous; }
+	Mod+E { focus-monitor-next; }
+
 	Mod+Shift+A { move-column-left; }
 	Mod+Shift+S { move-column-to-workspace-down; }
 	Mod+Shift+W { move-column-to-workspace-up; }
 	Mod+Shift+D { move-column-right; }
+	Mod+Shift+Q { move-column-to-monitor-previous; }
+	Mod+Shift+E { move-column-to-monitor-next; }
 
 	Mod+Ctrl+S { focus-window-down; }
 	Mod+Ctrl+W { focus-window-up; }
-	Mod+Ctrl+Shift+S { move-window-down; }
-	Mod+Ctrl+Shift+W { move-window-up; }
-
 	Mod+Ctrl+A { consume-or-expel-window-left; }
 	Mod+Ctrl+D { consume-or-expel-window-right; }
-
 	Mod+Ctrl+Q { consume-window-into-column; }
 	Mod+Ctrl+E { expel-window-from-column; }
 
-	Mod+Q { focus-monitor-previous; }
-	Mod+E { focus-monitor-next; }
-	Mod+Shift+Q { move-column-to-monitor-previous; }
-	Mod+Shift+E { move-column-to-monitor-next; }
+	Mod+Ctrl+Shift+S { move-window-down; }
+	Mod+Ctrl+Shift+W { move-window-up; }
+
+	Mod+Ctrl+Alt+S { move-workspace-down; }
+	Mod+Ctrl+Alt+W { move-workspace-up; }
 
 	// ---------- ---------- ----------
 
@@ -179,7 +181,7 @@ binds {
 	Mod+Shift+Minus { set-window-height "-10%"; }
 	Mod+Shift+Equal { set-window-height "+10%"; }
 
-	Mod+X       { toggle-window-floating; }
+	Mod+X { toggle-window-floating; }
 	Mod+Shift+X { switch-focus-between-floating-and-tiling; }
 
 	Mod+Alt+W { toggle-column-tabbed-display; }

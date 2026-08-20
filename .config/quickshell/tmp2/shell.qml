@@ -1,5 +1,4 @@
-import QtQuick 2.15
-import QtQuick.Shapes 1.15
+import QtQuick
 import Quickshell
 import Quickshell.Wayland
 

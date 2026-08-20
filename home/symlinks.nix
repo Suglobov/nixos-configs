@@ -34,13 +34,20 @@
 				} {
 					link = "${homeDir}/.config/walker";
 					target = "${targetDir}/nixos/.config/walker";
+				} {
+					link = "${homeDir}/.config/mimeapps.list";
+					target = "${targetDir}/nixos/.config/mimeapps.list";
 				}
 			];
 		in
 			lib.concatMapStringsSep "\n" (item: ''
 				linkPath="${item.link}"
 				targetPath="${item.target}"
-				mkdir -p "$targetPath"
+				if [ -f "$targetPath" ]; then
+					mkdir -p "$(dirname "$targetPath")"
+				else
+					mkdir -p "$targetPath"
+				fi
 				if [ -e "$linkPath" ] && [ ! -L "$linkPath" ]; then
 					rm -rf "$linkPath"
 				fi

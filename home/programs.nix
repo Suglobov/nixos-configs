@@ -16,6 +16,8 @@
 			"page.codeberg.JakobDev.jdSystemMonitor"	#	системный монитор
 			"org.kde.kruler"	#	экранная линейка
 			"org.telegram.desktop"	#	мессенджер
+			"org.vinegarhq.Sober"	#	roblax
+			"io.github.cudatext.CudaText-Qt"	#	текстовый редактор
 		];
 		overrides.settings = {
 			global = {
@@ -23,6 +25,7 @@
 					XCURSOR_THEME = "Banana";
 					XCURSOR_SIZE = "60";
 					#	XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons:~/.icons";
+					TZ = "Europe/Moscow";
 				};
 				Context.filesystems = [
 					"~/.icons:ro"
@@ -76,6 +79,9 @@
 	programs.walker = {	#	запуск программ
 		enable = true;
 		runAsService = true;
+		config = {
+			theme = "my-default";
+		};
 	};
 
 	programs.kakoune = {	#	редактор кода в терминале

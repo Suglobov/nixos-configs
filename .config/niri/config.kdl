@@ -3,9 +3,8 @@
 // nix run github:srinivasr/nirimod
 
 spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
-spawn-sh-at-startup "NOCTALIA_CONFIG_DIR=~/.config/noctalia-v4/ noctalia-shell -d &&
-	quickshell -c lang-panel -dn &&
-	quickshell -c workspaces-panel -dn"
+spawn-sh-at-startup "NOCTALIA_CONFIG_DIR=~/.config/noctalia-v4/ noctalia-shell -d
+	&& quickshell -c my-panels -dn"
 // spawn-sh-at-startup "noctalia"
 // spawn-sh-at-startup "quickshell -n -d -c lang-panel"
 // spawn-sh-at-startup "quickshell -n -d -c workspaces-panel"

@@ -15,13 +15,13 @@ ShellRoot {
 
 		Rectangle {
 			implicitWidth: 30
-    	implicitHeight: 30
+			implicitHeight: 30
 			// color: '#ff222222'
 			Text {
 				anchors.fill: parent
 				text: '☰'
-				width: 30
-    		height: 30
+				horizontalAlignment: Text.AlignHCenter
+				verticalAlignment: Text.AlignVCenter
 			}
 
 			MouseArea {
@@ -30,6 +30,9 @@ ShellRoot {
 				onClicked: () => {
 					// console.log('onClicked:1');
 					panel.popupVisible = !panel.popupVisible
+				}
+				onEntered: () => {
+					panel.popupVisible = true
 				}
 			}
 		}
@@ -103,12 +106,8 @@ ShellRoot {
 					}
 				}
 
-				
-
-				
-
 			}
-			
+
 		}
 	}
 }

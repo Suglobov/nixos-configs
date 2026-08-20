@@ -35,10 +35,12 @@ ShellRoot {
 				anchors.fill: parent
 				radius: 0
 				border.width: 0
+				property var colors: [
+					'#ff000055',
+					'#ff00ff00',
+				]
 				// hex-формат (первые две цифры — прозрачность)
-				color: Niri.keyboardLayoutIdx === 0 ? '#ff000055'
-				: Niri.keyboardLayoutIdx === 1 ? '#ff00ff00'
-				: '#ffcccccc'
+				color: colors[Niri.keyboardLayoutIdx] ?? '#ffcccccc'
 				Behavior on color { ColorAnimation { duration: 300 } }
 			}
 		}

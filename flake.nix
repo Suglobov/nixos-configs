@@ -19,6 +19,7 @@
 		elephant.url = "github:abenz1267/elephant/23f37238367355cf46843015ad5e94706200176a";
 		walker.url = "github:abenz1267/walker/42b3ed88abf50bc52638fb2835b7f17e3ea3ac4c";
 		walker.inputs.elephant.follows = "elephant";
+		niri.url = "git+file:///mnt/data/programs/niri";
 	};
 
 	outputs = {
@@ -44,11 +45,17 @@
 					./configuration.nix
 					{
 						nixpkgs.hostPlatform = "x86_64-linux";
+						nixpkgs.overlays = [
+							(final: prev: {
+								niri = inputs.niri.packages.${final.system}.default;
+							})
+						];
 					}
 					home-manager.nixosModules.home-manager
 					{
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
+						home-manager.backupFileExtension = "bak";
 						home-manager.extraSpecialArgs = { inherit inputs username; };
 
 						home-manager.users.${username} = {

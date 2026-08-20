@@ -128,6 +128,14 @@
                 },
                 {
                     "defaultSettings": {
+                        "density": "comfortable",
+                        "maxHistorySize": 100,
+                        "showImagePreviews": true
+                    },
+                    "id": "plugin:clipboard"
+                },
+                {
+                    "defaultSettings": {
                         "autoHeight": true,
                         "cheatsheetData": [
                         ],
@@ -337,14 +345,6 @@
                     "showCapsLock": true,
                     "showNumLock": true,
                     "showScrollLock": true
-                },
-                {
-                    "defaultSettings": {
-                        "density": "comfortable",
-                        "maxHistorySize": 100,
-                        "showImagePreviews": true
-                    },
-                    "id": "plugin:clipboard"
                 }
             ]
         }

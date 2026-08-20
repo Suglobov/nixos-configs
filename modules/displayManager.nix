@@ -29,9 +29,10 @@
 	# 		# ExecStartPost = "${pkgs.kbd}/bin/setleds -D +num";
 	# 	};
 	# };
-	services.displayManager = {
-		sessionPackages = [ pkgs.niri ];
-	};
+
+	# services.displayManager = {
+	# 	sessionPackages = [ pkgs.niri ];
+	# };
 
 	services.displayManager.ly = {
 		enable = true;

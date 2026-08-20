@@ -1,1 +1,1 @@
-/nix/store/kk6wvivi1s3dcyqzzsc3ckkdh7d8kkzc-home-manager-files/.config/yazi/init.lua
+/nix/store/2gfyfjp0891rpza94czcyfg6mjs0d73y-home-manager-files/.config/yazi/init.lua

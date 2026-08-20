@@ -153,7 +153,7 @@ Rectangle {
 									implicitWidth: 250
 									implicitHeight: 45 
 									model: Object.values(Niri.winById)
-									currentIndex: Niri.focusedWinId
+									currentIndex: Niri.winFocusedId
 
 									delegate: MenuItem {
 										width: myComboBox.width

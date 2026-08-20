@@ -8,15 +8,15 @@ Singleton {
 	id: root
 	property var wsById: Object.create(null)
 	property var wsByOutput: Object.create(null)
-	property var focusedWsId: -1
-	property var activeWsIds: []
-	property var urgentWsIds: []
+	property var wsFocusedId: -1
+	property var wsActiveIds: new Set()
+	property var wsUrgentIds: new Set()
 
 	property var winById: Object.create(null)
 	property var winPosByWs: Object.create(null)
 	property var winTileByWs: Object.create(null)
-	property var focusedWinId: -1
-	property var urgentWinIds: []
+	property var winFocusedId: -1
+	property var winUrgentIds: new Set()
 
 	property var keyboardLayouts: []
 	property var keyboardLayoutIdx: -1
@@ -24,27 +24,24 @@ Singleton {
 	property var createPos: (win) => {
 		var ws_id = win.workspace_id
 		var id = win.id
-		var pos = win.layout.pos_in_scrolling_layout;
+		var pos = win.layout.pos_in_scrolling_layout
 		if (!pos) {
 			root.winTileByWs[ws_id] = root.winTileByWs[ws_id] ?? []
 			root.winTileByWs[ws_id].push(id)
-			// console.log('0 root.winTileByWs', JSON.stringify(root.winTileByWs, null, 0));
-			return;
+			return
 		}
-		var [col, row] = pos.map((item) => item - 1);
-		root.winPosByWs[ws_id] = root.winPosByWs[ws_id] ?? [];
-		root.winPosByWs[ws_id][col] = root.winPosByWs[ws_id][col] ?? [];
-		root.winPosByWs[ws_id][col][row] = id;
+		var [col, row] = pos.map((item) => item - 1)
+		root.winPosByWs[ws_id] = root.winPosByWs[ws_id] ?? []
+		root.winPosByWs[ws_id][col] = root.winPosByWs[ws_id][col] ?? []
+		root.winPosByWs[ws_id][col][row] = id
 	}
 
 	property var refreshWinPosByWs: () => {
-		// console.log('- root.winPosByWs', JSON.stringify(root.winPosByWs, null, 0));
-		// console.log('- root.winTileByWs', JSON.stringify(root.winTileByWs, null, 0));
-		root.winPosByWs = Object.create(null);
-		root.winTileByWs = Object.create(null);
-		var wins = Object.values(root.winById);
+		root.winPosByWs = Object.create(null)
+		root.winTileByWs = Object.create(null)
+		var wins = Object.values(root.winById)
 		for(var i = 0; i < wins.length; i += 1) {
-			root.createPos(wins[i]);
+			root.createPos(wins[i])
 		}
 		var ws_ids = Object.keys(root.wsById)
 		for(var i = 0; i < ws_ids.length; i += 1) {
@@ -59,45 +56,47 @@ Singleton {
 			})
 
 		}
-		// console.log('- root.winPosByWs', JSON.stringify(root.winPosByWs, null, 0));
-		// console.log('- root.winTileByWs', JSON.stringify(root.winTileByWs, null, 0));
-		root.winTileByWsChanged();
-		root.winPosByWsChanged();
+		root.winTileByWsChanged()
+		root.winPosByWsChanged()
 	}
 
 	property var refreshWsObject: (ws_id) => {
 		var wins = Object.values(root.winById)
 		root.winPosByWs[ws_id] = []
 		root.winTileByWs[ws_id] = []
-		// console.log('-- root.winPosByWs', JSON.stringify(root.winPosByWs, null, 0));
 		for (var i = 0; i < wins.length; i += 1) {
 			var win = wins[i]
 			if (win.workspace_id === ws_id) {
 				root.createPos(win)
 			}
 		}
-		// console.log('-- root.winPosByWs', JSON.stringify(root.winPosByWs, null, 0));
-		root.winTileByWsChanged();
-		root.winPosByWsChanged();
+		root.winTileByWsChanged()
+		root.winPosByWsChanged()
 	}
 
 	Process {
 		// https://docs.rs/niri-ipc/latest/niri_ipc/enum.Event.html
+
+ 		// "WorkspaceActiveWindowChanged"
+ 		// "WindowFocusTimestampChanged"
+ 		// "OverviewOpenedOrClosed"
+ 		// "ConfigLoaded"
+ 		// "ScreenshotCaptured"
+ 		// "CastsChanged"
+ 		// "CastStartedOrChanged"
+ 		// "CastStopped"
+
 		command: ["niri", "msg", "--json", "event-stream"]
 		running: true
 
 		stdout: SplitParser {
 			onRead: (data) => {
-				if (!data) return;
+				if (!data) return
 
 				try {
 
-					let event = JSON.parse(data);
-					// console.log(Date.now(), JSON.stringify(Object.keys(event)[0], null, 0));
-
-					if (event.WorkspaceActiveWindowChanged) {
-						// console.log(JSON.stringify(event.WorkspaceActiveWindowChanged, null, 0));
-					}
+					var event = JSON.parse(data)
+					// console.log(Date.now(), JSON.stringify(Object.keys(event)[0], null, 0))
 
 					if (event.WindowLayoutsChanged) {
 						var changes = event.WindowLayoutsChanged.changes
@@ -110,40 +109,40 @@ Singleton {
 					}
 
 					if (event.WindowsChanged) {
-						root.focusedWinId = -1;
-						var urgentWinIds = [];
-						var winById = Object.create(null);
+						root.winFocusedId = -1
+						var winUrgentIds = new Set()
+						var winById = Object.create(null)
 						event.WindowsChanged.windows.forEach((win) => {
-							// console.log(
-							// 	'WindowsChanged',
-							// 	JSON.stringify(win.workspace_id, null, 0),
-							// 	'\t',
-							// 	JSON.stringify(win.id, null, 0),
-							// 	'\t',
-							// 	JSON.stringify(win.layout.pos_in_scrolling_layout, null, 0),
-							// 	'\t',
-							// 	JSON.stringify(win.layout.tile_pos_in_workspace_view, null, 0),
-							// );
 							var wsId = win.workspace_id
 							var id = win.id 
-							winById[win.id] = win;
+							winById[win.id] = win
 							if (win.is_focused) {
-								root.focusedWinId = win.id
+								root.winFocusedId = win.id
 							}
 							if (win.is_urgent) {
-								urgentWinIds.push(win.id);
+								winUrgentIds.add(win.id)
 							}
-						});
-						root.urgentWinIds = urgentWinIds;
-						root.winById = winById;
-						root.refreshWinPosByWs();
+						})
+						root.winUrgentIds = winUrgentIds
+						root.winById = winById
+						root.refreshWinPosByWs()
 					}
 
 					if (event.WindowOpenedOrChanged) {
 						var win = event.WindowOpenedOrChanged.window
 						var ws_id = win.workspace_id
 						if (win.is_focused) {
-							root.focusedWinId = win.id
+							root.winFocusedId = win.id
+						}
+						if (win.is_urgent && !root.winUrgentIds.has(win.id)) {
+							var set = new Set(root.winUrgentIds)
+							set.add(win.id)
+							root.winUrgentIds = set
+						} 
+						if (!win.is_urgent && root.winUrgentIds.has(win.id)) {
+							var set = new Set(root.winUrgentIds)
+							set.delete(win.id)
+							root.winUrgentIds = set
 						}
 						var old_ws_id = root.winById[win.id]?.workspace_id
 						root.winById[win.id] = win
@@ -154,80 +153,88 @@ Singleton {
 					}
 
 					if (event.WindowClosed) {
-						var id = event.WindowClosed.id;
+						var id = event.WindowClosed.id
 						var ws_id = root.winById[id].workspace_id
-						delete root.winById[id];
+						delete root.winById[id]
 						root.refreshWsObject(ws_id)
 					}
 
+
+					if (event.WindowUrgencyChanged) {
+						var { id, urgent } = event.WindowUrgencyChanged
+						var set = new Set(root.winUrgentIds)
+						urgent ? (set.add(id)) : (set.delete(id))
+						root.winUrgentIds = set
+					}
+
+					if (event.WorkspaceUrgencyChanged) {
+						var { id, urgent } = event.WorkspaceUrgencyChanged
+						var set = new Set(root.wsUrgentIds)
+						urgent ? (set.add(id)) : (set.delete(id))
+						root.wsUrgentIds = set
+					}
+
+
 					if (event.WindowFocusChanged) {
-						root.focusedWinId = event.WindowFocusChanged.id
+						root.winFocusedId = event.WindowFocusChanged.id
 					}
 
 
 					if (event.WorkspacesChanged) {
-						var workspaces = event.WorkspacesChanged.workspaces;
-						root.focusedWsId = -1;
-						var activeWsIds = [];
-						var urgentWsIds = [];
-						var wsById = Object.create(null);
-						var wsByOutput = Object.create(null);
+						var workspaces = event.WorkspacesChanged.workspaces
+						root.wsFocusedId = -1
+						var wsActiveIds = new Set()
+						var wsById = Object.create(null)
+						var wsByOutput = Object.create(null)
+						var wsUrgentIds = new Set()
 						workspaces.forEach((ws) => {
-							wsById[ws.id] = ws;
+							wsById[ws.id] = ws
 							if (!wsByOutput[ws.output]) {
-								wsByOutput[ws.output] = [];
+								wsByOutput[ws.output] = []
 							}
 							wsByOutput[ws.output][ws.idx - 1] = ws.id
 							if (ws.is_focused) {
-								root.focusedWsId = ws.id;
+								root.wsFocusedId = ws.id
 							}
 							if (ws.is_active) {
-								activeWsIds.push(ws.id);
+								wsActiveIds.add(ws.id)
 							}
 							if (ws.is_urgent) {
-								urgentWsIds.push(ws.id);
+								wsUrgentIds.add(ws.id)
 							}
-						});
-						root.activeWsIds = activeWsIds;
-						root.urgentWsIds = urgentWsIds;
-						root.wsById = wsById;
-						root.wsByOutput = wsByOutput;
+						})
+						root.wsActiveIds = wsActiveIds
+						root.wsById = wsById
+						root.wsByOutput = wsByOutput
+						root.wsUrgentIds = wsUrgentIds
 					}
 
 					if (event.WorkspaceActivated) {
-						var { id, focused } = event.WorkspaceActivated;
-						var focusId = root.focusedWsId;
-						var activeIds = root.activeWsIds;
-						var isIdActive = false;
-						var focusIdIndex = -1;
-						for (var i = 0; i < activeIds.length; i += 1) {
-							if (activeIds[i] === id) {
-								isIdActive = true;
-							}
-							if (activeIds[i] === focusId) {
-								focusIdIndex = i;
-							}
+						var { id, focused } = event.WorkspaceActivated
+						var activeIds = new Set(root.wsActiveIds)
+						if (!activeIds.has(id)) {
+							// если раньше не была активна ws, то удаляем ранее сфокусированное ws
+							activeIds.delete(root.wsFocusedId)
+							activeIds.add(id)
 						}
-						if (!isIdActive) {
-							activeIds[focusIdIndex] = id;
+						if (focused) {
+							root.wsFocusedId = id
 						}
-						root.activeWsIds = activeIds;
-						root.focusedWsId = focused ? id : -1;
-						root.activeWsIdsChanged();
+						root.wsActiveIds = activeIds
 					}
 
 
 					// {"KeyboardLayoutsChanged":{"keyboard_layouts":{"names":["English (US)","Russian"],"current_idx":0}}}
 					if (event.KeyboardLayoutsChanged) {
-						root.keyboardLayouts = event.KeyboardLayoutsChanged.keyboard_layouts.names;
-						root.keyboardLayoutIdx = event.KeyboardLayoutsChanged.keyboard_layouts.current_idx;
+						root.keyboardLayouts = event.KeyboardLayoutsChanged.keyboard_layouts.names
+						root.keyboardLayoutIdx = event.KeyboardLayoutsChanged.keyboard_layouts.current_idx
 					}
 					if (event.KeyboardLayoutSwitched) {
-						root.keyboardLayoutIdx = event.KeyboardLayoutSwitched.idx;
+						root.keyboardLayoutIdx = event.KeyboardLayoutSwitched.idx
 					}
 
 				} catch (error) {
-					console.error("Ошибка чтения niri IPC:", error);
+					console.error(error)
 				}
 			}
 		}
