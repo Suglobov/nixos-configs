@@ -37,6 +37,9 @@
 				} {
 					link = "${homeDir}/.config/mimeapps.list";
 					target = "${targetDir}/nixos/.config/mimeapps.list";
+				} {
+					link = "${homeDir}/.config/kanata";
+					target = "${targetDir}/nixos/.config/kanata";
 				}
 			];
 		in

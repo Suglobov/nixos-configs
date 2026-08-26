@@ -46,12 +46,13 @@
   	# XCURSOR_SIZE = "60";
 	};
 
-	# dconf.settings = {
-	# 	"org/gnome/desktop/interface" = {
-	# 		cursor-theme = "Banana";
-	# 		cursor-size = 60;
-	# 	};
-	# };
+	dconf.settings = {
+		"org/gnome/desktop/interface" = {
+			icon-theme = "Papirus";
+			# cursor-theme = "Banana";
+			# cursor-size = 60;
+		};
+	};
 
 	# xdg.terminal-exec = {
 	# 	enable = true;

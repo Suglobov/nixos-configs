@@ -127,7 +127,7 @@ Rectangle {
 								MouseArea {
 									id: itemMouseArea
 									anchors.fill: parent
-									hoverEnabled: true 
+									hoverEnabled: true
 									cursorShape: Qt.PointingHandCursor
 									onClicked: (mouse) => {
 										mouse.accepted = false

@@ -5,8 +5,8 @@ binds {
 	Mod+4 { spawn-sh "cliphist list | sed -n '4p' | cliphist decode | wl-copy && sleep 0.1 && wtype -M ctrl v -m ctrl"; }
 	Mod+5 { spawn-sh "cliphist list | sed -n '5p' | cliphist decode | wl-copy && sleep 0.1 && wtype -M ctrl v -m ctrl"; }
 
-	Mod+V { spawn-sh "noctalia-shell ipc call plugin:clipper toggle"; }
-	Mod+Alt+V hotkey-overlay-title="Run walker clipboard" { spawn-sh "walker -m clipboard"; }
+	Mod+Alt+V { spawn-sh "noctalia-shell ipc call plugin:clipper toggle"; }
+	Mod+V hotkey-overlay-title="Run walker clipboard" { spawn-sh "walker -m clipboard"; }
 
 	Mod+Ctrl+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
 	// Mod+Ctrl+Space hotkey-overlay-title="Run Vicinae" { spawn-sh "vicinae toggle"; }

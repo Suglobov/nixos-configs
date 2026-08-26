@@ -6,24 +6,11 @@ import Quickshell.Io
 
 Singleton {
 	id: root
-	property var mousePos: [0, 0]
-
-	property var outputs: {}
-	property bool isOutputsReady: false
-
+	property int mouseX: 0
+	property int mouseY: 0
+	property var mousePos: [mouseX, mouseY]
 	property var dot: [null, null]
 	property var dotHintVisible: false
-
-	Process {
-		command: ['niri', 'msg', '--json', 'outputs']
-		running: true
-		stdout: SplitParser {
-				onRead: (data) => {
-						root.outputs = JSON.parse(data);
-						root.isOutputsReady = true
-				}
-		}
-	}
 
 	Process {
 		command: ['niri', 'msg', '--json', 'cursor-position-stream']
@@ -32,7 +19,8 @@ Singleton {
 		stdout: SplitParser {
 			onRead: (data) => {
 				var coords = JSON.parse(data);
-				root.mousePos = coords.map((item) => Math.round(item));
+				root.mouseX = coords[0]
+				root.mouseY = coords[1]
 			}
 		}
 	}

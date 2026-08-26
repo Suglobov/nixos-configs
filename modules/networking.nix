@@ -3,6 +3,17 @@
 {
 	networking.hostName = "nixos"; # Define your hostname.
 	networking.networkmanager.enable = true;
+
+	# networking.networkmanager.wifi.backend = "iwd";
+	# networking.wireless.enable = false;
+	# networking.wireless.iwd = {
+  # enable = true;
+  # settings = {
+  #   Settings = {
+  #     AutoConnect = true;
+  #   };
+  # };
+
 	networking.firewall = {
 		enable = true;
 		allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];

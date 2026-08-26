@@ -17,7 +17,16 @@
 			"org.kde.kruler"	#	экранная линейка
 			"org.telegram.desktop"	#	мессенджер
 			"org.vinegarhq.Sober"	#	roblax
-			"io.github.cudatext.CudaText-Qt"	#	текстовый редактор
+			"space.bigrat.mocktail"	#	roblax
+			"org.kde.kwrite"	#	текстовый редактор
+			"com.github.dail8859.NotepadNext"	#	текстовый редактор
+			"org.xfce.mousepad"	#	текстовый редактор
+			"org.kde.kate"	#	текстовый редактор
+			"org.notepadng.Notepadng"	#	текстовый редактор
+			"io.frama.editide.editide"	#	текстовый редактор
+			"com.rcloneui.RcloneUI"	#	для rclone
+			"com.github.sdv43.whaler"	#	для docker
+			"com.github.marhkb.Pods"	#	для docker
 		];
 		overrides.settings = {
 			global = {
@@ -84,12 +93,8 @@
 		};
 	};
 
-	programs.kakoune = {	#	редактор кода в терминале
-		enable = true;
-	};
-	programs.vicinae = {
-		enable = true;
-	};
+	programs.kakoune.enable = true;	#	редактор кода в терминале
+	# programs.vicinae.enable = true;	#	запуск программ и многое другое
 
 	home.packages = with pkgs; [
 		(appimage-run.override { extraPkgs = pkgs: [ pkgs.libepoxy ]; })
@@ -103,17 +108,17 @@
 		#	nautilus	#	файловый менеджер
 		#	nwg-clipman	#	буфер обмена с пред просмотром
 		#	telegram-desktop	#	мессенджер
+		# copyq	#	буфер обмена
 		adwaita-icon-theme
 		alacritty	#	эмулятор терминала
-		bat
+		bat	#	вывод в консоль содержимое файла (cat)
+		brightnessctl	#	управление яркостью
 		broot	#	просмотр файлов и папок в виде дерева
 		browsh	#	браузер в терминале
-		brightnessctl	#	управление яркостью
 		btop	#	диспечер процессов
 		clash-verge-rev	#	vpn
 		cliphist	#	история буфера обмена
 		clipse	#	история буфера обмена
-		copyq	#	буфер обмена
 		dbeaver-bin	#	подключаться к базам данных
 		direnv	#	перменные окружения в директории
 		duf	#	свободное место на диске
@@ -126,17 +131,17 @@
 		ffmpeg
 		firefox	#	браузер
 		fish	#	командная оболочка (аля bash)
-		flatpak
+		flclash	#	vpn
 		foot	#	эмулятор терминала
 		fuzzel	#	запуск программ
 		fzf	#	лейзи поиск
 		ghostty	#	эмулятор терминала
 		gifski	#	конвертор видео и тд
-		gimp
-		gnome-text-editor
+		gimp	#	редактор картинок
 		gost
 		grim
 		helix	#	редактор кода в терминале
+		htop	#	диспечер процессов
 		hyprpicker	#	заблокированный экран
 		imagemagick
 		impala # сетевые подключения
@@ -164,6 +169,7 @@
 		networkmanagerapplet
 		nload	#	трафик сети
 		nsxiv	#	просмотре картинок
+		# nchat	#	чат
 		nushell
 		opensnitch-ui
 		p7zip
@@ -193,10 +199,11 @@
 		tmux	#	консольный мультиплексор терминала
 		translate-shell	#	переводчик консольный
 		tree
-		vicinae	#	запуск программ и многое другое
 		vlc	#	видео проигрыватель
-		warp
+		warp	#	передача файлов
+		wev	# wayland event viewer	события wayland
 		wf-recorder
+		wifitui	#	сетевые настройки
 		wiremix	#	управление звуком
 		wl-clipboard
 		wlrctl

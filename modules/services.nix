@@ -42,6 +42,13 @@
 	services.dbus.enable = true;
 	services.udisks2.enable = true;
 
+	services.kanata = {
+		enable = true;
+		keyboards = {
+			default.config = builtins.readFile ./kanata.kbd;
+		};
+	};
+
 	# services.input-remapper = {
 	# 	enable = true;
 	# 	enableUdevRules = true; # Автоматически дает права на чтение геймпадов

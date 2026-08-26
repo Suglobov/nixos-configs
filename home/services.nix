@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-	services.kdeconnect = {
-		enable = true;
-	};
+	services.kdeconnect.enable = true;
 
 	# Добавляем службу графического пароля для Home Manager
 	systemd.user.services.lxqt-policykit = {
