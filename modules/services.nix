@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, lib, ... }:
 
 {
 	hardware.steam-hardware.enable = true;
@@ -17,6 +17,8 @@
 		};
 	};
 	hardware.enableAllFirmware = true;  # Загружает закрытые драйверы для Bluetooth-чипов
+
+	security.polkit.enable = true;
 
 
 	virtualisation.docker.enable = true;
@@ -38,21 +40,42 @@
 	# 	# Второй геймпад на порту 1-1
 	# 	SUBSYSTEM=="input", KERNELS=="1-1:1.0", ATTR{name}="usb gamepad 2"
 	# '';
-	services.netbird.enable = true;
 	services.dbus.enable = true;
 	services.udisks2.enable = true;
 
 	services.kanata = {
 		enable = true;
-		keyboards = {
-			default.config = builtins.readFile ./kanata.kbd;
+		keyboards.default = {
+			configFile = "/home/${username}/.config/kanata/kanata.kbd";
 		};
+	};
+	systemd.services.kanata-default.serviceConfig = {
+		ProtectHome = lib.mkForce false;
+		DynamicUser = lib.mkForce false;
+		User = username;
 	};
 
 	# services.input-remapper = {
 	# 	enable = true;
 	# 	enableUdevRules = true; # Автоматически дает права на чтение геймпадов
 	# };
+
+	# services.netbird.enable = true;	#	создание локальной сети через инернет
+	# services.zerotierone = { #	создание локальной сети через инернет
+	#   enable = true;
+	#   joinNetworks = [ "f3797ba7a8883f76" ]; # ID вашей сети из my.zerotier.com
+	# };
+	services.tailscale = {
+		enable = true;
+		# Обязательно для Exit Node / Subnet Router
+		useRoutingFeatures = "both";	# или "both", если компьютер сам тоже будет пользоваться exit node
+	};
+	systemd.services.tailscaled.serviceConfig.Environment = [
+    "HTTP_PROXY=http://127.0.0.1:7897"
+    "HTTPS_PROXY=http://127.0.0.1:7897"
+    # Исключаем локальные сети и сам Tailscale из проксирования
+    "NO_PROXY=localhost,127.0.0.1,100.64.0.0/10,192.168.0.0/16" 
+  ];
 
 	xdg.portal = {
 		enable = true;
@@ -78,16 +101,16 @@
 	};
 
 	# Сервис VPN
-	systemd.services.amnezia-vpn = {
-		description = "Amnezia VPN Backend Service";
-		after = [ "network.target" ];
-		wantedBy = [ "multi-user.target" ];
-		serviceConfig = {
-			Type = "simple";
-			ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
-			Restart = "always";
-		};
-	};
+	# systemd.services.amnezia-vpn = {
+	# 	description = "Amnezia VPN Backend Service";
+	# 	after = [ "network.target" ];
+	# 	wantedBy = [ "multi-user.target" ];
+	# 	serviceConfig = {
+	# 		Type = "simple";
+	# 		ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
+	# 		Restart = "always";
+	# 	};
+	# };
 
 	# Включение NumLock для TTY
 	systemd.services.numLockOnTty = {

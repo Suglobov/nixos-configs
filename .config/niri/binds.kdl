@@ -8,10 +8,10 @@ binds {
 	Mod+Alt+V { spawn-sh "noctalia-shell ipc call plugin:clipper toggle"; }
 	Mod+V hotkey-overlay-title="Run walker clipboard" { spawn-sh "walker -m clipboard"; }
 
-	Mod+Ctrl+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
+	Mod+Space hotkey-overlay-title="Run fuzzel" { spawn "fuzzel"; }
+	Mod+Alt+Space hotkey-overlay-title="Run walker" { spawn-sh "walker"; }
 	// Mod+Ctrl+Space hotkey-overlay-title="Run Vicinae" { spawn-sh "vicinae toggle"; }
-	Mod+Space hotkey-overlay-title="Run walker" { spawn-sh "walker"; }
-	Mod+Alt+Space hotkey-overlay-title="Run noctalia launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+	// Mod+Shift+Space hotkey-overlay-title="Run noctalia launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
 
 	Mod+L { spawn "hyprlock"; }
 

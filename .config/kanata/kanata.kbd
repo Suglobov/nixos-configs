@@ -1,3 +1,9 @@
+(defcfg
+  process-unmapped-keys yes
+	;; Чем завершать hex-код: space или enter
+	linux-unicode-termination enter
+)
+
 (defsrc
 	esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
 	grv  1    2    3    4    5    6    7    8    9    0    -    =   bspc
@@ -7,13 +13,50 @@
 	lctl lmet lalt           spc            ralt rmet cmp  rctl
 )
 
+(defvar
+	tap-time 150
+	hold-time 200
+)
+
 (defalias
-  ;; Одиночный тап/удержание — обычный Alt.
-  ;; Двойной тап — макрос, нажимающий Caps Lock (caps) для смены языка.
-  lalt_lang (tap-dance 200 (lalt (macro caps)))
+	;; Левая рука
+	a (tap-hold $tap-time $hold-time a lsft)	;; A → Shift
+	s (tap-hold $tap-time $hold-time s lctl)	;; S → Ctrl
+	d (tap-hold $tap-time $hold-time d lalt)	;; D → Alt
+	f (tap-hold $tap-time $hold-time f lmet)	;; F → Super
+	;; Правая рука (зеркально)
+	j (tap-hold $tap-time $hold-time j rmet)	;; J → Super
+	k (tap-hold $tap-time $hold-time k ralt)	;; K → Alt
+	l (tap-hold $tap-time $hold-time l rctl)	;; L → Ctrl
+	; (tap-hold $tap-time $hold-time ; rsft)	;; ; → Shift
 )
 
-(deflayermap base
-  lalt @lalt_lang
-)
+(deflayermap (base)
+	;; Пробел: тап — пробел, держишь — слой nav
+	spc (tap-hold $tap-time $hold-time spc (layer-while-held nav))
 
+	a @a
+	;; s @s
+	;; d @d
+	;; f @f
+	;; j @j
+	;; k @k
+	;; l @l
+	; @;
+)
+(deflayermap (nav)
+	w up
+	a left
+	s down
+	d right
+	q pgup
+	e pgdn
+	;; пунктуация независимо от раскладки
+	. (unicode ".")   ;; физическая . (ю в RU) → всегда точка
+	, (unicode "?")   ;; физическая , (б в RU) → всегда ?
+
+
+	;; Полезные добавки по желанию:
+	;; c C-left   ;; прыжок по словам
+	;; v C-right
+)

@@ -27,6 +27,11 @@
 			"com.rcloneui.RcloneUI"	#	для rclone
 			"com.github.sdv43.whaler"	#	для docker
 			"com.github.marhkb.Pods"	#	для docker
+			"rs.ruffle.Ruffle"	#	открывать swf файлы
+			"com.adobe.Flash-Player-Projector"	#	открывать swf файлы
+			# "org.gnome.design.IconLibrary"	#	иконки
+			# "org.gnome.gitlab.wwarner.Solitaire"	#	игры
+			"org.kde.dolphin"	#	файловый менеджер
 		];
 		overrides.settings = {
 			global = {
@@ -109,9 +114,13 @@
 		#	nwg-clipman	#	буфер обмена с пред просмотром
 		#	telegram-desktop	#	мессенджер
 		# copyq	#	буфер обмена
+		# kdePackages.dolphin	#	файловый менеджер
+		# nchat	#	чат
 		adwaita-icon-theme
 		alacritty	#	эмулятор терминала
+		anyrun	#	запуск программ
 		bat	#	вывод в консоль содержимое файла (cat)
+		bemenu	#	запуск программ
 		brightnessctl	#	управление яркостью
 		broot	#	просмотр файлов и папок в виде дерева
 		browsh	#	браузер в терминале
@@ -128,7 +137,7 @@
 		eza	#	аналог ls
 		fastfetch	#	информация о системе в терминале
 		fd	#	аналог find
-		ffmpeg
+		ffmpeg	#
 		firefox	#	браузер
 		fish	#	командная оболочка (аля bash)
 		flclash	#	vpn
@@ -138,84 +147,86 @@
 		ghostty	#	эмулятор терминала
 		gifski	#	конвертор видео и тд
 		gimp	#	редактор картинок
-		gost
-		grim
+		gost	#
+		grim	#
 		helix	#	редактор кода в терминале
 		htop	#	диспечер процессов
 		hyprpicker	#	заблокированный экран
-		imagemagick
+		imagemagick	#	редактор картинок
 		impala # сетевые подключения
-		imv
+		imv	#	просмотр картинок
 		inputs.fresh.packages.${pkgs.system}.default	#	редактор кода в терминале
 		inputs.noctalia-v4.packages.${pkgs.system}.default	#	панельки
 		inputs.noctalia-v5.packages.${pkgs.system}.default	#	панельки
-		jq
-		kdePackages.dolphin	#	файловый менеджер
+		jq	#
 		kdePackages.konsole	#	эмулятор терминала
 		lapce	#	текстовый редактор
 		lazygit	#	для работы с git
-		linuxConsoleTools
-		lnav
-		loupe
-		lxqt.lxqt-policykit
+		linuxConsoleTools	#
+		lnav	#
+		loupe	#
+		lxqt.lxqt-policykit	#
 		micro	#	текстовый редактор из терминала
-		mission-center
+		mission-center	#
 		mpv	#	видео проигрыватель
-		mpvpaper
+		mpvpaper	#
 		mycli	#	командная строка для mysql
 		ncdu	#	свободное место на диске
 		nemo	#	файловый менеджер
 		neovim	#	редактор кода в терминале
-		networkmanagerapplet
+		networkmanagerapplet	#	сетевые настройки
 		nload	#	трафик сети
 		nsxiv	#	просмотре картинок
-		# nchat	#	чат
-		nushell
-		opensnitch-ui
+		nushell	#	командная оболочка (аля bash)
+		onboard	#	клавиатура
+		opensnitch-ui	#
 		p7zip
 		papirus-icon-theme
-		pavucontrol
-		playerctl
+		pavucontrol	#	управление звуком
+		playerctl	#	управление звуком
 		python3
 		python3Packages.pygobject3
 		qt5.qtgraphicaleffects
 		qt6.qt5compat
 		qt6.qtdeclarative
 		qt6.qtwayland
-		quickshell
+		quickshell	#
 		rclone	#	монтирование удаленных каталогов в системе
 		ripdrag	#	перетаскивание файлов в терминале
 		ripgrep	#	поиск в файлах
 		rofi	#	запуск программ
-		satty
-		slurp
+		satty	#	screenshot annotation tool
+		slurp	#	выбор области экрана
 		sshfs
 		superfile	#	файловый менеджер в терминале
 		swayimg
-		termshark
-		tesseract
+		squeekboard	#	клавиатура
+		libgnomekbd	#	клавиатура
+		termshark	#	анализатор трафика сети
+		tesseract	#	распознавание текста на картинках
 		thunar	#	файловый менеджер
-		tldr
+		tldr	#	вывод в консоль справки по командам (man)
 		tmux	#	консольный мультиплексор терминала
 		translate-shell	#	переводчик консольный
-		tree
+		tree	#	вывод в консоль содержимое папки как дерево
 		vlc	#	видео проигрыватель
 		warp	#	передача файлов
 		wev	# wayland event viewer	события wayland
-		wf-recorder
+		wf-recorder	#	запись видео с экрана
 		wifitui	#	сетевые настройки
 		wiremix	#	управление звуком
-		wl-clipboard
-		wlrctl
+		wl-clipboard	#	буфер обмена
+		wlrctl	#	управление звуком
 		wofi	#	запуск программ
 		wtype	#	эмулятор нажатия клавиш
+		wvkbd	#	клавиатура
 		xcursor-viewer	#	просмотр курсоров
-		xdg-desktop-portal
+		xdg-desktop-portal	#	портал для приложений
 		ydotool	#	эмуляция мышки и клавы
 		zbar	#	сканирования и расшифровки штрих-кодов и QR-кодов
 		zellij	#	консольный мультиплексор терминала
 		zoxide	#	быстрый переход по папкам, в которых был раньше чаще
-  	adw-gtk3
-  	adwaita-qt
+  	adw-gtk3	#
+  	adwaita-qt	#
 	];
 }

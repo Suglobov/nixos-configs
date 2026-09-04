@@ -10,8 +10,8 @@
 		yazi
 		home-manager
 		xwayland-satellite
-		amneziawg-tools
-		amnezia-vpn
+		# amneziawg-tools
+		# amnezia-vpn
 		fuse
 		fuse3
 		at-spi2-core

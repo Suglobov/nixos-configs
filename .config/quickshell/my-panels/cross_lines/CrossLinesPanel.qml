@@ -65,24 +65,26 @@ PanelWindow {
 
 	property string coordinateTextColorX: '#ffff00'
 	property string coordinateTextColorY: '#00ff00'
-	property string coordinateRectColor: '#555'
+	property string coordinateRectColor: '#222'
 	property var coordinateRectOpacity: 0.7
-	property int rectPadding: 5
+	property int rectPadding: 2
 	property int textIndent: 60
+	property int shortLineLength: 40
+	property int fontPixelSize: 10
 
 	Rectangle { // horizontal short
-		width: textIndent
+		width: shortLineLength
 		height: lineWidth
-		x: screenMousePos[0] - textIndent / 2
+		x: screenMousePos[0] - shortLineLength / 2
 		y: screenMousePos[1]
 		color: lineColor
 		opacity: lineOpacity
 	}
 	Rectangle { // vertical short
 		width: lineWidth
-		height: textIndent
+		height: shortLineLength
 		x: screenMousePos[0]
-		y: screenMousePos[1] - textIndent / 2
+		y: screenMousePos[1] - shortLineLength / 2
 		color: lineColor
 		opacity: lineOpacity
 	}
@@ -100,6 +102,7 @@ PanelWindow {
 			id: coordinateTextX
 			text: `↓${screenMousePos[0]}`
 			color: coordinateTextColorX
+			font.pixelSize: fontPixelSize
 			anchors.centerIn: parent
 		}
 	}
@@ -116,6 +119,7 @@ PanelWindow {
 			id: coordinateTextY
 			text: `↓${screenMousePos[1]}`
 			color: coordinateTextColorY
+			font.pixelSize: fontPixelSize
 			anchors.centerIn: parent
 		}
 	}
@@ -147,7 +151,7 @@ PanelWindow {
 		color: langColor
 		opacity: 0.7
 		radius: 2
-		property real arcAngle: 0
+		property real arcAngle: -Math.PI * 0.25
 		property real arcAngleFrom: -Math.PI * 0.28
 		property real arcAngleTo: -Math.PI * 0.22
 		property int duration: 1000
@@ -159,12 +163,12 @@ PanelWindow {
 			font.weight: Font.Bold
 			color: '#0ff'
 		}
-		SequentialAnimation on arcAngle {
-			running: true
-			loops: Animation.Infinite
-			NumberAnimation { from: langRect2.arcAngleFrom; to: langRect2.arcAngleTo; duration: langRect2.duration; easing.type: Easing.Linear; }
-			NumberAnimation { from: langRect2.arcAngleTo; to: langRect2.arcAngleFrom; duration: langRect2.duration; easing.type: Easing.Linear; }
-		}
+		// SequentialAnimation on arcAngle {
+		// 	running: true
+		// 	loops: Animation.Infinite
+		// 	NumberAnimation { from: langRect2.arcAngleFrom; to: langRect2.arcAngleTo; duration: langRect2.duration; easing.type: Easing.Linear; }
+		// 	NumberAnimation { from: langRect2.arcAngleTo; to: langRect2.arcAngleFrom; duration: langRect2.duration; easing.type: Easing.Linear; }
+		// }
 		x: screenMousePos[0] + indent + width >= screenData?.width 
 			? screenMousePos[0] - indent * Math.cos(arcAngle) - width / 2 : screenMousePos[0] + indent * Math.cos(arcAngle) - width / 2
 		y: screenMousePos[1] - indent - height <= 0
@@ -221,57 +225,57 @@ PanelWindow {
 	/* ********** /lang */
 
 	/* ++++++++++ Линии и текст выделения прямоугольника */
-	Rectangle { // vertical
-		visible: !screenDot.includes(null)
-		width: lineWidth
-		height: screenMousePos[1] > screenDot[1] ? screenMousePos[1] - screenDot[1] : screenDot[1] - screenMousePos[1]
-		x: screenDot[0]
-		y: screenMousePos[1] > screenDot[1] ? screenDot[1] : screenMousePos[1]
-		color: lineColor
-		opacity: lineOpacity
-	}
-	Rectangle { // horizontal
-		visible: !screenDot.includes(null)
-		width: screenMousePos[0] > screenDot[0] ? screenMousePos[0] - screenDot[0] : screenDot[0] - screenMousePos[0]
-		height: lineWidth
-		x: screenMousePos[0] > screenDot[0] ? screenDot[0] : screenMousePos[0]
-		y: screenDot[1]
-		color: lineColor
-		opacity: lineOpacity
-	}
-	Rectangle { // расстояние до от dot до курсора в прямой подсказке
-		visible: CLHelp.dotHintVisible
-		width: dotHint.width + rectPadding
-		height: dotHint.height + rectPadding
-		x: screenMousePos[0] > screenDot[0] ? screenDot[0] : screenDot[0] - width
-		y: screenMousePos[1] > screenDot[1] ? screenDot[1] - height : screenDot[1]
-		color: coordinateRectColor
-		opacity: coordinateRectOpacity
-		radius: 4
-		Text {
-			id: dotHint
-			anchors.centerIn: parent
-			text: `↕${Math.abs(screenMousePos[1] - screenDot[1])}`
-			color: coordinateTextColorY
-		}
-	}
-	Rectangle { // расстояние до от dot до курсора в повернутой подсказке
-		visible: CLHelp.dotHintVisible
-		width: dotHintAngle.width + rectPadding
-		height: dotHintAngle.height + rectPadding
-		x: screenMousePos[0] > screenDot[0] ? screenDot[0] - height : screenDot[0]
-		y: screenMousePos[1] > screenDot[1] ? screenDot[1] + width : screenDot[1]
-		color: coordinateRectColor
-		opacity: coordinateRectOpacity
-		radius: 4
-		transform: Rotation { angle: -90 }
-		Text {
-			id: dotHintAngle
-			anchors.centerIn: parent
-			text: `↕${Math.abs(screenMousePos[0] - screenDot[0])}`
-			color: coordinateTextColorX
-		}
-	}
+	// Rectangle { // vertical
+	// 	visible: !screenDot.includes(null)
+	// 	width: lineWidth
+	// 	height: screenMousePos[1] > screenDot[1] ? screenMousePos[1] - screenDot[1] : screenDot[1] - screenMousePos[1]
+	// 	x: screenDot[0]
+	// 	y: screenMousePos[1] > screenDot[1] ? screenDot[1] : screenMousePos[1]
+	// 	color: lineColor
+	// 	opacity: lineOpacity
+	// }
+	// Rectangle { // horizontal
+	// 	visible: !screenDot.includes(null)
+	// 	width: screenMousePos[0] > screenDot[0] ? screenMousePos[0] - screenDot[0] : screenDot[0] - screenMousePos[0]
+	// 	height: lineWidth
+	// 	x: screenMousePos[0] > screenDot[0] ? screenDot[0] : screenMousePos[0]
+	// 	y: screenDot[1]
+	// 	color: lineColor
+	// 	opacity: lineOpacity
+	// }
+	// Rectangle { // расстояние до от dot до курсора в прямой подсказке
+	// 	visible: CLHelp.dotHintVisible
+	// 	width: dotHint.width + rectPadding
+	// 	height: dotHint.height + rectPadding
+	// 	x: screenMousePos[0] > screenDot[0] ? screenDot[0] : screenDot[0] - width
+	// 	y: screenMousePos[1] > screenDot[1] ? screenDot[1] - height : screenDot[1]
+	// 	color: coordinateRectColor
+	// 	opacity: coordinateRectOpacity
+	// 	radius: 4
+	// 	Text {
+	// 		id: dotHint
+	// 		anchors.centerIn: parent
+	// 		text: `↕${Math.abs(screenMousePos[1] - screenDot[1])}`
+	// 		color: coordinateTextColorY
+	// 	}
+	// }
+	// Rectangle { // расстояние до от dot до курсора в повернутой подсказке
+	// 	visible: CLHelp.dotHintVisible
+	// 	width: dotHintAngle.width + rectPadding
+	// 	height: dotHintAngle.height + rectPadding
+	// 	x: screenMousePos[0] > screenDot[0] ? screenDot[0] - height : screenDot[0]
+	// 	y: screenMousePos[1] > screenDot[1] ? screenDot[1] + width : screenDot[1]
+	// 	color: coordinateRectColor
+	// 	opacity: coordinateRectOpacity
+	// 	radius: 4
+	// 	transform: Rotation { angle: -90 }
+	// 	Text {
+	// 		id: dotHintAngle
+	// 		anchors.centerIn: parent
+	// 		text: `↕${Math.abs(screenMousePos[0] - screenDot[0])}`
+	// 		color: coordinateTextColorX
+	// 	}
+	// }
 	/* ---------- */
 
 	// Rectangle { // cross

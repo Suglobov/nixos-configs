@@ -10,3 +10,15 @@ video/*=vlc.desktop
 audio/*=vlc.desktop
 text/plain=code.desktop
 text/markdown=code.desktop
+
+application/vnd.microsoft.portable-executable=ru.linux_gaming.PortProton.desktop;
+application/x-ms-dos-executable=ru.linux_gaming.PortProton.desktop;
+application/x-msdownload=ru.linux_gaming.PortProton.desktop;
+inode/directory=org.kde.dolphin.desktop;
+
+[Added Associations]
+application/vnd.microsoft.portable-executable=ru.linux_gaming.PortProton.desktop;
+application/x-ms-dos-executable=ru.linux_gaming.PortProton.desktop;
+application/x-msdownload=ru.linux_gaming.PortProton.desktop;
+x-scheme-handler/clash=clash-verge.desktop;
+x-scheme-handler/clash-verge=clash-verge.desktop;

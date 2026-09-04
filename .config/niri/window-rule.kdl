@@ -39,8 +39,11 @@ window-rule {
 	match title="Heroes of the storm"
 	match title="PortProton"
 	match title="Battle.net"
+	match title="Authentication Required"
 	match app-id="PortProton"
 	match app-id="steam_proton"
+	match app-id="onboard"
+	
 	open-floating true
 	default-window-height { proportion 0.5; }
 }

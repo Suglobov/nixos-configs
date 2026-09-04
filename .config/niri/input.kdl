@@ -9,6 +9,7 @@ input {
 	keyboard {
 		xkb {
 			layout "us,ru"
+			// layout "universal_en,universal_ru"
 			options "grp:caps_toggle"
 			// options "grp:caps_select"
 		}

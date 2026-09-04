@@ -40,6 +40,9 @@
 				} {
 					link = "${homeDir}/.config/kanata";
 					target = "${targetDir}/nixos/.config/kanata";
+				} {
+					link = "${homeDir}/.config/anyrun";
+					target = "${targetDir}/nixos/.config/anyrun";
 				}
 			];
 		in

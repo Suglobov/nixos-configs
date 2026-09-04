@@ -65,6 +65,9 @@ download = [
 	{ run = "ya emit download --open %S", desc = "Download and open" },
 	{ run = "ya emit download %S",        desc = "Download" },
 ]
+portproton = [
+	{ run = "ru.linux_gaming.PortProton %s", orphan = true, desc = "PortProton" }
+]
 
 [open]
 rules = [
@@ -85,7 +88,7 @@ rules = [
 	# Virtual file system
 	{ mime = "vfs/{absent,stale}", use = "download" },
 	# Fallback
-	{ url = "*", use = [ "open", "reveal" ] },
+	{ url = "*", use = [ "open", "reveal", "portproton" ] },
 ]
 
 [tasks]
