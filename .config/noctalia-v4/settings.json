@@ -42,15 +42,15 @@
     "bar": {
         "autoHideDelay": 500,
         "autoShowDelay": 150,
-        "backgroundOpacity": 0.93,
+        "backgroundOpacity": 0.2,
         "barType": "simple",
         "capsuleColorKey": "none",
-        "capsuleOpacity": 1,
-        "contentPadding": 20,
+        "capsuleOpacity": 0.8,
+        "contentPadding": 0,
         "density": "default",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": false,
-        "fontScale": 1.13,
+        "fontScale": 1,
         "frameRadius": 12,
         "frameThickness": 8,
         "hideOnOverview": false,
@@ -80,11 +80,11 @@
                 "position": "left"
             }
         ],
-        "showCapsule": false,
+        "showCapsule": true,
         "showOnWorkspaceSwitch": true,
         "showOutline": false,
-        "useSeparateOpacity": false,
-        "widgetSpacing": 2,
+        "useSeparateOpacity": true,
+        "widgetSpacing": 1,
         "widgets": {
             "center": [
             ],
@@ -119,20 +119,6 @@
                     "defaultSettings": {
                     },
                     "id": "plugin:kde-connect"
-                },
-                {
-                    "defaultSettings": {
-                        "iconColor": "none"
-                    },
-                    "id": "plugin:color-scheme-creator"
-                },
-                {
-                    "defaultSettings": {
-                        "density": "comfortable",
-                        "maxHistorySize": 100,
-                        "showImagePreviews": true
-                    },
-                    "id": "plugin:clipboard"
                 },
                 {
                     "defaultSettings": {
@@ -564,7 +550,7 @@
         "passwordChars": false,
         "radiusRatio": 0.1,
         "reverseScroll": false,
-        "scaleRatio": 0.9,
+        "scaleRatio": 1,
         "screenRadiusRatio": 1,
         "shadowDirection": "bottom_left",
         "shadowOffsetX": -2,
@@ -794,11 +780,11 @@
         "fontDefaultScale": 1,
         "fontFixed": "monospace",
         "fontFixedScale": 1,
-        "panelBackgroundOpacity": 0.2,
+        "panelBackgroundOpacity": 0.93,
         "panelsAttachedToBar": true,
         "scrollbarAlwaysVisible": true,
         "settingsPanelMode": "window",
-        "settingsPanelSideBarCardStyle": false,
+        "settingsPanelSideBarCardStyle": true,
         "tooltipsEnabled": true,
         "translucentWidgets": false
     },

@@ -20,7 +20,7 @@
 		allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
 		allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
     allowedUDPPorts = [ 9993 config.services.tailscale.port ];
-		allowedTCPPorts = [ 7897 ];
+		allowedTCPPorts = [ 7897 1701 ];
 		trustedInterfaces = [ "Mihomo" "Meta" "wt0" "zt+" "tailscale0" ];
 		extraReversePathFilterRules = ''
 			iifname { "Mihomo", "Meta", "wt0", "zt+" } accept comment "clash-verge tun traffic"

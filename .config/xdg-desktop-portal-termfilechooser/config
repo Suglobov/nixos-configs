@@ -1,0 +1,7 @@
+[terminal]
+cmd = kitty
+args = --class filechooser -e sh -c '{}'
+
+[chooser]
+cmd = yazi
+args = --chooser-file={}

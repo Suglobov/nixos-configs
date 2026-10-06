@@ -28,12 +28,12 @@ PanelWindow {
 
 	visible: min[0] <= CLHelp.mousePos[0] && CLHelp.mousePos[0] <= max[0] && min[1] <= CLHelp.mousePos[1] && CLHelp.mousePos[1] <= max[1]
 
-	property string activeLang: Niri.keyboardLayouts[Niri.keyboardLayoutIdx]
+	property string activeLang: Niri?.keyboardLayouts?.[Niri?.keyboardLayoutIdx] ?? ''
 	property var langConfig: {
-		'Russian': 'RU',
-		'English (US)': 'EN',
+		'Russian': '🇷🇺',
+		'English (US)': '🇺🇸',
 	}
-	property string lang: langConfig[activeLang]
+	property string lang: langConfig?.[activeLang] ?? ''
 	property var colors: [
 		'#0000ff',
 		'#0f0',
@@ -90,6 +90,7 @@ PanelWindow {
 	}
 
 	Rectangle { // возле цента повернутый
+		visible: !screenDot.includes(null)
 		width: coordinateTextX.width + rectPadding
 		height: coordinateTextX.height + rectPadding
 		x: screenMousePos[0] + height >= screenData?.width ? screenMousePos[0] - height : screenMousePos[0]
@@ -108,6 +109,7 @@ PanelWindow {
 	}
 
 	Rectangle { // возле центра не повернутый
+		visible: !screenDot.includes(null)
 		width: coordinateTextY.width + rectPadding
 		height: coordinateTextY.height + rectPadding
 		x: screenMousePos[0] + textIndent + width >= screenData?.width ? screenMousePos[0] - width - textIndent : screenMousePos[0] + textIndent
@@ -148,7 +150,8 @@ PanelWindow {
 		property int indent: 50
 		width: 17
 		height: 17
-		color: langColor
+		// color: langColor
+		color: 'transparent'
 		opacity: 0.7
 		radius: 2
 		property real arcAngle: -Math.PI * 0.25
@@ -159,7 +162,7 @@ PanelWindow {
 			id: langText
 			anchors.centerIn: parent
 			text: `${lang}`
-			font.pixelSize: 10
+			font.pixelSize: 14
 			font.weight: Font.Bold
 			color: '#0ff'
 		}
@@ -169,7 +172,7 @@ PanelWindow {
 		// 	NumberAnimation { from: langRect2.arcAngleFrom; to: langRect2.arcAngleTo; duration: langRect2.duration; easing.type: Easing.Linear; }
 		// 	NumberAnimation { from: langRect2.arcAngleTo; to: langRect2.arcAngleFrom; duration: langRect2.duration; easing.type: Easing.Linear; }
 		// }
-		x: screenMousePos[0] + indent + width >= screenData?.width 
+		x: screenMousePos[0] + indent + width >= screenData?.width
 			? screenMousePos[0] - indent * Math.cos(arcAngle) - width / 2 : screenMousePos[0] + indent * Math.cos(arcAngle) - width / 2
 		y: screenMousePos[1] - indent - height <= 0
 			? screenMousePos[1] - indent * Math.sin(arcAngle) - height / 2 : screenMousePos[1] + indent * Math.sin(arcAngle) - height / 2
@@ -353,5 +356,5 @@ PanelWindow {
 	// 		}
 	// 	}
 	// }
-	
+
 }

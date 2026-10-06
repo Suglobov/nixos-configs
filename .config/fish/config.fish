@@ -11,6 +11,9 @@ if status is-interactive
 
 	zoxide init fish | source
 
+	# Инициализация виджета navi для Fish
+	navi widget fish | source
+
 	set -gx EDITOR fresh
 	set -gx VISUAL fresh
 

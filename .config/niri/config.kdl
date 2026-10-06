@@ -58,7 +58,6 @@ output "HDMI-A-1" {
 	transform "normal"
 	position x=1920 y=0
 }
-
 gestures {
 	hot-corners {
 		// top-left
@@ -67,7 +66,6 @@ gestures {
 		bottom-right
 	}
 }
-
 overview {
 	zoom 0.5
 	backdrop-color "#000000"

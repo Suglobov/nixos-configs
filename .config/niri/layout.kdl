@@ -1,5 +1,5 @@
 // https://niri-wm.github.io/niri/Configuration:-Layout
-// prefer-no-csd
+prefer-no-csd
 layout {
 	gaps 2
 	background-color "#000000"

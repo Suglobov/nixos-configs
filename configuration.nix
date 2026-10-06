@@ -15,7 +15,7 @@
 		# ./modules/zapret.nix
 	];
 
-	nix.settings.experimental-features = ["nix-command" "flakes" ];
+	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
@@ -50,7 +50,20 @@
 		isNormalUser = true;
 		description = username;
 		home = "/home/${username}";
-		extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker" "input" "uinput" "systemd-journal" "ydotool" "games" ];
+		extraGroups = [ 
+			"audio"
+			"docker"
+			"games"
+			"input"
+			"kvm"
+			"networkmanager"
+			"render"
+			"systemd-journal"
+			"uinput"
+			"video"
+			"wheel"
+			"ydotool"
+		];
 		packages = with pkgs; [];
 		shell = pkgs.fish;
 	};

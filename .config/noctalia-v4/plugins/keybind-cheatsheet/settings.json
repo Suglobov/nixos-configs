@@ -4,18 +4,11 @@
       "title": "Noctalia",
       "binds": [
         {
-          "keys": "Super + V",
+          "keys": "Super + Alt + V",
           "desc": "Run: noctalia-shell ipc call plugin:clipper toggle",
           "_verb": "spawn-sh",
-          "_mods": "Super",
-          "_mainKey": "V"
-        },
-        {
-          "keys": "Super + Alt + Space",
-          "desc": "Run noctalia launcher",
-          "_verb": "spawn-sh",
           "_mods": "Super+Alt",
-          "_mainKey": "Space"
+          "_mainKey": "V"
         }
       ]
     },
@@ -51,10 +44,10 @@
           "_mainKey": "5"
         },
         {
-          "keys": "Super + Alt + V",
-          "desc": "Run: copyq toggle",
+          "keys": "Super + V",
+          "desc": "Run walker clipboard",
           "_verb": "spawn-sh",
-          "_mods": "Super+Alt",
+          "_mods": "Super",
           "_mainKey": "V"
         },
         {
@@ -65,10 +58,10 @@
           "_mainKey": "Space"
         },
         {
-          "keys": "Super + Ctrl + Space",
-          "desc": "Run Vicinae",
+          "keys": "Super + Alt + Space",
+          "desc": "Run walker",
           "_verb": "spawn-sh",
-          "_mods": "Super+Ctrl",
+          "_mods": "Super+Alt",
           "_mainKey": "Space"
         },
         {
@@ -168,6 +161,34 @@
           "_verb": "spawn",
           "_mods": "",
           "_mainKey": "XF86MonBrightnessDown"
+        },
+        {
+          "keys": "Super + Alt + WheelScrollDown",
+          "desc": "Run: wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-",
+          "_verb": "spawn-sh",
+          "_mods": "Super+Alt",
+          "_mainKey": "WheelScrollDown"
+        },
+        {
+          "keys": "Super + Alt + WheelScrollUp",
+          "desc": "Run: wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+",
+          "_verb": "spawn-sh",
+          "_mods": "Super+Alt",
+          "_mainKey": "WheelScrollUp"
+        },
+        {
+          "keys": "Super + Ctrl + WheelScrollDown",
+          "desc": "Run: brightnessctl --class=backlight set 10%-",
+          "_verb": "spawn-sh",
+          "_mods": "Super+Ctrl",
+          "_mainKey": "WheelScrollDown"
+        },
+        {
+          "keys": "Super + Ctrl + WheelScrollUp",
+          "desc": "Run: brightnessctl --class=backlight set +10%",
+          "_verb": "spawn-sh",
+          "_mods": "Super+Ctrl",
+          "_mainKey": "WheelScrollUp"
         }
       ]
     },
@@ -662,6 +683,20 @@
           "_mainKey": "Slash"
         },
         {
+          "keys": "Super + Q",
+          "desc": "Focus Monitor Previous",
+          "_verb": "focus-monitor-previous",
+          "_mods": "Super",
+          "_mainKey": "Q"
+        },
+        {
+          "keys": "Super + E",
+          "desc": "Focus Monitor Next",
+          "_verb": "focus-monitor-next",
+          "_mods": "Super",
+          "_mainKey": "E"
+        },
+        {
           "keys": "Super + Ctrl + A",
           "desc": "Consume Or Expel Window Left",
           "_verb": "consume-or-expel-window-left",
@@ -676,18 +711,18 @@
           "_mainKey": "D"
         },
         {
-          "keys": "Super + Q",
-          "desc": "Focus Monitor Previous",
-          "_verb": "focus-monitor-previous",
-          "_mods": "Super",
-          "_mainKey": "Q"
+          "keys": "Super + Ctrl + Alt + S",
+          "desc": "Move Workspace Down",
+          "_verb": "move-workspace-down",
+          "_mods": "Super+Ctrl+Alt",
+          "_mainKey": "S"
         },
         {
-          "keys": "Super + E",
-          "desc": "Focus Monitor Next",
-          "_verb": "focus-monitor-next",
-          "_mods": "Super",
-          "_mainKey": "E"
+          "keys": "Super + Ctrl + Alt + W",
+          "desc": "Move Workspace Up",
+          "_verb": "move-workspace-up",
+          "_mods": "Super+Ctrl+Alt",
+          "_mainKey": "W"
         },
         {
           "keys": "Super + Shift + Page_Down",

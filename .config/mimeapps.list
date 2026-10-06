@@ -7,14 +7,19 @@ x-scheme-handler/https=google-chrome.desktop
 x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/unknown=google-chrome.desktop
 video/*=vlc.desktop
+video/mp4=vlc.desktop
 audio/*=vlc.desktop
+text/*=code.desktop
 text/plain=code.desktop
 text/markdown=code.desktop
-
 application/vnd.microsoft.portable-executable=ru.linux_gaming.PortProton.desktop;
 application/x-ms-dos-executable=ru.linux_gaming.PortProton.desktop;
 application/x-msdownload=ru.linux_gaming.PortProton.desktop;
+application/yaml=org.kde.kate.desktop;
 inode/directory=org.kde.dolphin.desktop;
+inode/mount-point=org.kde.dolphin.desktop;
+x-scheme-handler/clash-nyanpasu=clash-nyanpasu-handler.desktop
+application/msword=google-chrome.desktop
 
 [Added Associations]
 application/vnd.microsoft.portable-executable=ru.linux_gaming.PortProton.desktop;
@@ -22,3 +27,4 @@ application/x-ms-dos-executable=ru.linux_gaming.PortProton.desktop;
 application/x-msdownload=ru.linux_gaming.PortProton.desktop;
 x-scheme-handler/clash=clash-verge.desktop;
 x-scheme-handler/clash-verge=clash-verge.desktop;
+application/msword=google-chrome.desktop;

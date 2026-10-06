@@ -8,10 +8,11 @@ input {
 
 	keyboard {
 		xkb {
-			layout "us,ru"
+			// layout "us,ru"
 			// layout "universal_en,universal_ru"
+			layout "mylayouts,mylayouts"
+			variant "us_first,ru_first"
 			options "grp:caps_toggle"
-			// options "grp:caps_select"
 		}
 		track-layout "window"
 		numlock

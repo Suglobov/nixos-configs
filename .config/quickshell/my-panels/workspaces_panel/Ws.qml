@@ -95,7 +95,7 @@ Rectangle	{
           anchors.topMargin:	1
           width:	parent.width	*	0.9
           // если в колонке больше 1 окна
-          height:	workspaceColumn.length	>	1	?	2	:	0
+          height:	workspaceColumn?.length	>	1	?	2	:	0
           radius:	0
           //	color:	'transparent'
           color:	'#aa00ff00'

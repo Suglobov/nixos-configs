@@ -1,12 +1,61 @@
 // https://niri-wm.github.io/niri/Configuration:-Animations
+
+// spring damping-ratio=1.0 stiffness=10 epsilon=0.01
+// spring damping-ratio=5.0 stiffness=100000 epsilon=0.01
+
+// duration-ms 300
+// curve "linear"
+// curve "ease-out-expo"
+// curve "ease-out-quad"
+// curve "ease-out-cubic"
+// curve "linear"
+// curve "cubic-bezier" 0.05 0.7 0.1 1
+// curve "cubic-bezier" 0.4 0 0.2 1
+
+// window-resize {
+// 	duration-ms 500
+// 	curve "cubic-bezier" 1 0 0.1 1
+// 	// spring damping-ratio=0.3 stiffness=500 epsilon=0.001
+
+// 	custom-shader r"
+// 	vec4 resize_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
+// 		vec2 center = vec2(0.5, 0.5);
+
+// 		vec3 coords_prev = niri_geo_to_tex_prev * coords_curr_geo;
+// 		vec3 coords_next = niri_geo_to_tex_next * coords_curr_geo;
+
+// 		float scale;
+// 		if (niri_clamped_progress < 0.5) {
+// 		scale = 1.0 - (niri_clamped_progress * 2.0);
+// 		} else {
+// 		scale = (niri_clamped_progress - 0.5) * 2.0;
+// 		}
+
+// 		vec2 scaled_prev = center + (coords_prev.st - center) / scale;
+// 		vec2 scaled_next = center + (coords_next.st - center) / scale;
+
+// 		vec4 color_prev = vec4(0.0);
+// 		vec4 color_next = vec4(0.0);
+
+// 		if (scaled_prev.x >= 0.0 && scaled_prev.x <= 1.0 && scaled_prev.y >= 0.0 && scaled_prev.y <= 1.0) {
+// 		color_prev = texture2D(niri_tex_prev, scaled_prev);
+// 		}
+
+// 		if (scaled_next.x >= 0.0 && scaled_next.x <= 1.0 && scaled_next.y >= 0.0 && scaled_next.y <= 1.0) {
+// 		color_next = texture2D(niri_tex_next, scaled_next);
+// 		}
+
+// 		return mix(color_prev, color_next, niri_clamped_progress);
+// 	}
+// 	"
+// }
+
+
 animations {
 	// off
 	// slowdown 3.0
 	workspace-switch {
 		spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
-		// spring damping-ratio=5.0 stiffness=100000 epsilon=0.01
-		// duration-ms 300
-		// curve "ease-out-quad"
 	}
 	window-open {
 		duration-ms 150
@@ -18,63 +67,13 @@ animations {
 	}
 	horizontal-view-movement {
 		spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
-		// duration-ms 500
-		// curve "linear"
-		// curve "cubic-bezier" 0.05 0.7 0.1 1
 	}
 	window-movement {
 		spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
 	}
 	window-resize {
-		// spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
-		spring damping-ratio=0.6 stiffness=300 epsilon=0.001
-		// duration-ms 100
-		// curve "ease-out-expo"
-		// curve "ease-out-quad"
-		// curve "ease-out-cubic"
-		// curve "linear"
-		// curve "cubic-bezier" 0.05 0.7 0.1 1
-		// curve "cubic-bezier" 0.4 0 0.2 1
+		spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
 	}
-	// window-resize {
-	// 	duration-ms 500
-	// 	curve "cubic-bezier" 1 0 0.1 1
-	// 	// spring damping-ratio=0.3 stiffness=500 epsilon=0.001
-
-	// 	custom-shader r"
-	// 		vec4 resize_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
-	// 			vec2 center = vec2(0.5, 0.5);
-
-	// 			vec3 coords_prev = niri_geo_to_tex_prev * coords_curr_geo;
-	// 			vec3 coords_next = niri_geo_to_tex_next * coords_curr_geo;
-
-	// 			float scale;
-	// 			if (niri_clamped_progress < 0.5) {
-	// 				scale = 1.0 - (niri_clamped_progress * 2.0);
-	// 			} else {
-	// 				scale = (niri_clamped_progress - 0.5) * 2.0;
-	// 			}
-
-	// 			vec2 scaled_prev = center + (coords_prev.st - center) / scale;
-	// 			vec2 scaled_next = center + (coords_next.st - center) / scale;
-
-	// 			vec4 color_prev = vec4(0.0);
-	// 			vec4 color_next = vec4(0.0);
-
-	// 			if (scaled_prev.x >= 0.0 && scaled_prev.x <= 1.0 && scaled_prev.y >= 0.0 && scaled_prev.y <= 1.0) {
-	// 				color_prev = texture2D(niri_tex_prev, scaled_prev);
-	// 			}
-
-	// 			if (scaled_next.x >= 0.0 && scaled_next.x <= 1.0 && scaled_next.y >= 0.0 && scaled_next.y <= 1.0) {
-	// 				color_next = texture2D(niri_tex_next, scaled_next);
-	// 			}
-
-	// 			return mix(color_prev, color_next, niri_clamped_progress);
-	// 		}
-	// 	"
-	// }
-
-
 	config-notification-open-close {
 		spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
 	}
@@ -87,9 +86,6 @@ animations {
 	}
 	overview-open-close {
 		spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
-		// spring damping-ratio=1.0 stiffness=10 epsilon=0.01
-		// duration-ms 300
-		// curve "linear"
 	}
 	recent-windows-close {
 		spring damping-ratio=1.0 stiffness=800 epsilon=0.001

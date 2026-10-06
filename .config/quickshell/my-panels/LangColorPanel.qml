@@ -17,7 +17,8 @@ PanelWindow {
 	anchors.left: true
 	anchors.right: true
 
-	exclusiveZone: -panelHeight
+	// exclusiveZone: -panelHeight
+	exclusionMode: ExclusionMode.Ignore
 	implicitHeight: panelHeight
 
 	property var colors: [

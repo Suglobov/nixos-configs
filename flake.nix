@@ -1,8 +1,10 @@
+#	flake.nix
 {
 	description = "Config NixOS";
 
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+		# nixpkgs.url = "github:nixos/nixpkgs/c59305bab2065cfecc4944690d9eedbb56f3a9fa";
 		nix-flatpak.url = "github:gmodena/nix-flatpak";
 		noctalia-v5.url = "github:noctalia-dev/noctalia/main";
 		noctalia-v4.url = "github:noctalia-dev/noctalia/legacy-v4";
@@ -20,6 +22,8 @@
 		walker.url = "github:abenz1267/walker/42b3ed88abf50bc52638fb2835b7f17e3ea3ac4c";
 		walker.inputs.elephant.follows = "elephant";
 		niri.url = "git+file:///mnt/data/programs/niri";
+		niri.inputs.nixpkgs.follows = "nixpkgs";
+		xwayland-satellite.url = "github:Supreeeme/xwayland-satellite/v0.8.2";
 	};
 
 	outputs = {
@@ -31,6 +35,7 @@
 		home-manager,
 		nix-flatpak,
 		fresh,
+		xwayland-satellite,
 		...
 	}@inputs:
 	let
@@ -47,7 +52,8 @@
 						nixpkgs.hostPlatform = "x86_64-linux";
 						nixpkgs.overlays = [
 							(final: prev: {
-								niri = inputs.niri.packages.${final.system}.default;
+								niri = inputs.niri.packages.${final.stdenv.hostPlatform.system}.default;
+								xwayland-satellite = inputs.xwayland-satellite.packages.${final.stdenv.hostPlatform.system}.default;
 							})
 						];
 					}

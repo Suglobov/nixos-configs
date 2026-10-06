@@ -123,6 +123,7 @@ keymap = [
 	{ on = [ ",", "s" ], run = [ "sort size --reverse=no", "linemode size" ],    desc = "Sort by size" },
 	{ on = [ ",", "S" ], run = [ "sort size --reverse=yes", "linemode size" ],   desc = "Sort by size (reverse)" },
 	{ on = [ ",", "r" ], run = "sort random --reverse=no",                       desc = "Sort randomly" },
+	{ on = [ ",", "d" ], run = "lua -- ya.emit('sort', { dir_first = not cx.active.pref.sort_dir_first })", desc = "switch sort_dir_first" },
 
 	# Goto
 	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go home" },
@@ -389,14 +390,14 @@ desc = "Open $SHELL here"
 
 
 # Copy yanked files to the system clipboard
-[[mgr.prepend_keymap]]
-on  = "y"
-run = [ "yank", 'plugin clipboard -- --action=copy --notify-unknown-display-server' ]
-
-# Paste files from the system clipboard into the current directory
-[[mgr.prepend_keymap]]
-on  = "<C-p>"
-run = [ 'plugin clipboard -- --action=paste --notify-unknown-display-server' ]
+# [[mgr.prepend_keymap]]
+# on  = "y"
+# run = [ "yank", 'plugin clipboard -- --action=copy --notify-unknown-display-server' ]
+#
+# # Paste files from the system clipboard into the current directory
+# [[mgr.prepend_keymap]]
+# on  = "<C-p>"
+# run = [ 'plugin clipboard -- --action=paste --notify-unknown-display-server' ]
 
 # autosession
 #[[mgr.prepend_keymap]]

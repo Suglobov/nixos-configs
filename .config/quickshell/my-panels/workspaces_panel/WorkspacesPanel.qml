@@ -11,10 +11,12 @@ PanelWindow {
 
 	property int panelHeight: 31
 
-	anchors.top: true
-	WlrLayershell.layer: WlrLayer.Top
-	WlrLayershell.margins.top: -panelHeight
+	WlrLayershell.layer: WlrLayer.Overlay
 
+	anchors.top: true
+
+	// exclusiveZone: -panelHeight
+	// exclusionMode: ExclusionMode.Ignore
 	implicitWidth: contentContainer.width
 	implicitHeight: panelHeight
 	color: 'transparent'

@@ -3,21 +3,22 @@
 {
 	environment.systemPackages = with pkgs; [
 		vim
+		neovim
 		wget
 		git
 		curl
 		fish
 		yazi
 		home-manager
-		xwayland-satellite
 		# amneziawg-tools
 		# amnezia-vpn
 		fuse
 		fuse3
 		at-spi2-core
+		xwayland-satellite	# xwayland для wayland без root (0.8.2 из flake, см. overlay в flake.nix)
 	];
 	environment.sessionVariables = {
-		QS_ICON_THEME = "Papirus";
+		# QS_ICON_THEME = "Tela";
 	};
 
 

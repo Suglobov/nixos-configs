@@ -20,7 +20,7 @@ binds {
 	// Print { spawn-sh "rm -f /tmp/niri-screenshot.png && niri msg action screenshot && while [ ! -f /tmp/niri-screenshot.png ]; do sleep 0.05; done && satty -f /tmp/niri-screenshot.png"; }
 	Print { screenshot; } // скриншот от niri
 	Alt+Print { spawn-sh "wl-paste | satty -f -"; } // открывает satty из буфера обмена
-	
+
 	// Видео выделенной области запуск и следующая команда остановка
 	Shift+Print { spawn-sh "wf-recorder -g \"$(slurp -w 2 -c '#00FF00FF')\" -f ~/Videos/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"; }
 	Ctrl+Print { spawn-sh "pkill -2 wf-recorder"; }
@@ -201,4 +201,5 @@ binds {
 	// Powers off the monitors. To turn them back on, do any input like
 	// moving the mouse or pressing any other key.
 	Mod+Shift+P { power-off-monitors; }
+	Mod+Shift+O { power-off-monitors; }
 }

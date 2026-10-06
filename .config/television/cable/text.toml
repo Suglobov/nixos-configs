@@ -1,0 +1,39 @@
+[metadata]
+name = "text"
+description = "A channel to find and select text from files"
+requirements = ["rg", "bat"]
+
+[source]
+command = [
+  { name = "Default", run = "rg . --no-heading --line-number --colors 'match:fg:white' --colors 'path:fg:blue' --color=always" },
+  { name = "Hidden",  run = "rg . --no-heading --line-number --hidden --colors 'match:fg:white' --colors 'path:fg:blue' --color=always" },
+]
+ansi = true
+output = "{strip_ansi|split:\\::..2}"
+
+[preview]
+command = "bat -n --color=always '{strip_ansi|split:\\::0}'"
+env = { BAT_THEME = "ansi" }
+offset = '{strip_ansi|split:\::1}'
+
+[ui]
+preview_panel = { header = '{strip_ansi|split:\::..2}' }
+
+[keybindings]
+enter = "actions:edit"
+f2 = "actions:open_in_code"
+
+[actions.edit]
+description = "Open file in editor at line"
+command = "${EDITOR:-vim} '+{strip_ansi|split:\\::1}' '{strip_ansi|split:\\::0}'"
+shell = "bash"
+mode = "execute"
+
+[actions.open_in_code]
+description = "Open in VS Code at line"
+# code -g открывает файл и сразу переходит к строке (формат файл:строка)
+# {strip_ansi|split:\::0} — это путь к файлу
+# {strip_ansi|split:\::1} — это номер строки
+command = "code -g '{strip_ansi|split:\\::0}:{strip_ansi|split:\\::1}'"
+shell = "bash"
+mode = "fork"

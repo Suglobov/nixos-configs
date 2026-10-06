@@ -31,9 +31,9 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 edit = [
-	{ run = "${EDITOR:-vi} %s", desc = "$EDITOR",      for = "unix", block = true },
-	{ run = "code %s",          desc = "code",         for = "unix", bOlock = true },
-	{ run = "%s",               desc = "run sh",       for = "unix", bOlock = true },
+	{ run = "${EDITOR:-vi} %s",	desc = "$EDITOR",		for = "unix", block = true },
+	{ run = "code %s",					desc = "code",			for = "unix", block = true },
+	{ run = "zeditor %s",				desc = "zeditor",		for = "unix", block = true },
 	{ run = "code %s",          desc = "code",         for = "windows", orphan = true },
 	{ run = "code -w %s",       desc = "code (block)", for = "windows", block = true },
 ]
@@ -65,14 +65,26 @@ download = [
 	{ run = "ya emit download --open %S", desc = "Download and open" },
 	{ run = "ya emit download %S",        desc = "Download" },
 ]
+
+run-sh = [
+	{ run = "%s",	desc = "Run sh",	for = "unix", block = true },
+]
 portproton = [
 	{ run = "ru.linux_gaming.PortProton %s", orphan = true, desc = "PortProton" }
+]
+foot = [
+	{ run = "setsid foot --working-directory='%s' </dev/null >/dev/null 2>&1 &", orphan = true, desc = "foot" }
+]
+kitty = [
+	{ run = "setsid kitty --working-directory='%s' </dev/null >/dev/null 2>&1 &", orphan = true, desc = "kitty" }
 ]
 
 [open]
 rules = [
 	# Folder
-	{ url = "*/", use = [ "edit", "open", "reveal" ] },
+	{ url = "*/", use = [ "kitty","edit","open","foot","reveal", ] },
+	# Shell scripts
+	{ url = "*.sh", use = [ "run-sh","edit","reveal" ] },
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
 	# Image
@@ -243,7 +255,7 @@ quit_offset = [ 0, 0, 50, 15 ]
 [pick]
 open_title  = "Open with:"
 open_origin = "hovered"
-open_offset = [ 0, 1, 50, 7 ]
+open_offset = [ 0, 1, 50, 50 ]
 
 [which]
 sort_by      	 = "none"

@@ -96,7 +96,10 @@ Singleton {
 				try {
 
 					var event = JSON.parse(data)
-					// console.log(Date.now(), JSON.stringify(Object.keys(event)[0], null, 0))
+					var date = new Date()
+					// console.log(date.toISOString(), JSON.stringify(Object.keys(event)[0], null, 0))
+					// console.log(date.toISOString(), JSON.stringify(event, null, 0))
+					// console.log(Date.now(), JSON.stringify(event, null, 0))
 
 					if (event.WindowLayoutsChanged) {
 						var changes = event.WindowLayoutsChanged.changes
@@ -114,7 +117,7 @@ Singleton {
 						var winById = Object.create(null)
 						event.WindowsChanged.windows.forEach((win) => {
 							var wsId = win.workspace_id
-							var id = win.id 
+							var id = win.id
 							winById[win.id] = win
 							if (win.is_focused) {
 								root.winFocusedId = win.id
@@ -130,6 +133,7 @@ Singleton {
 
 					if (event.WindowOpenedOrChanged) {
 						var win = event.WindowOpenedOrChanged.window
+						// console.log('WindowOpenedOrChanged', win.id, win.title)
 						var ws_id = win.workspace_id
 						if (win.is_focused) {
 							root.winFocusedId = win.id
@@ -138,7 +142,7 @@ Singleton {
 							var set = new Set(root.winUrgentIds)
 							set.add(win.id)
 							root.winUrgentIds = set
-						} 
+						}
 						if (!win.is_urgent && root.winUrgentIds.has(win.id)) {
 							var set = new Set(root.winUrgentIds)
 							set.delete(win.id)

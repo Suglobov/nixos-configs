@@ -43,7 +43,26 @@
 				} {
 					link = "${homeDir}/.config/anyrun";
 					target = "${targetDir}/nixos/.config/anyrun";
+				} {
+					link = "${homeDir}/.config/xkb";
+					target = "${targetDir}/nixos/.config/xkb";
+				} {
+					link = "${homeDir}/.config/kitty";
+					target = "${targetDir}/nixos/.config/kitty";
+				} {
+					link = "${homeDir}/.config/television";
+					target = "${targetDir}/nixos/.config/television";
+				}	{
+					link = "${homeDir}/.config/xdg-desktop-portal";
+					target = "${targetDir}/nixos/.config/xdg-desktop-portal";
+				}	{
+					link = "${homeDir}/.config/xdg-desktop-portal-termfilechooser";
+					target = "${targetDir}/nixos/.config/xdg-desktop-portal-termfilechooser";
+				}	{
+					link = "${homeDir}/.config/nvim";
+					target = "${targetDir}/nixos/.config/nvim";
 				}
+
 			];
 		in
 			lib.concatMapStringsSep "\n" (item: ''

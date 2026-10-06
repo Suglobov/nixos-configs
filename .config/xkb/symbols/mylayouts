@@ -1,0 +1,7 @@
+xkb_symbols "us_first" {
+    include "us"
+};
+xkb_symbols "ru_first" {
+    include "ru(winkeys)"
+    key <RALT> { [ Mode_switch ] };
+};

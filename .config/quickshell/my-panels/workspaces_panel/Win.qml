@@ -17,7 +17,7 @@ Rectangle	{
 	color:	'transparent'
 	// border.width: 1
 	border.color: 'transparent'
-	
+
 	Image	{
 		id:	windowIcon
 		anchors.centerIn:	parent
@@ -28,7 +28,17 @@ Rectangle	{
 		mipmap:	true
 		sourceSize.height:	height
 		sourceSize.width:	width
-		source:	Quickshell.iconPath(window.app_id.toLowerCase())
+		source:	{
+			var appId = window.app_id.toLowerCase()
+			var path = Quickshell.iconPath(appId, true)
+			// console.log(path)
+			// Если иконка не найдена, берём последнюю часть app_id
+			if (!path || path === "" || path.includes("image-missing")) {
+				var parts = appId.split(".")
+				return Quickshell.iconPath(parts[parts.length - 1])
+			}
+			return path
+		}
 	}
 
 	Rectangle	{

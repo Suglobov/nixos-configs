@@ -3,6 +3,12 @@
 {
 	hardware.steam-hardware.enable = true;
 	hardware.graphics.enable = true;
+	hardware.graphics.extraPackages = with pkgs; [
+		mesa
+		intel-media-driver
+		libva
+		libva-vdpau-driver
+	];
 	hardware.uinput.enable = true;
 	# hardware.bluetooth.enable = true;
 	# hardware.bluetooth.powerOnBoot = true;
@@ -11,12 +17,12 @@
 		powerOnBoot = true;
 		settings = {
 			General = {
-				Experimental = true;    # Открывает видимость BLE клавиатур
-				UserspaceHID = true;    # Стабильное автоподключение устройств ввода
+				Experimental = true;		# Открывает видимость BLE клавиатур
+				UserspaceHID = true;		# Стабильное автоподключение устройств ввода
 			};
 		};
 	};
-	hardware.enableAllFirmware = true;  # Загружает закрытые драйверы для Bluetooth-чипов
+	hardware.enableAllFirmware = true;	# Загружает закрытые драйверы для Bluetooth-чипов
 
 	security.polkit.enable = true;
 
@@ -34,11 +40,11 @@
 		game-devices-udev-rules # Огромная база правил для DualShock, Xbox, Nintendo и китайских реплик
 	];
 	# services.udev.extraRules = ''
-	# 	# Первый геймпад на порту 1-3
-	# 	SUBSYSTEM=="input", KERNELS=="1-3:1.0", ATTR{name}="usb gamepad 1"
+	#		# Первый геймпад на порту 1-3
+	#		SUBSYSTEM=="input", KERNELS=="1-3:1.0", ATTR{name}="usb gamepad 1"
 
-	# 	# Второй геймпад на порту 1-1
-	# 	SUBSYSTEM=="input", KERNELS=="1-1:1.0", ATTR{name}="usb gamepad 2"
+	#		# Второй геймпад на порту 1-1
+	#		SUBSYSTEM=="input", KERNELS=="1-1:1.0", ATTR{name}="usb gamepad 2"
 	# '';
 	services.dbus.enable = true;
 	services.udisks2.enable = true;
@@ -56,14 +62,14 @@
 	};
 
 	# services.input-remapper = {
-	# 	enable = true;
-	# 	enableUdevRules = true; # Автоматически дает права на чтение геймпадов
+	#		enable = true;
+	#		enableUdevRules = true; # Автоматически дает права на чтение геймпадов
 	# };
 
 	# services.netbird.enable = true;	#	создание локальной сети через инернет
 	# services.zerotierone = { #	создание локальной сети через инернет
-	#   enable = true;
-	#   joinNetworks = [ "f3797ba7a8883f76" ]; # ID вашей сети из my.zerotier.com
+	#		enable = true;
+	#		joinNetworks = [ "f3797ba7a8883f76" ]; # ID вашей сети из my.zerotier.com
 	# };
 	services.tailscale = {
 		enable = true;
@@ -71,24 +77,29 @@
 		useRoutingFeatures = "both";	# или "both", если компьютер сам тоже будет пользоваться exit node
 	};
 	systemd.services.tailscaled.serviceConfig.Environment = [
-    "HTTP_PROXY=http://127.0.0.1:7897"
-    "HTTPS_PROXY=http://127.0.0.1:7897"
-    # Исключаем локальные сети и сам Tailscale из проксирования
-    "NO_PROXY=localhost,127.0.0.1,100.64.0.0/10,192.168.0.0/16" 
-  ];
+		"HTTP_PROXY=http://127.0.0.1:7897"
+		"HTTPS_PROXY=http://127.0.0.1:7897"
+		# Исключаем локальные сети и сам Tailscale из проксирования
+		"NO_PROXY=localhost,127.0.0.1,100.64.0.0/10,192.168.0.0/16"
+	];
 
+	xdg.mime.enable = true;
 	xdg.portal = {
 		enable = true;
 		extraPortals = with pkgs; [
 			xdg-desktop-portal
-			xdg-desktop-portal-gnome
 			xdg-desktop-portal-gtk
+			xdg-desktop-portal-wlr
+			xdg-desktop-portal-termfilechooser
+			# kdePackages.xdg-desktop-portal-kde
+			# lxqt.xdg-desktop-portal-lxqt
+			# xdg-desktop-portal-gnome
 		];
 		config.common = {
 			default = [ "gtk" ];
-			"org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-			"org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
-			"org.freedesktop.impl.portal.Activation" = [ "gtk" ];
+			"org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+			"org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+			"org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
 		};
 	};
 
@@ -102,14 +113,14 @@
 
 	# Сервис VPN
 	# systemd.services.amnezia-vpn = {
-	# 	description = "Amnezia VPN Backend Service";
-	# 	after = [ "network.target" ];
-	# 	wantedBy = [ "multi-user.target" ];
-	# 	serviceConfig = {
-	# 		Type = "simple";
-	# 		ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
-	# 		Restart = "always";
-	# 	};
+	#		description = "Amnezia VPN Backend Service";
+	#		after = [ "network.target" ];
+	#		wantedBy = [ "multi-user.target" ];
+	#		serviceConfig = {
+	#			Type = "simple";
+	#			ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
+	#			Restart = "always";
+	#		};
 	# };
 
 	# Включение NumLock для TTY
